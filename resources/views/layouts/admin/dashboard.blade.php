@@ -60,7 +60,7 @@
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                        document.getElementById('logout-form').submit();">
+                                            document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
                                 </a>
 
@@ -103,7 +103,9 @@
                     </h6>
                 </div>
             </nav>
-            @yield('content')
+            <div class="col-md-9 col-lg-10">
+                @yield('content')
+            </div>
         </div>
     </div>
 

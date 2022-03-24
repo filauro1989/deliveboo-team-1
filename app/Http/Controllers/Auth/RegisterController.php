@@ -8,6 +8,9 @@ use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
+
 
 class RegisterController extends Controller
 {
@@ -50,8 +53,12 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
+            'restaurant_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'address' => ['required', 'string', 'max:255'],
+            'phone' => ['required', 'numeric'],
+            'vat' => ['required', 'digits:11', 'max:255', 'unique:users'],
+            'image' => ['nullable', 'image'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
@@ -63,11 +70,38 @@ class RegisterController extends Controller
      * @return \App\User
      */
     protected function create(array $data)
+    
     {
+        // CREAZIONE SLUG E CONTROLLO DUPLICATI
+        $slug = Str::slug($data['restaurant_name'], '-');
+
+        $oldUser = User::where('slug', $slug)->first();
+
+        if (!$oldUser) {
+            $newSlug = $slug;
+        } else {
+        $counter = 0;
+            while ($oldUser) {
+                $newSlug = $slug . '-' . $counter;
+                $oldUser = User::where('slug', $newSlug)->first();
+                $counter++;
+            }
+        }
+
+
+        if (!empty($data['image'])) {
+            $img_path = Storage::put('uploads', $data['image']);
+            $data['image'] = $img_path;
+        }
         return User::create([
-            'name' => $data['name'],
+            'restaurant_name' => $data['restaurant_name'],
             'email' => $data['email'],
+            'address' => $data['address'],
+            'phone' => $data['phone'],
+            'vat' => $data['vat'],
+            'image' => $data['image'],
             'password' => Hash::make($data['password']),
+            'slug' => $newSlug,
         ]);
     }
 }

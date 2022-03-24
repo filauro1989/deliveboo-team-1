@@ -19,8 +19,22 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
+
+Route::middleware('auth')
+    ->namespace('Admin')
+    ->name('admin.')
+    ->prefix('admin')
+    ->group(function () {
+        Route::get('/', 'HomeController@index')
+            ->name('home');
+        // Route::get('/categories', 'CategoryController@index')->name('categories.index');
+        // Route::get('/categories/{category}', 'CategoryController@show')->name('categories.show');
+        // Route::get('/myposts', 'PostController@userIndex')->name('posts.userIndex');
+        // Route::resource('categories', 'CategoryController');
+        // Route::resource('posts', 'PostController');
+    });
 
 Route::get("{any?}", function () {
-    return view("guest.welcome");
+    return view("guest.home");
 })->where("any", ".*");

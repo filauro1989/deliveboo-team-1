@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Str;
 
 class User extends Authenticatable
 {
@@ -26,8 +27,8 @@ class User extends Authenticatable
         'description',
         'opening_time',
         'closing_time',
-        'closing_days',
         'open',
+        'slug',
     ];
 
     public function categories() {
@@ -37,6 +38,27 @@ class User extends Authenticatable
     public function dishes() {
         return $this->hasMany('App\Model\Dish');
     }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+    
+    // public function createSlug($title)
+    // {
+    //     $slug = Str::slug($title, '-');
+
+    //     $oldPost = Post::where('slug', $slug)->first();
+
+    //     $counter = 0;
+    //     while ($oldPost) {
+    //         $newSlug = $slug . '-' . $counter;
+    //         $oldPost = Post::where('slug', $newSlug)->first();
+    //         $counter++;
+    //     }
+
+    //     return (empty($newSlug)) ? $slug : $newSlug;
+    // }
 
     /**
      * The attributes that should be hidden for arrays.

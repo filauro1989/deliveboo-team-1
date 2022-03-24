@@ -4,6 +4,7 @@ use Illuminate\Database\Seeder;
 use App\User;
 use App\Model\Dish;
 use App\Model\Course;
+use Illuminate\Support\Str;
 
 class DishSeeder extends Seeder
 {
@@ -24,6 +25,7 @@ class DishSeeder extends Seeder
         $newDish->price = 5.25;
         $newDish->image = 'dishes_img/margherita.jpg';
         $newDish->visible = 1;
+        $newDish->slug = Str::slug($newDish->name . '-');
         $newDish->save();
     }
 }

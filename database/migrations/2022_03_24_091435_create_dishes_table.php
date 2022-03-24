@@ -37,6 +37,7 @@ class CreateDishesTable extends Migration
             $table->float('price', 6, 2);
             $table->string('image')->nullable();
             $table->boolean('visible');
+            $table->string('slug')->unique();
             $table->timestamps();
         });
     }

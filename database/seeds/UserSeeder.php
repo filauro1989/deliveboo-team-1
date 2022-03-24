@@ -3,6 +3,7 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use App\User;
+use Illuminate\Support\Str;
 
 class UserSeeder extends Seeder
 {
@@ -25,8 +26,8 @@ class UserSeeder extends Seeder
         $newUser->description = 'ipografo prese una cassetta di caratteri e li assemblò per preparare un testo campione. È sopravvissuto non solo a più di cinque secoli, ma anche al passaggio alla videoimpaginazione, pervenendoci sostanzialmente inalterato. Fu reso popolare, negli anni ’60, con la diffusione dei fogli di caratteri trasferibili “Letraset”, che contenevano passaggi del Lorem Ip';
         $newUser->opening_time = '08:00';
         $newUser->closing_time = '23:30';
-        $newUser->closing_days = 'Saturday';
         $newUser->open = 1;
+        $newUser->slug = Str::slug($newUser->restaurant_name . '-');
 
         $newUser->save();
     }

@@ -28,11 +28,11 @@ Route::middleware('auth')
     ->group(function () {
         Route::get('/', 'HomeController@index')
             ->name('home');
+        Route::resource('dishes', 'DishController');
         // Route::get('/categories', 'CategoryController@index')->name('categories.index');
         // Route::get('/categories/{category}', 'CategoryController@show')->name('categories.show');
         // Route::get('/myposts', 'PostController@userIndex')->name('posts.userIndex');
         // Route::resource('categories', 'CategoryController');
-        // Route::resource('posts', 'PostController');
     });
 
 Route::get("{any?}", function () {

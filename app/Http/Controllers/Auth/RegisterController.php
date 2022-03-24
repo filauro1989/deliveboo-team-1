@@ -88,7 +88,6 @@ class RegisterController extends Controller
             }
         }
 
-
         if (!empty($data['image'])) {
             $img_path = Storage::put('uploads', $data['image']);
             $data['image'] = $img_path;

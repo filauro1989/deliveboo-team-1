@@ -60,7 +60,7 @@
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                            document.getElementById('logout-form').submit();">
+                                        document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
                                 </a>
 
@@ -75,12 +75,44 @@
             </div>
         </div>
     </nav>
+    <div class="container-fluid">
+        <div class="row">
+            <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+                <div class="position-sticky pt-3">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{{ route('admin.home') }}">
+                                <span data-feather="home"></span>
+                                Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{{ route('admin.dishes.create') }}">
+                                <span data-feather="home"></span>
+                                Aggiungi Piatto
+                            </a>
+                        </li>
+                    </ul>
 
-    <div id="app">
+                    <h6
+                        class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                        <span>Saved reports</span>
+                        <a class="link-secondary" href="#" aria-label="Add a new report">
+                            <span data-feather="plus-circle"></span>
+                        </a>
+                    </h6>
+                </div>
+            </nav>
+            @yield('content')
+        </div>
+    </div>
+
+    {{-- <div id="app">
         <main class="py-4">
             @yield('content')
         </main>
-    </div>
+    </div> --}}
+
 </body>
 
 </html>

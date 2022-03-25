@@ -1201,7 +1201,7 @@ eval("window._ = __webpack_require__(/*! lodash */ \"./node_modules/lodash/lodas
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! E:\Boolean Camp\php\deliveboo-team-1\resources\js\admin.js */"./resources/js/admin.js");
+module.exports = __webpack_require__(/*! /Users/matteogallitano/Boolean/progetto-finale-deliveboo/deliveboo-team-1/resources/js/admin.js */"./resources/js/admin.js");
 
 
 /***/ })

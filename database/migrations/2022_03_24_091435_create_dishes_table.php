@@ -22,7 +22,7 @@ class CreateDishesTable extends Migration
                 // DELLA COLONNA ID
                 ->references('id')
                 // DELLA TABELLA USERS
-                ->on('users')->onDelete('cascade');
+                ->on('users');
 
             $table->unsignedBigInteger('course_id')->nullable();
             // CHIAVE ESTERNA
@@ -39,6 +39,7 @@ class CreateDishesTable extends Migration
             $table->boolean('visible');
             $table->string('slug')->unique();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -29,6 +29,7 @@ Route::middleware('auth')
         Route::get('/', 'HomeController@index')
             ->name('home');
         Route::resource('dishes', 'DishController');
+        Route::resource('orders', 'OrderController');
         // Route::get('/categories', 'CategoryController@index')->name('categories.index');
         // Route::get('/categories/{category}', 'CategoryController@show')->name('categories.show');
         // Route::get('/myposts', 'PostController@userIndex')->name('posts.userIndex');

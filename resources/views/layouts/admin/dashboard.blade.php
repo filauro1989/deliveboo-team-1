@@ -92,6 +92,18 @@
                                 Aggiungi Piatto
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{{ route('admin.dishes.index') }}">
+                                <span data-feather="home"></span>
+                                Lista Piatti
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{{ route('admin.orders.index') }}">
+                                <span data-feather="home"></span>
+                                Lista Ordini
+                            </a>
+                        </li>
                     </ul>
 
                     <h6

@@ -36,7 +36,7 @@
 
                                 <div class="col-md-6">
                                     <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
-                                        name="email" value="{{ old('email') }}" required autocomplete="email">
+                                        name="email" value="{{ old('email') }}"      autocomplete="email">
 
                                     @error('email')
                                         <span class="invalid-feedback" role="alert">
@@ -123,7 +123,7 @@
 
                             <div class="mb-3">
                                 <label for="image" class="form-label">Carica immagine dell'attività</label>
-                                <input class="form-control" type="file" id="image" name="image">
+                                <input class="form-control" accept="image/*" type="file" id="image" name="image">
                                 @error('image')
                                     <div class="alert alert-danger mt-3">
                                         {{ $message }}

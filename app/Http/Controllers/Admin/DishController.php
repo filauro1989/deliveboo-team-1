@@ -51,7 +51,7 @@ class DishController extends Controller
         $validation = $request->validate([
             "name" => "required|max:255",
             "description" => "required|",
-            "price" => "required", //validazione virgola?
+            "price" => "required|numeric|gt:0", //validazione virgola?
             "visible" => "nullable",
             "image" => "nullable|image",
             "course_id" => "exists:App\Model\Course,id"
@@ -64,6 +64,8 @@ class DishController extends Controller
 
         $newDish = new Dish();
         $newDish->slug = $newDish->createSlug($data["name"]);
+        // $data->price = number_format($data['price'], 2);
+        $data['price'] = number_format($data['price'], 2);
         $newDish->fill($data);
         $newDish->save();
 
@@ -78,9 +80,9 @@ class DishController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Dish $dish)
     {
-        //
+        return view('admin.show', compact('dish'));
     }
 
     /**
@@ -102,9 +104,47 @@ class DishController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Dish $dish)
     {
-        //
+        $data  = $request->all();
+        $data["user_id"] = Auth::user()->id;
+        
+
+        $validation = $request->validate([
+            "name" => "required|max:255",
+            "description" => "required|",
+            "price" => "required|numeric|gt:0", //validazione virgola?
+            "visible" => "nullable",
+            "image" => "nullable|image",
+            "course_id" => "exists:App\Model\Course,id"
+        ]);
+
+        if(!empty($data['image'])){
+            Storage::delete($dish->image);
+            $img_path = Storage::put('uploads', $data['image']);
+            $data['image'] = $img_path;
+        }
+        if ($data['name'] != $dish->name) {
+            $dish->name = $data['name'];
+            $dish->slug = $dish->createSlug($data['name']);
+        }
+        if ($data['description'] != $dish->description) {
+            $dish->description = $data['description'];
+        }
+        if ($data['price'] != $dish->price) {
+            $data['price'] = number_format($data['price'], 2);
+            $dish->price = $data['price'];
+        }
+        if ($data['visible'] != $dish->visible) {
+            $dish->visible = $data['visible'];
+        }
+        if ($data['course_id'] != $dish->course_id) {
+            $dish->course_id = $data['course_id'];
+        }
+            
+        $dish->update($data);
+
+        return redirect()->route('admin.dishes.show', ['dish' => $dish]);
     }
 
     /**

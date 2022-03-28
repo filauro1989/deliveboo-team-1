@@ -60,6 +60,7 @@ class RegisterController extends Controller
             'vat' => ['required', 'digits:11', 'max:255', 'unique:users'],
             'image' => ['nullable', 'image'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'categories.*' => ['exists:App\Model\Category,id'],
         ]);
     }
 
@@ -91,16 +92,31 @@ class RegisterController extends Controller
         if (!empty($data['image'])) {
             $img_path = Storage::put('uploads', $data['image']);
             $data['image'] = $img_path;
+        } else {
+            $data['image'] = 'null';
         }
-        return User::create([
-            'restaurant_name' => $data['restaurant_name'],
-            'email' => $data['email'],
-            'address' => $data['address'],
-            'phone' => $data['phone'],
-            'vat' => $data['vat'],
-            'image' => $data['image'],
-            'password' => Hash::make($data['password']),
-            'slug' => $newSlug,
-        ]);
+
+        // return User::create([
+        //     'restaurant_name' => $data['restaurant_name'],
+        //     'email' => $data['email'],
+        //     'address' => $data['address'],
+        //     'phone' => $data['phone'],
+        //     'vat' => $data['vat'],
+        //     'image' => $data['image'],
+        //     'password' => Hash::make($data['password']),
+        //     'slug' => $newSlug,
+        // ]);
+
+        $newUser = new User();
+        // $newUser->fill($data);
+        $newUser->restaurant_name = $data['restaurant_name'];
+        $newUser->email = $data['email'];
+        $newUser->address = $data['address'];
+        $newUser->phone = $data['phone'];
+        $newUser->vat = $data['vat'];
+        $newUser->image = $data['image'];
+        $newUser->password = Hash::make($data['password']);
+        $newUser->slug = $newSlug;
+        return $newUser->create();
     }
 }

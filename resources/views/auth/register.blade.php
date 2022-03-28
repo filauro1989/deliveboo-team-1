@@ -1,6 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
+    @php
+    use App\Model\Category;
+
+    $categories = Category::all();
+    @endphp
+
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
@@ -29,6 +35,19 @@
                                     @enderror
                                 </div>
                             </div>
+                            <details>
+                                <summary>Scegli la categoria del ristorante</summary>
+                                @foreach ($categories as $category)
+                                    <div class="btn-group" role="group"
+                                        aria-label="Basic checkbox toggle button group">
+                                        <input type="checkbox" class="btn-check"
+                                            id="{{ 'btncheck' . $category->id }}" autocomplete="off" name="categories[]"
+                                            value="{{ $category->id }}" multiple>
+                                        <label class="btn btn-outline-primary"
+                                            for="{{ 'btncheck' . $category->id }}">{{ $category->name }}</label>
+                                    </div>
+                                @endforeach
+                            </details>
 
                             <div class="form-group row">
                                 <label for="email"
@@ -36,7 +55,7 @@
 
                                 <div class="col-md-6">
                                     <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
-                                        name="email" value="{{ old('email') }}"      autocomplete="email">
+                                        name="email" value="{{ old('email') }}" autocomplete="email">
 
                                     @error('email')
                                         <span class="invalid-feedback" role="alert">

@@ -41,6 +41,11 @@ class Dish extends Model
         $slug = Str::slug($title, '-');
 
         $oldDish = Dish::where('slug', $slug)->first();
+        if (!$oldDish) {
+            $oldDish = Dish::onlyTrashed()
+                ->where('slug', $slug)
+                ->get();
+        }
 
         $counter = 0;
         while ($oldDish) {

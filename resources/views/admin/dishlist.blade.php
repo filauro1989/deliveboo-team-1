@@ -31,13 +31,43 @@
                                 <div class="alert alert-danger">Non Disponibile</div>
                             @endif
                             <a class="btn btn-info" href="{{ route('admin.dishes.edit', $dish) }}">Modifica</a>
-                            <form method="POST" action="{{ route('admin.dishes.destroy', $dish) }}">
-                                @csrf
-                                @method("DELETE")
 
-                                <input class="btn btn-danger" type="submit" value="Elimina">
-                            </form>
-                            <a class="btn btn-info" href="{{ route('admin.dishes.show', $dish) }}">Visualizza
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                data-bs-target="#deleteConfirmation{{ $dish->slug }}">
+                                Elimina
+                            </button>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="deleteConfirmation{{ $dish->slug }}"
+                                data-bs-backdrop="static" tabindex="-1" aria-labelledby="deletePopup{{ $dish->slug }}"
+                                aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="deletePopup{{ $dish->slug }}">Attenzione</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Sei sicuro di cancellare {{ $dish->name }} ?
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Annulla</button>
+                                            <form method="POST"
+                                                action="{{ route('admin.dishes.destroy', $dish->slug) }}">
+                                                @csrf
+                                                @method("DELETE")
+
+                                                <input class="btn btn-danger" type="submit" value="Elimina">
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <a class="btn btn-info" href="{{ route('admin.dishes.show', $dish->slug) }}">Visualizza
                                 Piatto</a>
                         </div>
                     </div>

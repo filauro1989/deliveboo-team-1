@@ -40,20 +40,18 @@ class Dish extends Model
     {
         $slug = Str::slug($title, '-');
 
-        $oldDish = Dish::where('slug', $slug)->first();
-        if (!$oldDish) {
-            $oldDish = Dish::onlyTrashed()
-                ->where('slug', $slug)
-                ->get();
-        }
+        $notTrashed = Dish::where('slug', $slug)->first();
+        $trashed = Dish::onlyTrashed()->where('slug', $slug)->first();
 
         $counter = 0;
-        while ($oldDish) {
+        while ($notTrashed || $trashed) {
             $newSlug = $slug . '-' . $counter;
-            $oldDish = Dish::where('slug', $newSlug)->first();
+            $notTrashed = Dish::where('slug', $newSlug)->first();
+            $trashed = Dish::onlyTrashed()->where('slug', $newSlug)->first();
             $counter++;
         }
 
         return (empty($newSlug)) ? $slug : $newSlug;
+
     }
 }

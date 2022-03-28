@@ -13,6 +13,8 @@ class OrderSeeder extends Seeder
     public function run()
     {
         $newOrder = new Order();
+        $newOrder->first_name = 'Tore';
+        $newOrder->last_name = 'Compra';
         $newOrder->date = '2022-03-23 12:00:00';
         $newOrder->customer_email = 'compratore@gmail.com';
         $newOrder->delivery_address = 'via palo, 34';

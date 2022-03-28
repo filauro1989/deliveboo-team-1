@@ -107,16 +107,20 @@ class RegisterController extends Controller
         //     'slug' => $newSlug,
         // ]);
 
-        $newUser = new User();
-        // $newUser->fill($data);
-        $newUser->restaurant_name = $data['restaurant_name'];
-        $newUser->email = $data['email'];
-        $newUser->address = $data['address'];
-        $newUser->phone = $data['phone'];
-        $newUser->vat = $data['vat'];
-        $newUser->image = $data['image'];
-        $newUser->password = Hash::make($data['password']);
-        $newUser->slug = $newSlug;
-        return $newUser->create();
+        $user = User::create([
+            'restaurant_name' => $data['restaurant_name'],
+            'email' => $data['email'],
+            'address' => $data['address'],
+            'phone' => $data['phone'],
+            'vat' => $data['vat'],
+            'image' => $data['image'],
+            'password' => Hash::make($data['password']),
+            'slug' => $newSlug,
+        ]);
+
+        // Aggiungo all'utente che si registra le varie categorie inserita nella checkbox collegandole con la tabella ponte
+        $user->categories()->sync($data['categories']);
+
+        return $user;
     }
 }

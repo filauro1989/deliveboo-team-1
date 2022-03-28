@@ -1,12 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-    @php
-    use App\Model\Category;
-
-    $categories = Category::all();
-    @endphp
-
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
@@ -27,7 +21,6 @@
                                         class="form-control @error('restaurant_name') is-invalid @enderror"
                                         name="restaurant_name" value="{{ old('restaurant_name') }}" required
                                         autocomplete="restaurant_name" autofocus>
-
                                     @error('restaurant_name')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -35,19 +28,21 @@
                                     @enderror
                                 </div>
                             </div>
-                            <details>
-                                <summary>Scegli la categoria del ristorante</summary>
-                                @foreach ($categories as $category)
-                                    <div class="btn-group" role="group"
-                                        aria-label="Basic checkbox toggle button group">
-                                        <input type="checkbox" class="btn-check"
-                                            id="{{ 'btncheck' . $category->id }}" autocomplete="off" name="categories[]"
-                                            value="{{ $category->id }}" multiple>
-                                        <label class="btn btn-outline-primary"
-                                            for="{{ 'btncheck' . $category->id }}">{{ $category->name }}</label>
-                                    </div>
-                                @endforeach
-                            </details>
+                            <div>Scegli la categoria del ristorante</div>
+                            @foreach ($categories as $category)
+                                <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+                                    <input type="checkbox" class="btn-check" id="{{ 'btncheck' . $category->id }}"
+                                        autocomplete="off" name="categories[]" value="{{ $category->id }}"
+                                        {{ in_array($category->id, old('categories', [])) ? 'checked' : '' }}>
+                                    <label class="btn btn-outline-primary"
+                                        for="{{ 'btncheck' . $category->id }}">{{ $category->name }}</label>
+                                </div>
+                            @endforeach
+                            @error('categories')
+                                <div class="alert alert-danger" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </div>
+                            @enderror
 
                             <div class="form-group row">
                                 <label for="email"
@@ -55,7 +50,7 @@
 
                                 <div class="col-md-6">
                                     <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
-                                        name="email" value="{{ old('email') }}" autocomplete="email">
+                                        name="email" value="{{ old('email') }}" autocomplete="email" required>
 
                                     @error('email')
                                         <span class="invalid-feedback" role="alert">
@@ -72,7 +67,7 @@
                                 <div class="col-md-6">
                                     <input id="address" type="text"
                                         class="form-control @error('address') is-invalid @enderror" name="address"
-                                        value="{{ old('address') }}" required autocomplete="address">
+                                        value="{{ old('address') }}" autocomplete="address">
 
                                     @error('address')
                                         <span class="invalid-feedback" role="alert">

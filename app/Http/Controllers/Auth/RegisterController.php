@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\User;
+use App\Model\Category;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -34,6 +35,11 @@ class RegisterController extends Controller
      */
     protected $redirectTo = RouteServiceProvider::HOME;
 
+    public function showRegistrationForm()
+    {
+        $categories = Category::all();
+        return view('auth.register', ['categories' => $categories]);
+    }
     /**
      * Create a new controller instance.
      *
@@ -53,14 +59,25 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'restaurant_name' => ['required', 'string', 'max:255'],
+            'restaurant_name' => ['required', 'string', 'max:255', 'profane:it,en'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'address' => ['required', 'string', 'max:255'],
+            'address' => ['required', 'string', 'max:255', 'profane:it,en'],
             'phone' => ['required', 'numeric'],
             'vat' => ['required', 'digits:11', 'max:255', 'unique:users'],
             'image' => ['nullable', 'image'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'categories.*' => ['exists:App\Model\Category,id'],
+            'categories' => ['required'],
+        ], 
+        [
+            'profane' => "Volgarità rilevata nel testo inserito",
+            'required' => "Questo campo è obbligatorio",
+            'digits' => "La P.Iva deve essere di 11 caratteri",
+            'password.confirmed' => "La Password non combacia",
+            'password.min' => "La password deve contenere almeno 8 caratteri",
+            'email.unique' => "Questa e-mail è già utilizzata",
+            'vat.unique' => "Questa P.Iva è già utilizzata",
+            'max' => "Hai superato il numero di caratteri consentiti",
         ]);
     }
 

@@ -49,12 +49,16 @@ class DishController extends Controller
         
 
         $validation = $request->validate([
-            "name" => "required|max:255",
-            "description" => "required|",
-            "price" => "required|numeric|gt:0", //validazione virgola?
+            "name" => "required|max:255|profane:it,en",
+            "description" => "required|profane:it,en",
+            "price" => "required|numeric|gt:0",
             "visible" => "nullable",
             "image" => "nullable|image",
             "course_id" => "exists:App\Model\Course,id"
+        ], 
+        [
+            'profane' => "Volgarità rilevata nel testo inserito",
+            'required' => "Questo campo è obbligatorio"
         ]);
 
         if (!empty($data['image'])) {
@@ -111,12 +115,16 @@ class DishController extends Controller
         
 
         $validation = $request->validate([
-            "name" => "required|max:255",
-            "description" => "required|",
+            "name" => "required|max:255|profane:it,en",
+            "description" => "required|profane:it,en",
             "price" => "required|numeric|gt:0", //validazione virgola?
             "visible" => "nullable",
             "image" => "nullable|image",
             "course_id" => "exists:App\Model\Course,id"
+        ], 
+        [
+            'profane' => "Volgarità rilevata nel testo inserito",
+            'required' => "Questo campo è obbligatorio"
         ]);
 
         if(!empty($data['image'])){

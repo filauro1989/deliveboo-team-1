@@ -12,6 +12,7 @@
                             @csrf
                             @method('POST')
 
+                            {{-- Restaurant Name --}}
                             <div class="form-group row">
                                 <label for="restaurant_name"
                                     class="col-md-4 col-form-label text-md-right">{{ __('Nome Attività') }}</label>
@@ -20,7 +21,7 @@
                                     <input id="restaurant_name" type="text"
                                         class="form-control @error('restaurant_name') is-invalid @enderror"
                                         name="restaurant_name" value="{{ old('restaurant_name') }}" required
-                                        autocomplete="restaurant_name" autofocus>
+                                        autocomplete="restaurant_name" autofocus maxlength="255" minlength="2">
                                     @error('restaurant_name')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -28,15 +29,20 @@
                                     @enderror
                                 </div>
                             </div>
+
+                            {{-- Categories --}}
                             <div>Scegli la categoria del ristorante</div>
                             @foreach ($categories as $category)
-                            <div required class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
-                                <input type="checkbox" class="btn-check" id="{{ 'btncheck' . $category->id }}"
-                                autocomplete="off" name="categories[]" value="{{ $category->id }}"
-                                {{ in_array($category->id, old('categories', [])) ? 'checked' : '' }}>
-                                <label class="btn btn-outline-primary"
-                                for="{{ 'btncheck' . $category->id }}">{{ $category->name }}</label>
-                            </div>
+                                <div required class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+
+                                    <input type="checkbox" class="btn-check" id="{{ 'btncheck' . $category->id }}"
+                                    autocomplete="off" name="categories[]" value="{{ $category->id }}"
+                                    {{ in_array($category->id, old('categories', [])) ? 'checked' : '' }}>
+
+                                    <label class="btn btn-outline-primary"
+                                    for="{{ 'btncheck' . $category->id }}">{{ $category->name }}</label>
+                                    
+                                </div>
                             @endforeach
 
                             <div id="message"></div>
@@ -47,6 +53,8 @@
                             </div>
                             @enderror
 
+
+                            {{-- Email Address --}}
                             <div class="form-group row">
                                 <label for="email"
                                     class="col-md-4 col-form-label text-md-right">{{ __('Indirizzo E-Mail') }}</label>
@@ -63,6 +71,7 @@
                                 </div>
                             </div>
 
+                            {{-- Street Address --}}
                             <div class="form-group row">
                                 <label for="address"
                                     class="col-md-4 col-form-label text-md-right">{{ __('Indirizzo Attività') }}</label>
@@ -70,7 +79,7 @@
                                 <div class="col-md-6">
                                     <input id="address" type="text"
                                         class="form-control @error('address') is-invalid @enderror" name="address"
-                                        value="{{ old('address') }}" autocomplete="address">
+                                        value="{{ old('address') }}" autocomplete="address" maxlength="255" minlength="10">
 
                                     @error('address')
                                         <span class="invalid-feedback" role="alert">
@@ -80,13 +89,14 @@
                                 </div>
                             </div>
 
+                            {{-- Phone Number --}}
                             <div class="form-group row">
                                 <label for="phone"
                                     class="col-md-4 col-form-label text-md-right">{{ __('Numero di Telefono') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="phone" type="tel" class="form-control @error('phone') is-invalid @enderror"
-                                        name="phone" value="{{ old('phone') }}" required autocomplete="phone">
+                                        name="phone" value="{{ old('phone') }}" required autocomplete="phone" minlength="7" pattern="^\S+$">
 
                                     @error('phone')
                                         <span class="invalid-feedback" role="alert">
@@ -95,13 +105,14 @@
                                     @enderror
                                 </div>
                             </div>
-
+                            
+                            {{-- VAT --}}
                             <div class="form-group row">
                                 <label for="vat" class="col-md-4 col-form-label text-md-right">{{ __('P.Iva') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="vat" type="text" class="form-control @error('vat') is-invalid @enderror"
-                                        name="vat" value="{{ old('vat') }}" required autocomplete="vat">
+                                        name="vat" value="{{ old('vat') }}" required autocomplete="vat" maxlength="11" minlength="11" pattern="^\S+$>
 
                                     @error('vat')
                                         <span class="invalid-feedback" role="alert">
@@ -111,6 +122,7 @@
                                 </div>
                             </div>
 
+                            {{-- Password --}}
                             <div class="form-group row">
                                 <label for="password"
                                     class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
@@ -118,7 +130,7 @@
                                 <div class="col-md-6">
                                     <input id="password" type="password"
                                         class="form-control @error('password') is-invalid @enderror" name="password"
-                                        required autocomplete="new-password">
+                                        required autocomplete="new-password" minlength="8" maxlength="255">
 
                                     @error('password')
                                         <span class="invalid-feedback" role="alert">
@@ -128,13 +140,14 @@
                                 </div>
                             </div>
 
+                            {{-- Password Confirm --}}
                             <div class="form-group row">
                                 <label for="password-confirm"
                                     class="col-md-4 col-form-label text-md-right">{{ __('Conferma Password') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="password-confirm" type="password" class="form-control"
-                                        name="password_confirmation" required autocomplete="new-password">
+                                        name="password_confirmation" required autocomplete="new-password" minlength="8" maxlength="255">
                                 </div>
                             </div>
 
@@ -148,6 +161,7 @@
                                 @enderror
                             </div>
 
+                            {{-- Register Button --}}
                             <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4">
                                     <button id="register-button" type="submit" class="btn btn-primary">
@@ -172,6 +186,7 @@
             checkboxes.forEach(function (checkbox) {
                 checkbox.addEventListener('change', function(){
                     message.innerHTML = '';
+                    checked = true;
                 });
             });
 
@@ -182,6 +197,7 @@
                     
                     return false
                 }
+                checked = false;
             });
         }
         </script>

@@ -30,18 +30,21 @@
                             </div>
                             <div>Scegli la categoria del ristorante</div>
                             @foreach ($categories as $category)
-                                <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
-                                    <input type="checkbox" class="btn-check" id="{{ 'btncheck' . $category->id }}"
-                                        autocomplete="off" name="categories[]" value="{{ $category->id }}"
-                                        {{ in_array($category->id, old('categories', [])) ? 'checked' : '' }}>
-                                    <label class="btn btn-outline-primary"
-                                        for="{{ 'btncheck' . $category->id }}">{{ $category->name }}</label>
-                                </div>
+                            <div required class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+                                <input type="checkbox" class="btn-check" id="{{ 'btncheck' . $category->id }}"
+                                autocomplete="off" name="categories[]" value="{{ $category->id }}"
+                                {{ in_array($category->id, old('categories', [])) ? 'checked' : '' }}>
+                                <label class="btn btn-outline-primary"
+                                for="{{ 'btncheck' . $category->id }}">{{ $category->name }}</label>
+                            </div>
                             @endforeach
+
+                            <div id="message"></div>
+
                             @error('categories')
-                                <div class="alert alert-danger" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </div>
+                            <div class="alert alert-danger" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </div>
                             @enderror
 
                             <div class="form-group row">
@@ -147,7 +150,7 @@
 
                             <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">
+                                    <button id="register-button" type="submit" class="btn btn-primary">
                                         {{ __('Register') }}
                                     </button>
                                 </div>
@@ -158,4 +161,28 @@
             </div>
         </div>
     </div>
+    <script>
+        window.onload = () => {
+
+            let checkboxes = document.querySelectorAll('input[type=checkbox]');
+            let checked = false;
+            let message = document.getElementById('message');
+            let register = document.getElementById('register-button');
+            
+            checkboxes.forEach(function (checkbox) {
+                checkbox.addEventListener('change', function(){
+                    message.innerHTML = '';
+                });
+            });
+
+            
+            register.addEventListener('click', function(){
+                if (!checked) {
+                    message.innerHTML = `<div class="alert alert-danger mt-3" role="alert">Scegli almeno una Categoria</div>`;
+                    
+                    return false
+                }
+            });
+        }
+        </script>
 @endsection

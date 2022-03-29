@@ -27,6 +27,8 @@ class OrderController extends Controller
         ->join('dishes', 'dish_order.dish_id', '=', 'dishes.id')
         ->where("user_id", Auth::user()->id)
         ->get();
+        // $orders2 = Order::all();
+        // // dd($orders, $orders2);
 
 
         // $allDishes = Dish::where('user_id', Auth::user()->id)->get();

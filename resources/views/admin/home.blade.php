@@ -27,9 +27,8 @@
         ];
         let ordersData = [];
 
-        axios.get("http://127.0.0.1:8000/api/orders/data").then(res => {
+        axios.get("http://127.0.0.1:8001/api/orders/data").then(res => {
                 this.ordersData = res.data.results;
-
                 //creo un array dove inserirò oggetti contenenti solo il mese e il totale di ogni ordine
                 let dateData = [];
                 dateData = this.ordersData.map(el => {

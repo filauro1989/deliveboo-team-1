@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Model\Dish;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 use App\Model\Order;
 use Illuminate\Validation\Rules\Exists;
@@ -19,54 +20,54 @@ class OrderController extends Controller
      */
     public function index()
     {   
-        $allDishes = Dish::where('user_id', Auth::user()->id)->get();
-        // $allOrders = Order::all();
 
-        $orders = [];
+        // SELECT * FROM `orders`
+        // INNER JOIN `dish_order` on `orders`.`id` = `dish_order`.`order_id`
+        // INNER JOIN `dishes` on `dish_order`.`dish_id` = `dishes`.`id`
+        // INNER JOIN `users` on `dishes`.`user_id`= `users`.`id`
+        // WHERE `users`.`id` = 1;
+
+
+        $orders = DB::table("orders")
+        ->select("orders.*")
+        ->distinct()
+        ->join('dish_order', 'orders.id', '=', 'dish_order.order_id')
+        ->join('dishes', 'dish_order.dish_id', '=', 'dishes.id')
+        ->where("user_id", Auth::user()->id)
+        ->get();
+
+
+        // $allDishes = Dish::where('user_id', Auth::user()->id)->get();
+
+        // $orders = [];
         
-        //faccio un giro su tutti i piatti del ristoratore
-        foreach ($allDishes as $dish) {
-            //ad order assegno tutti gli ordini collegati a quel piatto
-            $order = $dish->orders()->get();
-            //faccio un giro sugli ordini che restituisce l'istruzione sopra (può restituire un array di ordini se il piatto è collegato a più ordini)
-            foreach ($order as $item) {
-                // dd($item);
-                // if(!in_array($item, $orders)) {
-                //     $orders[] = $item;
-                // }
+        // //faccio un giro su tutti i piatti del ristoratore
+        // foreach ($allDishes as $dish) {
+        //     //ad order assegno tutti gli ordini collegati a quel piatto
 
-                //variabile booleana per sgamare se c'è già l'id dell'ordine singolo su cui sto girando
-                $find = false;
-                //giro sul mio array ordini dove pusho gli ordini che trovo
-                for($i=0; $i<count($orders); $i++) {
-                    //se l'id dell'ordine su cui sto girando viene trovato all'interno del mio array di ordini, la variabile find si setta su true, termino il ciclo
-                    if($orders[$i]->id == $item->id) {
-                        $find = true;
-                        $i = count($orders);
-                    }
-                }
-                //se la variabile è ancora false, e quindi non ho trovato nessun id, pusho l'ordine dentro il mio array ordini
-                if(!$find) {
-                    $orders[] = $item; 
-                }
-            }
-                // if(!in_array($order, $orders)) {
-                //     $orders[] = $order;
-                // }
+        //     $order = $dish->orders()->get();
+        //     //faccio un giro sugli ordini che restituisce l'istruzione sopra (può restituire un array di ordini se il piatto è collegato a più ordini)
 
-            
-        }
-        dd($orders);
+        //     foreach ($order as $item) {
+        //         //variabile booleana per sgamare se c'è già l'id dell'ordine singolo su cui sto girando
 
-        // foreach ($allOrders as $order) {
+        //         $find = false;
 
-        //     $order = $order->dishes()->where('user_id', Auth::user()->id)->get();
-        //     if (count($order) > 0) {
-        //         array_push($orders, $order);
-        //     }
+        //         //giro sul mio array ordini dove pusho gli ordini che trovo
+        //         for($i=0; $i<count($orders); $i++) {
+
+        //             //se l'id dell'ordine su cui sto girando viene trovato all'interno del mio array di ordini, la variabile find si setta su true, termino il ciclo
+        //             if($orders[$i]->id == $item->id) {
+        //                 $find = true;
+        //                 $i = count($orders);
+        //             }
+        //         }
+        //         //se la variabile è ancora false, e quindi non ho trovato nessun id, pusho l'ordine dentro il mio array ordini
+        //         if(!$find) {
+        //             $orders[] = $item; 
+        //         }
+        //     } 
         // }
-
-        // dd($orders);
 
         return view("admin.orderlist", compact("orders"));
     }

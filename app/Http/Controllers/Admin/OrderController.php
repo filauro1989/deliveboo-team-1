@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Model\Dish;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 use App\Model\Order;
+use Illuminate\Validation\Rules\Exists;
 
 class OrderController extends Controller
 {
@@ -16,7 +19,26 @@ class OrderController extends Controller
      */
     public function index()
     {   
-        $orders = Order::orderBy("updated_at", "desc")->paginate(10);
+        $allDishes = Dish::where('user_id', Auth::user()->id)->get();
+        // $allOrders = Order::all();
+
+        $orders = [];
+        
+        foreach ($allDishes as $dish) {
+            $dish = $dish->orders()->get();
+            dd($dish);
+        }
+        
+
+        // foreach ($allOrders as $order) {
+
+        //     $order = $order->dishes()->where('user_id', Auth::user()->id)->get();
+        //     if (count($order) > 0) {
+        //         array_push($orders, $order);
+        //     }
+        // }
+
+        // dd($orders);
 
         return view("admin.orderlist", compact("orders"));
     }

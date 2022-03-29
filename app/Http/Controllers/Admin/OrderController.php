@@ -24,11 +24,39 @@ class OrderController extends Controller
 
         $orders = [];
         
+        //faccio un giro su tutti i piatti del ristoratore
         foreach ($allDishes as $dish) {
-            $dish = $dish->orders()->get();
-            dd($dish);
+            //ad order assegno tutti gli ordini collegati a quel piatto
+            $order = $dish->orders()->get();
+            //faccio un giro sugli ordini che restituisce l'istruzione sopra (può restituire un array di ordini se il piatto è collegato a più ordini)
+            foreach ($order as $item) {
+                // dd($item);
+                // if(!in_array($item, $orders)) {
+                //     $orders[] = $item;
+                // }
+
+                //variabile booleana per sgamare se c'è già l'id dell'ordine singolo su cui sto girando
+                $find = false;
+                //giro sul mio array ordini dove pusho gli ordini che trovo
+                for($i=0; $i<count($orders); $i++) {
+                    //se l'id dell'ordine su cui sto girando viene trovato all'interno del mio array di ordini, la variabile find si setta su true, termino il ciclo
+                    if($orders[$i]->id == $item->id) {
+                        $find = true;
+                        $i = count($orders);
+                    }
+                }
+                //se la variabile è ancora false, e quindi non ho trovato nessun id, pusho l'ordine dentro il mio array ordini
+                if(!$find) {
+                    $orders[] = $item; 
+                }
+            }
+                // if(!in_array($order, $orders)) {
+                //     $orders[] = $order;
+                // }
+
+            
         }
-        
+        dd($orders);
 
         // foreach ($allOrders as $order) {
 

@@ -112,7 +112,7 @@
 
                                 <div class="col-md-6">
                                     <input id="vat" type="text" class="form-control @error('vat') is-invalid @enderror"
-                                        name="vat" value="{{ old('vat') }}" required autocomplete="vat" maxlength="11" minlength="11" pattern="^\S+$>
+                                        name="vat" value="{{ old('vat') }}" required autocomplete="vat" maxlength="11" minlength="11" pattern="^\S+$">
 
                                     @error('vat')
                                         <span class="invalid-feedback" role="alert">
@@ -184,20 +184,26 @@
             let register = document.getElementById('register-button');
             
             checkboxes.forEach(function (checkbox) {
-                checkbox.addEventListener('change', function(){
+                checkbox.addEventListener('click', function(){
                     message.innerHTML = '';
-                    checked = true;
+                    // checkbox.checked = !checkbox.checked;
+
                 });
             });
-
             
             register.addEventListener('click', function(){
-                if (!checked) {
-                    message.innerHTML = `<div class="alert alert-danger mt-3" role="alert">Scegli almeno una Categoria</div>`;
+                let almostOneChecked = false;
+                
+                checkboxes.forEach(checkbox => {
+                    if(checkbox.checked) {
+                        almostOneChecked = true;
+                    }
+                })
+                if(!almostOneChecked) {
                     
-                    return false
+                    message.innerHTML = `<div class="alert alert-danger mt-3" role="alert">Scegli almeno una Categoria</div>`;
+                    return false;
                 }
-                checked = false;
             });
         }
         </script>

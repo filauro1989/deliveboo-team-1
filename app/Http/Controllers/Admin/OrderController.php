@@ -20,48 +20,50 @@ class OrderController extends Controller
      */
     public function index()
     {   
-        $orders = DB::table("orders")
-        ->select("orders.*")
-        ->distinct()
-        ->join('dish_order', 'orders.id', '=', 'dish_order.order_id')
-        ->join('dishes', 'dish_order.dish_id', '=', 'dishes.id')
-        ->where("user_id", Auth::user()->id)
-        ->get();
+        // $orders = DB::table("orders")
+        // ->select("orders.*")
+        // ->distinct()
+        // ->join('dish_order', 'orders.id', '=', 'dish_order.order_id')
+        // ->join('dishes', 'dish_order.dish_id', '=', 'dishes.id')
+        // ->where("user_id", Auth::user()->id)
+        // ->get();
         // $orders2 = Order::all();
-        // // dd($orders, $orders2);
+        // dd($orders);
 
 
-        // $allDishes = Dish::where('user_id', Auth::user()->id)->get();
+        $allDishes = Dish::where('user_id', Auth::user()->id)->get();
 
-        // $orders = [];
+        $orders = [];
         
-        // //faccio un giro su tutti i piatti del ristoratore
-        // foreach ($allDishes as $dish) {
-        //     //ad order assegno tutti gli ordini collegati a quel piatto
+        //faccio un giro su tutti i piatti del ristoratore
+        foreach ($allDishes as $dish) {
+            //ad order assegno tutti gli ordini collegati a quel piatto
 
-        //     $order = $dish->orders()->get();
-        //     //faccio un giro sugli ordini che restituisce l'istruzione sopra (può restituire un array di ordini se il piatto è collegato a più ordini)
+            $order = $dish->orders()->get();
+            //faccio un giro sugli ordini che restituisce l'istruzione sopra (può restituire un array di ordini se il piatto è collegato a più ordini)
 
-        //     foreach ($order as $item) {
-        //         //variabile booleana per sgamare se c'è già l'id dell'ordine singolo su cui sto girando
+            foreach ($order as $item) {
+                //variabile booleana per sgamare se c'è già l'id dell'ordine singolo su cui sto girando
 
-        //         $find = false;
+                $find = false;
 
-        //         //giro sul mio array ordini dove pusho gli ordini che trovo
-        //         for($i=0; $i<count($orders); $i++) {
+                //giro sul mio array ordini dove pusho gli ordini che trovo
+                for($i=0; $i<count($orders); $i++) {
 
-        //             //se l'id dell'ordine su cui sto girando viene trovato all'interno del mio array di ordini, la variabile find si setta su true, termino il ciclo
-        //             if($orders[$i]->id == $item->id) {
-        //                 $find = true;
-        //                 $i = count($orders);
-        //             }
-        //         }
-        //         //se la variabile è ancora false, e quindi non ho trovato nessun id, pusho l'ordine dentro il mio array ordini
-        //         if(!$find) {
-        //             $orders[] = $item; 
-        //         }
-        //     } 
-        // }
+                    //se l'id dell'ordine su cui sto girando viene trovato all'interno del mio array di ordini, la variabile find si setta su true, termino il ciclo
+                    if($orders[$i]->id == $item->id) {
+                        $find = true;
+                        $i = count($orders);
+                    }
+                }
+                //se la variabile è ancora false, e quindi non ho trovato nessun id, pusho l'ordine dentro il mio array ordini
+                if(!$find) {
+                    $orders[] = $item; 
+                }
+            } 
+        }
+
+        // dd($orders[0]->dishes()->first());
 
         return view("admin.orderlist", compact("orders"));
     }

@@ -20,14 +20,6 @@ class OrderController extends Controller
      */
     public function index()
     {   
-
-        // SELECT * FROM `orders`
-        // INNER JOIN `dish_order` on `orders`.`id` = `dish_order`.`order_id`
-        // INNER JOIN `dishes` on `dish_order`.`dish_id` = `dishes`.`id`
-        // INNER JOIN `users` on `dishes`.`user_id`= `users`.`id`
-        // WHERE `users`.`id` = 1;
-
-
         $orders = DB::table("orders")
         ->select("orders.*")
         ->distinct()

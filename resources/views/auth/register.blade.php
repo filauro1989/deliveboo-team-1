@@ -179,32 +179,29 @@
         window.onload = () => {
 
             let checkboxes = document.querySelectorAll('input[type=checkbox]');
-            let checked = false;
             let message = document.getElementById('message');
             let register = document.getElementById('register-button');
             
             checkboxes.forEach(function (checkbox) {
                 checkbox.addEventListener('click', function(){
                     message.innerHTML = '';
-                    // checkbox.checked = !checkbox.checked;
-
                 });
             });
             
             register.addEventListener('click', function(){
-                let almostOneChecked = false;
+                let atLeastOneChecked = false;
                 
                 checkboxes.forEach(checkbox => {
                     if(checkbox.checked) {
-                        almostOneChecked = true;
+                        atLeastOneChecked = true;
                     }
                 })
-                if(!almostOneChecked) {
+                if(!atLeastOneChecked) {
                     
                     message.innerHTML = `<div class="alert alert-danger mt-3" role="alert">Scegli almeno una Categoria</div>`;
                     return false;
                 }
             });
         }
-        </script>
+    </script>
 @endsection

@@ -6,7 +6,8 @@
         @method("PATCH")
         <div class="mb-3">
             <label for="name" class="form-label">Nome Piatto</label>
-            <input type="text" class="form-control" id="name" name="name" value="{{ $dish->name }}">
+            <input type="text" class="form-control" id="name" name="name" value="{{ $dish->name }}" minlength="2"
+                maxlength="255">
 
         </div>
         @error('name')
@@ -32,8 +33,8 @@
 
         <div class="mb-3">
             <label for="description" class="form-label">Descrizione Piatto/Ingredienti</label>
-            <textarea class="form-control" id="description" required rows="3"
-                name="description">{{ $dish->description }}</textarea>
+            <textarea class="form-control" id="description" required rows="3" name="description" minlength="3"
+                maxlength="4000">{{ $dish->description }}</textarea>
         </div>
         @error('description')
             <div class="mt-2 alert alert-danger">

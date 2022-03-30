@@ -1,8 +1,8 @@
 @import url("https://fonts.googleapis.com/css?family=Lato:400,700&display=swap");
 
 :root {
-    --page-header-bgColor: #242e42;
-    --page-header-bgColor-hover: #1d2636;
+    --page-header-bgColor: #3b3946;
+    --page-header-bgColor-hover: #ffffff27;
     --page-header-txtColor: #dde9f8;
     --page-header-headingColor: #7889a4;
     --page-header-width: 220px;
@@ -35,6 +35,12 @@ ul {
         i.ciao {
             margin-right: 8px !important;
         }
+        // .logout-a {
+        //     color: var(--switch-sunColor);
+        // }
+        // .logout-a.light-mode {
+        //     color: var(--page-header-txtColor);
+        // }
     }
 }
 
@@ -121,9 +127,11 @@ body {
     min-height: 100%;
 }
 
-.page-header .logo {
-    display: block;
-    margin: 0 15px;
+.page-header .logo-container {
+    height: 100px;
+    img {
+        height: 180%;
+    }
 }
 
 .page-header .logo svg {
@@ -148,7 +156,6 @@ body {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
-    margin-top: 35px;
 }
 
 .page-header .admin-menu li:nth-last-child(2) {
@@ -190,6 +197,16 @@ body {
     display: flex;
     align-items: center;
     font-size: 0.9rem;
+    transition: all 0.1s;
+}
+
+.page-header .admin-menu a.selected-link {
+    background: var(--page-header-bgColor-hover);
+    color: var(--page-header-txtColor);
+    outline: none;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    transform: translateX(5px);
 }
 
 .page-header .admin-menu a:hover,
@@ -197,15 +214,18 @@ body {
 .page-header .admin-menu button:hover,
 .page-header .admin-menu button:focus {
     background: var(--page-header-bgColor-hover);
-    color: var(--blue);
+    color: var(--page-header-txtColor);
     outline: none;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    transform: translateX(5px);
 }
 
 .page-header .admin-menu a:hover svg,
 .page-header .admin-menu a:focus svg,
 .page-header .admin-menu button:hover svg,
 .page-header .admin-menu button:focus svg {
-    fill: var(--blue);
+    fill: var(--page-header-txtColor);
 }
 
 /* PAGE CONTENT STYLES
@@ -519,7 +539,7 @@ body {
 /* LIGHT MODE STYLES
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 .light-mode {
-    --page-header-bgColor: #f1efec;
+    --page-header-bgColor: #cec8f7;
     --page-header-bgColor-hover: #b9e4e0;
     --page-header-txtColor: #2c303a;
     --page-header-headingColor: #979595;

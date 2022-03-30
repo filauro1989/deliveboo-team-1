@@ -126,11 +126,12 @@
 
     
 </body> --}}
-<body>
-    
 
-  {{-- <svg style="display:none;"> --}}
-    
+<body>
+
+
+    {{-- <svg style="display:none;"> --}}
+
     {{-- <symbol id="down" viewBox="0 0 16 16">
       <polygon points="3.81 4.38 8 8.57 12.19 4.38 13.71 5.91 8 11.62 2.29 5.91 3.81 4.38" />
     </symbol>
@@ -188,85 +189,91 @@
       <rect x="11.84" y="9.87" width="2" height="5.93" transform="translate(-5.32 12.84) rotate(-45)" />
     </symbol>
   </svg> --}}
-  <header class="page-header">
-    <nav>
-      {{-- <a href="#0" aria-label="forecastr logo" class="logo">
+    <header class="page-header">
+        <nav>
+            {{-- <a href="#0" aria-label="forecastr logo" class="logo">
         <svg width="140" height="49">
           <use xlink:href="#logo"></use>
         </svg>
       </a> --}}
-      <div>
-        <h1>DeliveBoo logo-</h1>
-      </div>
-      <button class="toggle-mob-menu" aria-expanded="false" aria-label="open menu">
-        <svg width="20" height="20" aria-hidden="true">
-          <use xlink:href="#down"></use>                  
-        </svg>
-      </button>
-      <ul class="admin-menu">
-        <li class="menu-heading">
-          <h3>Dashboard</h3>
-        </li>
-        <li>
-          <a href="#0">
-            <i class="fa-solid fa-chart-column"></i>
-            <span>Statistiche</span>
-          </a>
-        </li>
-        <li>
-          <a href="#0">
-            
-            <i class="fa-solid fa-list"></i>
-            <span>Lista Ordini</span>
-          </a>
-        </li>
-        <li>
-          <a href="#0">
-            
-            <i class="fa-solid fa-utensils"></i>
-            <span>Lista Piatti</span>
-          </a>
-        </li>
-        <li>
-          <a href="#0">
-            
-            <i class="fa-solid fa-plus ciao"></i>
-            <span>Crea Piatto</span>
-          </a>
-        </li>
-        
-        
-        <li>
-          <div class="switch">
-            <input type="checkbox" id="mode" checked>
-            <label for="mode">
-              <span></span>
-              <span>Dark</span>
-            </label>
-          </div>
-          <button class="collapse-btn" aria-expanded="true" aria-label="collapse menu">
-            <i class="fa-solid fa-chevron-left"></i>
-            <span>Collapse</span>
-          </button>
-        </li>
-      </ul>
-    </nav>
-  </header>
-  <section class="page-content">
-    <div class="d-flex justify-content-end w-25">
+            <div class="logo-container d-flex justify-content-center align-items-center">
+                <img class="img-fluid"
+                    src="{{ asset('/storage/default_images/MyDeliveboo10sBlue-unscreen.gif') }}" alt="DeliveBoo Logo">
+            </div>
+            <button class="toggle-mob-menu" aria-expanded="false" aria-label="open menu">
+                <svg width="20" height="20" aria-hidden="true">
+                    <use xlink:href="#down"></use>
+                </svg>
+            </button>
+            <ul class="admin-menu">
+                <li class="menu-heading">
+                    <h3>Dashboard</h3>
+                </li>
+                <li>
+                    <a class="{{ 'admin.home' === Route::currentRouteName() ? 'selected-link' : '' }}"
+                        href="{{ route('admin.home') }}">
+                        <i class="fa-solid fa-chart-column"></i>
+                        <span>Statistiche</span>
+                    </a>
 
-      <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                                  document.getElementById('logout-form').submit();">
-                                      {{ __('Logout') }}
-                                  </a>
-  
-                                  <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                      class="d-none">
-                                      @csrf
-                                  </form>
-    </div>
-    {{-- <section class="search-and-user"> --}}
-      {{-- <form>
+                </li>
+                <li>
+                    <a class="{{ 'admin.orders.index' === Route::currentRouteName() ? 'selected-link' : '' }}"
+                        href="{{ route('admin.orders.index') }}">
+
+                        <i class="fa-solid fa-list"></i>
+                        <span>Lista Ordini</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="{{ 'admin.dishes.index' === Route::currentRouteName() ? 'selected-link' : '' }}"
+                        href="{{ route('admin.dishes.index') }}">
+
+                        <i class="fa-solid fa-utensils"></i>
+                        <span>Lista Piatti</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="{{ 'admin.dishes.create' === Route::currentRouteName() ? 'selected-link' : '' }}"
+                        href="{{ route('admin.dishes.create') }}">
+
+                        <i class="fa-solid fa-plus ciao"></i>
+                        <span>Crea Piatto</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="logout-a ms-1" href="{{ route('logout') }}" onclick="event.preventDefault();
+                    document.getElementById('logout-form').submit();">
+                        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                        {{-- {{ __('Logout') }} --}}
+                        <span>Logout</span>
+                    </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
+                    <button class="collapse-btn" aria-expanded="true" aria-label="collapse menu">
+                        <i class="fa-solid fa-chevron-left"></i>
+                        <span>Collapse</span>
+                    </button>
+                    <div class="switch">
+                        <input type="checkbox" id="mode" checked>
+                        <label for="mode">
+                            <span></span>
+                            <span>Dark</span>
+                        </label>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <section class="page-content">
+        {{-- <div class="d-flex justify-content-end">
+
+            
+        </div> --}}
+
+        {{-- <section class="search-and-user"> --}}
+        {{-- <form>
         <input type="search" placeholder="Search Pages...">
         <button type="submit" aria-label="submit form">
           <svg aria-hidden="true">
@@ -274,7 +281,7 @@
           </svg>
         </button>
       </form> --}}
-      {{-- <div class="admin-profile">
+        {{-- <div class="admin-profile">
         <span class="greeting">Hello admin</span>
         <div class="notifications">
           <span class="badge">1</span>
@@ -283,23 +290,19 @@
           </svg>
         </div>
       </div> --}}
-    {{-- </section> --}}
-    <section class="grid">
-      <article></article>
-      <article></article>
-      <article></article>
-      <article></article>
-      <article></article>
-      <article></article>
-      <article></article>
-      <article></article>
-    </section>
-    <footer class="page-footer">
-      {{-- <span>made by </span>
+        {{-- </section> --}}
+        <section class="container">
+            <article class="row">
+                <div class="col"> @yield('content') </div>
+            </article>
+        </section>
+        <footer class="page-footer">
+            {{-- <span>made by </span>
       <a href="https://georgemartsoukos.com/" target="_blank">
         <img width="24" height="24" src="https://assets.codepen.io/162656/george-martsoukos-small-logo.svg" alt="George Martsoukos logo">
       </a> --}}
-    </footer>
-  </section>
+        </footer>
+    </section>
 </body>
+
 </html>

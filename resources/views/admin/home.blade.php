@@ -1,14 +1,63 @@
 @extends('layouts.admin.dashboard')
 
 @section('content')
-    <main class="ms-sm-auto px-md-4">
-        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-            <h1 class="h2">Resoconto Ordini</h1>
+    <div class="row">
+        <div class="col-3">
+            <div id="stat-card-1" class="stat-card rounded d-flex justify-content-around align-items-center">
+                <div class="stat-card-info d-flex flex-column">
+                    <span class="stat-card-info-number">300</span>
+                    <span class="stat-card-info-text">Totale Ordini</span>
+                </div>
+                <div class="stat-card-logo rounded-circle d-flex align-items-center justify-content-center">
+                    <i class="stat-card-logo-fa fa-solid fa-dolly"></i>
+                </div>
+            </div>
         </div>
-        <div>
-            <canvas id="myChart"></canvas>
+        <div class="col-3">
+            <div id="stat-card-2" class="stat-card rounded d-flex justify-content-around align-items-center">
+                <div class="stat-card-info d-flex flex-column">
+                    <span class="stat-card-info-number">300</span>
+                    <span class="stat-card-info-text">Numero Piatti</span>
+                </div>
+                <div class="stat-card-logo rounded-circle d-flex align-items-center justify-content-center">
+                    <i class="stat-card-logo-fa fa-solid fa-pizza-slice"></i>
+                </div>
+            </div>
         </div>
-    </main>
+        <div class="col-3">
+            <div id="stat-card-3" class="stat-card rounded d-flex justify-content-around align-items-center">
+                <div class="stat-card-info d-flex flex-column">
+                    <span class="stat-card-info-number">300</span>
+                    <span class="stat-card-info-text">Totale Guadagni</span>
+                </div>
+                <div class="stat-card-logo rounded-circle d-flex align-items-center justify-content-center">
+                    <i class="stat-card-logo-fa fa-solid fa-dollar-sign"></i>
+                </div>
+            </div>
+        </div>
+        <div class="col-3">
+            <div id="stat-card-4" class="stat-card rounded d-flex justify-content-around align-items-center">
+                <div class="stat-card-info d-flex flex-column">
+                    <span class="stat-card-info-number">300</span>
+                    <span class="stat-card-info-text">Media Ordini</span>
+                </div>
+                <div class="stat-card-logo rounded-circle d-flex align-items-center justify-content-center">
+                    <i class="stat-card-logo-fa fa-solid fa-calculator"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="ms-sm-auto px-md-4">
+            <div
+                class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <h1 class="h2">Resoconto Ordini</h1>
+            </div>
+            <div>
+                <canvas id="myChart"></canvas>
+            </div>
+        </div>
+    </div>
     <script>
         const labels = [
             'Gennaio',

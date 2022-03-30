@@ -50,7 +50,7 @@ class DishController extends Controller
 
         $validation = $request->validate([
             "name" => "required|max:255|profane:it,en",
-            "description" => "required|profane:it,en",
+            "description" => "required|max:4000|profane:it,en",
             "price" => "required|numeric|gt:0",
             "visible" => "nullable",
             "image" => "nullable|image",
@@ -116,7 +116,7 @@ class DishController extends Controller
 
         $validation = $request->validate([
             "name" => "required|max:255|profane:it,en",
-            "description" => "required|profane:it,en",
+            "description" => "required|max:4000|profane:it,en",
             "price" => "required|numeric|gt:0", //validazione virgola?
             "visible" => "nullable",
             "image" => "nullable|image",

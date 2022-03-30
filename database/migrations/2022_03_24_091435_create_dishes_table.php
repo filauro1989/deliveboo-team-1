@@ -33,7 +33,7 @@ class CreateDishesTable extends Migration
                 ->on('courses');
 
             $table->string('name');
-            $table->string('description');
+            $table->text('description');
             $table->float('price', 6, 2);
             $table->string('image')->nullable();
             $table->boolean('visible');

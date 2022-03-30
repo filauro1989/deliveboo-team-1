@@ -1,47 +1,48 @@
 @extends('layouts.admin.dashboard')
 
 @section('content')
-    <form action="{{route('admin.dishes.store')}}" enctype="multipart/form-data" method="POST">
+    <form action="{{ route('admin.dishes.store') }}" enctype="multipart/form-data" method="POST">
         @csrf
         @method("POST")
         <div class="mb-3">
             <label for="name" class="form-label">Nome Piatto</label>
-            <input type="text" class="form-control" id="name" name="name">
+            <input type="text" class="form-control" id="name" name="name" minlength="2" maxlength="255">
         </div>
         @error('name')
             <div class="mt-2 alert alert-danger">
-                {{$message}}
+                {{ $message }}
             </div>
         @enderror
 
         <select id="course" class="form-select" aria-label="Default select example" name="course_id">
             @foreach ($courses as $course)
-                <option value="{{$course->id}}">{{$course->name}}</option>
+                <option value="{{ $course->id }}">{{ $course->name }}</option>
             @endforeach
         </select>
         @error('course')
             <div class="mt-2 alert alert-danger">
-                {{$message}}
+                {{ $message }}
             </div>
         @enderror
 
         <div class="mb-3">
             <label for="description" class="form-label">Descrizione Piatto/Ingredienti</label>
-            <textarea class="form-control" id="description" required rows="3" name="description"></textarea>
+            <textarea class="form-control" id="description" required rows="3" name="description" minlength="3"
+                maxlength="4000"></textarea>
         </div>
         @error('description')
             <div class="mt-2 alert alert-danger">
-                {{$message}}
+                {{ $message }}
             </div>
         @enderror
 
         <div class="mb-3">
             <label for="price" class="form-label">Prezzo</label>
-            <input  step="0.01" type="number" class="form-control" required id="price" name="price">
+            <input step="0.01" type="number" class="form-control" required id="price" name="price" min="0">
         </div>
         @error('price')
             <div class="mt-2 alert alert-danger">
-                {{$message}}
+                {{ $message }}
             </div>
         @enderror
 

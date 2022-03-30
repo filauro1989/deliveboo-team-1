@@ -147,8 +147,8 @@
                     labels: labels,
                     datasets: [{
                         label: 'Ordini',
-                        backgroundColor: 'rgb(255, 99, 132)',
-                        borderColor: 'rgb(255, 99, 132)',
+                        backgroundColor: 'rgb(0, 153, 0)',
+                        borderColor: 'rgb(0, 153, 0)',
                         data: [...pricesForChart],
                     }]
                 };

@@ -6,8 +6,8 @@
             {{ session('status') }}
         </div>
     @endif
-    <div class="d-flex align-items-start flex-wrap">
-        @foreach ($dishes as $dish)
+    <div class="">
+        {{-- @foreach ($dishes as $dish)
             <div class="card mb-3" style="max-width: 400px;">
                 <div class="row g-0">
                     <div class="col-md-4">
@@ -73,6 +73,42 @@
                     </div>
                 </div>
             </div>
-        @endforeach
+        @endforeach --}}
+
+        <section class="wrapper">
+            <div class="container">
+                <div class="row row-cols-5">
+                    @foreach ($dishes as $dish)
+                        <div class="col">
+                            <div class="card text-white card-has-bg click-col"
+                                style="background-image:url({{ asset('storage/' . $dish->image) }});">
+                                <img class="card-img d-none" src="https://source.unsplash.com/600x900/?tech,street"
+                                    alt="Goverment Lorem Ipsum Sit Amet Consectetur dipisi?">
+                                <div class="card-img-overlay d-flex flex-column">
+                                    <div class="card-body">
+                                        <h4 class="card-title mt-0 fw-bold text-uppercase"><a class="text-white"
+                                                herf="#">{{ $dish->name }}</a></h4>
+                                        <small>{{ $dish->description }}</small>
+                                    </div>
+                                    <div class="card-footer">
+                                        <div class="media">
+                                            <img class="mr-3 rounded-circle"
+                                                src="https://cdn0.iconfinder.com/data/icons/user-pictures/100/male-512.png"
+                                                alt="Generic placeholder image" style="max-width:50px">
+                                            <div class="media-body">
+                                                <h6 class="my-0 text-white d-block">Oz COruhlu</h6>
+                                                <small>Director of UI/UX</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+
+                </div>
+
+            </div>
+        </section>
     </div>
 @endsection

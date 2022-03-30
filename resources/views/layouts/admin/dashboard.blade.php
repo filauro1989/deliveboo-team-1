@@ -195,6 +195,9 @@
           <use xlink:href="#logo"></use>
         </svg>
       </a> --}}
+      <div>
+        <h1>DeliveBoo logo-</h1>
+      </div>
       <button class="toggle-mob-menu" aria-expanded="false" aria-label="open menu">
         <svg width="20" height="20" aria-hidden="true">
           <use xlink:href="#down"></use>                  
@@ -202,7 +205,7 @@
       </button>
       <ul class="admin-menu">
         <li class="menu-heading">
-          <h3>Admin</h3>
+          <h3>Dashboard</h3>
         </li>
         <li>
           <a href="#0">
@@ -242,7 +245,7 @@
             </label>
           </div>
           <button class="collapse-btn" aria-expanded="true" aria-label="collapse menu">
-            
+            <i class="fa-solid fa-chevron-left"></i>
             <span>Collapse</span>
           </button>
         </li>
@@ -250,7 +253,19 @@
     </nav>
   </header>
   <section class="page-content">
-    <section class="search-and-user">
+    <div class="d-flex justify-content-end w-25">
+
+      <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                                  document.getElementById('logout-form').submit();">
+                                      {{ __('Logout') }}
+                                  </a>
+  
+                                  <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                      class="d-none">
+                                      @csrf
+                                  </form>
+    </div>
+    {{-- <section class="search-and-user"> --}}
       {{-- <form>
         <input type="search" placeholder="Search Pages...">
         <button type="submit" aria-label="submit form">
@@ -268,7 +283,7 @@
           </svg>
         </div>
       </div> --}}
-    </section>
+    {{-- </section> --}}
     <section class="grid">
       <article></article>
       <article></article>

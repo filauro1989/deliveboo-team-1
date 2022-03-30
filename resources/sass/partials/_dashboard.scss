@@ -220,14 +220,14 @@ body {
     background: var(--page-content-bgColor);
 }
 
-.search-and-user {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    grid-column-gap: 50px;
-    align-items: center;
-    background: var(--page-content-bgColor);
-    margin-bottom: 30px;
-}
+// .search-and-user {
+//     display: grid;
+//     grid-template-columns: 1fr auto;
+//     grid-column-gap: 50px;
+//     align-items: center;
+//     background: var(--page-content-bgColor);
+//     margin-bottom: 30px;
+// }
 
 .search-and-user form {
     position: relative;

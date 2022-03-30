@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="row">
-        <div class="col-3">
+        <div class="col-12 col-md-6 col-xl-3 my-2">
             <div id="stat-card-1" class="stat-card rounded d-flex justify-content-around align-items-center">
                 <div class="stat-card-info d-flex flex-column">
                     <span class="stat-card-info-number">300</span>
@@ -13,7 +13,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-3">
+        <div class="col-12 col-md-6 col-xl-3 my-2">
             <div id="stat-card-2" class="stat-card rounded d-flex justify-content-around align-items-center">
                 <div class="stat-card-info d-flex flex-column">
                     <span class="stat-card-info-number">300</span>
@@ -24,7 +24,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-3">
+        <div class="col-12 col-md-6 col-xl-3 my-2">
             <div id="stat-card-3" class="stat-card rounded d-flex justify-content-around align-items-center">
                 <div class="stat-card-info d-flex flex-column">
                     <span class="stat-card-info-number">300</span>
@@ -35,7 +35,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-3">
+        <div class="col-12 col-md-6 col-xl-3 my-2">
             <div id="stat-card-4" class="stat-card rounded d-flex justify-content-around align-items-center">
                 <div class="stat-card-info d-flex flex-column">
                     <span class="stat-card-info-number">300</span>

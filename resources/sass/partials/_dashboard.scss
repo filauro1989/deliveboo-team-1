@@ -82,6 +82,7 @@ svg {
 
 body {
     font: 16px/1.5 "Lato", sans-serif;
+    min-width: 300px;
 }
 
 /* HEADER STYLES
@@ -97,6 +98,10 @@ body {
     width: var(--page-header-width);
     color: var(--page-header-txtColor);
     background: var(--page-header-bgColor);
+
+    .burger-menu {
+        font-size: 1.5rem;
+    }
 }
 
 /*In case you prefer an absolutely positioned header that covers the full page height, add these styles*/
@@ -125,6 +130,7 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100%;
+    overflow-x: hidden;
 }
 
 .page-header .logo-container {
@@ -133,9 +139,18 @@ body {
         height: 180%;
     }
 }
+.page-header .mobile-logo-container {
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
+    img.mobile-logo {
+        height: 150%;
+    }
+}
 .page-header .logo svg {
-    max-width: 120px;
+    // max-width: 120px;
     fill: var(--white);
 }
 
@@ -143,7 +158,7 @@ body {
     display: none;
     margin-left: 5px;
     padding: 4px;
-    background: var(--page-content-blockColor);
+    // background: var(--page-content-blockColor);
     border-radius: var(--border-radius);
 }
 
@@ -375,6 +390,7 @@ body {
         opacity: 0;
         transform: scale(0.95);
         transition: all 0.2s;
+        overflow-x: hidden;
     }
 
     .page-header .admin-menu li:nth-last-child(2) {
@@ -437,6 +453,10 @@ body {
     transform: scale(1);
     visibility: visible;
     opacity: 1;
+}
+
+.collapsed .page-header .logo-container {
+    display: none !important;
 }
 
 @media screen and (min-width: 768px) {

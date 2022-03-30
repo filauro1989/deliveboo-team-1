@@ -179,7 +179,7 @@
                     <a class="{{ 'admin.dishes.create' === Route::currentRouteName() ? 'selected-link' : '' }}"
                         href="{{ route('admin.dishes.create') }}">
 
-                        <i class="fa-solid fa-plus ciao"></i>
+                        <i class="fa-solid fa-plus"></i>
                         <span>Crea Piatto</span>
                     </a>
                 </li>

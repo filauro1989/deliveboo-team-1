@@ -32,12 +32,10 @@ ul {
     padding-left: 0 !important;
 
     li {
-        i.ciao {
-            margin-right: 8px !important;
+        margin: 0.4rem 0;
+        .logout-a {
+            margin-bottom: 10px;
         }
-        // .logout-a {
-        //     color: var(--switch-sunColor);
-        // }
         // .logout-a.light-mode {
         //     color: var(--page-header-txtColor);
         // }

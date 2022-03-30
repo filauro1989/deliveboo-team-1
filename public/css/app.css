@@ -12210,8 +12210,12 @@ ul {
   padding-left: 0 !important;
 }
 
-ul li i.ciao {
-  margin-right: 8px !important;
+ul li {
+  margin: 0.4rem 0;
+}
+
+ul li .logout-a {
+  margin-bottom: 10px;
 }
 
 a,

@@ -19,5 +19,4 @@ use Illuminate\Support\Facades\DB;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::get("orders/data", "Api\ApiOrderController@sendOrdersData");
-
+Route::get("orders/data", "Api\ApiOrderController@sendOrdersData")->middleware('api.auth');

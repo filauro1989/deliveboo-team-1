@@ -26,8 +26,13 @@
 
         ];
         let ordersData = [];
+        const apiKey = 'deliveboo26313334';
 
-        axios.get("http://127.0.0.1:8000/api/orders/data").then(res => {
+        axios.get("http://127.0.0.1:8000/api/orders/data", {
+                headers: {
+                    'Authorization': 'Bearer ' + apiKey
+                }
+            }).then(res => {
                 this.ordersData = res.data.results;
                 console.log(res);
                 //creo un array dove inserirò oggetti contenenti solo il mese e il totale di ogni ordine

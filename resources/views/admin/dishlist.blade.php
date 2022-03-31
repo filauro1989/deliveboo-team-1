@@ -7,9 +7,9 @@
         </div>
     @endif
     <div class="">
-        @foreach ($dishes as $dish)
-            <div class="card mb-3" style="max-width: 400px;">
-                <div class="row g-0">
+        <div class="row g-0">
+            @foreach ($dishes as $dish)
+                <div class="card mb-3 mx-2" style="max-width: 400px;">
                     <div class="col-md-4">
                         @if (!empty($dish->image))
                             <img class="img-fluid" src="{{ asset('storage/' . $dish->image) }}"
@@ -72,8 +72,8 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        @endforeach
+            @endforeach
+        </div>
 
         {{-- <section class="wrapper">
             <div class="container">

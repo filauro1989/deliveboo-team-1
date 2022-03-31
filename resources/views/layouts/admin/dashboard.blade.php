@@ -197,13 +197,13 @@
                         <i class="fa-solid fa-chevron-left"></i>
                         <span>Collapse</span>
                     </button>
-                    {{-- <div class="switch">
+                    <div class="switch">
                         <input type="checkbox" id="mode" checked>
                         <label for="mode">
                             <span></span>
                             <span>Dark</span>
                         </label>
-                    </div> --}}
+                    </div>
                 </li>
             </ul>
         </nav>

@@ -60,10 +60,10 @@ input {
     -webkit-appearance: none;
 }
 
-[type="checkbox"] {
-    position: absolute;
-    left: -9999px;
-}
+// [type="checkbox"] {
+//     position: absolute;
+//     left: -9999px;
+// }
 
 label {
     cursor: pointer;
@@ -676,18 +676,18 @@ body {
     .card-meta {
         color: orange;
     }
-    .card-body {
-        transition: all 500ms cubic-bezier(0.19, 1, 0.22, 1);
-        text-shadow: 2px 2px 5px black;
-    }
-    &:hover {
-        .card-body {
-            margin-top: 30px;
-            transition: all 800ms cubic-bezier(0.19, 1, 0.22, 1);
-        }
-        cursor: pointer;
-        transition: all 800ms cubic-bezier(0.19, 1, 0.22, 1);
-    }
+    // .card-body {
+    //     transition: all 500ms cubic-bezier(0.19, 1, 0.22, 1);
+    //     text-shadow: 2px 2px 5px black;
+    // }
+    // &:hover {
+    //     .card-body {
+    //         margin-top: 30px;
+    //         transition: all 800ms cubic-bezier(0.19, 1, 0.22, 1);
+    //     }
+    //     cursor: pointer;
+    //     transition: all 800ms cubic-bezier(0.19, 1, 0.22, 1);
+    // }
     .card-img-overlay {
         transition: all 800ms cubic-bezier(0.19, 1, 0.22, 1);
         // background: rgb(35, 79, 109);

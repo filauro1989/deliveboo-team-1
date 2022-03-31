@@ -137,15 +137,15 @@
         </svg>
       </a> --}}
             <div class=" logo-container d-flex justify-content-center align-items-center d-md-flex d-none">
-                <img class=""
-                    src="{{ asset('/storage/default_images/my-deliveboo.gif') }}" alt="DeliveBoo Logo">
+                <img class="" src="{{ asset('/storage/default_images/my-deliveboo.gif') }}"
+                    alt="DeliveBoo Logo">
             </div>
             <button class="toggle-mob-menu" aria-expanded="false" aria-label="open menu">
                 <i class="burger-menu fa-solid fa-bars"></i>
             </button>
             <div class="mobile-logo-container d-md-none">
-                <img class="mobile-logo"
-                    src="{{ asset('/storage/default_images/my-deliveboo.gif') }}" alt="DeliveBoo Logo">
+                <img class="mobile-logo" src="{{ asset('/storage/default_images/my-deliveboo.gif') }}"
+                    alt="DeliveBoo Logo">
             </div>
             <ul class="admin-menu">
                 <li class="menu-heading">
@@ -197,25 +197,25 @@
                         <i class="fa-solid fa-chevron-left"></i>
                         <span>Collapse</span>
                     </button>
-                    <div class="switch">
+                    {{-- <div class="switch">
                         <input type="checkbox" id="mode" checked>
                         <label for="mode">
                             <span></span>
                             <span>Dark</span>
                         </label>
-                    </div>
+                    </div> --}}
                 </li>
             </ul>
         </nav>
     </header>
     <section class="page-content">
-       
+
         <section class="container">
             <article class="row">
                 <div class="col"> @yield('content') </div>
             </article>
         </section>
-        
+
     </section>
 </body>
 

@@ -7,7 +7,7 @@
         </div>
     @endif
     <div class="">
-        {{-- @foreach ($dishes as $dish)
+        @foreach ($dishes as $dish)
             <div class="card mb-3" style="max-width: 400px;">
                 <div class="row g-0">
                     <div class="col-md-4">
@@ -73,9 +73,9 @@
                     </div>
                 </div>
             </div>
-        @endforeach --}}
+        @endforeach
 
-        <section class="wrapper">
+        {{-- <section class="wrapper">
             <div class="container">
                 <div class="row row-cols-5">
                     @foreach ($dishes as $dish)
@@ -109,6 +109,6 @@
                 </div>
 
             </div>
-        </section>
+        </section> --}}
     </div>
 @endsection

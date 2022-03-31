@@ -1,17 +1,18 @@
 <template>
+<div class="">
     <div class="row">
-        <div
+        <div class="col-sm-12 col-md-6 col-lg-3"
             v-for="(restaurant, index) in filteredRestaurants"
-            :key="index"
-            class="col-12 col-md-6 col-lg-3 card mb-3 mx-2"
-            style="max-width: 400px"
-        >
-            <div class="h-100"></div>
-            <div class="card-body">
-                <h5 class="card-title">{{ restaurant.restaurant_name }}</h5>
-            </div>
+            :key="index">
+            <a class="text-white card p-0 m-2" href="">
+                <img class="card-img" :src=" require('../../../public/storage/uploads/BXo64grHE7Zei04qTUv32Y3W575UUpg0B95Ei11x.jpg')" alt="foto-esempio">
+                <div class="card-img-overlay h-100 posision-relative">
+                    <h5 class="card-title position-absolute top-50 start-50 translate-middle">{{ restaurant.restaurant_name }}</h5>
+                </div>
+            </a>
         </div>
     </div>
+</div>
 </template>
 
 <script>
@@ -75,4 +76,27 @@ export default {
 };
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+.card {
+    min-height: 0;
+    height: 150px;
+    min-width: 260px !important;
+    &:hover,
+    &:focus,
+    &:active {
+        .card-img {
+            transform: scale(1.1);
+            transition: transform .3s;
+        }
+    }
+    .card-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    .card-title {
+        font-weight: bold;
+        font-size: 1.5em;
+    }
+}
+</style>

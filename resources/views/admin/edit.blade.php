@@ -7,7 +7,7 @@
         <div class="mb-3">
             <label for="name" class="form-label">Nome Piatto</label>
             <input type="text" class="form-control" id="name" name="name" value="{{ $dish->name }}" minlength="2"
-                maxlength="255">
+                maxlength="255" required>
 
         </div>
         @error('name')

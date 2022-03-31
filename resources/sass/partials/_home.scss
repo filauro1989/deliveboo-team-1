@@ -1,0 +1,77 @@
+.stat-card {
+    text-transform: uppercase;
+    height: 120px;
+    color: white;
+    box-shadow: 3px 3px 10px rgba($color: rgb(130, 129, 129), $alpha: 0.7);
+    transition: transform 0.1s;
+    &-info {
+        &-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+        &-text {
+            font-weight: 600;
+        }
+    }
+    &-logo {
+        height: 65px;
+        width: 65px;
+        padding: 1rem;
+        background-color: white;
+        .stat-card-logo-fa {
+            font-size: 2em;
+        }
+    }
+    &:hover {
+        transform: scale(1.05);
+    }
+}
+
+// #stat-card-1 {
+//     background-color: #ff9999;
+//     .stat-card-logo-fa {
+//         color: #ff9999;
+//     }
+// }
+// #stat-card-2 {
+//     background-color: #8ce235;
+//     .stat-card-logo-fa {
+//         color: #ccff99;
+//     }
+// }
+// #stat-card-3 {
+//     background-color: #0b89e9;
+//     .stat-card-logo-fa {
+//         color: #99ffff;
+//     }
+// }
+// #stat-card-4 {
+//     background-color: #b66dff;
+//     .stat-card-logo-fa {
+//         color: #cc99ff;
+//     }
+// }
+#stat-card-1 {
+    background-color: #ff9999;
+    .stat-card-logo-fa {
+        color: #ff9999;
+    }
+}
+#stat-card-2 {
+    background-color: #7f282f;
+    .stat-card-logo-fa {
+        color: #7f282f;
+    }
+}
+#stat-card-3 {
+    background-color: #0075a5;
+    .stat-card-logo-fa {
+        color: #0075a5;
+    }
+}
+#stat-card-4 {
+    background-color: #00c7fa;
+    .stat-card-logo-fa {
+        color: #00c7fa;
+    }
+}

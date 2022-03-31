@@ -5,10 +5,10 @@
         <div class="row">
             <div class="col d-flex justify-content-center">
                 <div class="card w-50 d-flex align-items-center">
-                    <h2>Nome Piatto: {{ $dish->name }}</h2>
-                    <h2>Categoria: {{ $dish->course()->first()->name }}</h2>
+                    <h2>{{ $dish->name }}</h2>
+                    <h2>{{ $dish->course()->first()->name }}</h2>
                     <h3>Prezzo:
-                        {{ number_format($dish->price, 2) }}
+                        {{ number_format($dish->price, 2) }} &#8364;
                     </h3>
                     @if ($dish->visible)
                         <h3>Disponibile</h3>

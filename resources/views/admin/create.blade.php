@@ -6,7 +6,7 @@
         @method("POST")
         <div class="mb-3">
             <label for="name" class="form-label">Nome Piatto</label>
-            <input type="text" class="form-control" id="name" name="name" minlength="2" maxlength="255">
+            <input type="text" class="form-control" id="name" name="name" minlength="2" maxlength="255" required>
         </div>
         @error('name')
             <div class="mt-2 alert alert-danger">

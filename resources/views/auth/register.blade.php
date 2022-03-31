@@ -33,24 +33,25 @@
                             {{-- Categories --}}
                             <div>Scegli la categoria del ristorante</div>
                             @foreach ($categories as $category)
-                                <div required class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+                                <div required class="btn-group" role="group"
+                                    aria-label="Basic checkbox toggle button group">
 
                                     <input type="checkbox" class="btn-check" id="{{ 'btncheck' . $category->id }}"
-                                    autocomplete="off" name="categories[]" value="{{ $category->id }}"
-                                    {{ in_array($category->id, old('categories', [])) ? 'checked' : '' }}>
+                                        autocomplete="off" name="categories[]" value="{{ $category->id }}"
+                                        {{ in_array($category->id, old('categories', [])) ? 'checked' : '' }}>
 
                                     <label class="btn btn-outline-primary"
-                                    for="{{ 'btncheck' . $category->id }}">{{ $category->name }}</label>
-                                    
+                                        for="{{ 'btncheck' . $category->id }}">{{ $category->name }}</label>
+
                                 </div>
                             @endforeach
 
                             <div id="message"></div>
 
                             @error('categories')
-                            <div class="alert alert-danger" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </div>
+                                <div class="alert alert-danger" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </div>
                             @enderror
 
 
@@ -79,7 +80,8 @@
                                 <div class="col-md-6">
                                     <input id="address" type="text"
                                         class="form-control @error('address') is-invalid @enderror" name="address"
-                                        value="{{ old('address') }}" autocomplete="address" maxlength="255" minlength="10">
+                                        value="{{ old('address') }}" autocomplete="address" maxlength="255"
+                                        minlength="10" required>
 
                                     @error('address')
                                         <span class="invalid-feedback" role="alert">
@@ -96,7 +98,8 @@
 
                                 <div class="col-md-6">
                                     <input id="phone" type="tel" class="form-control @error('phone') is-invalid @enderror"
-                                        name="phone" value="{{ old('phone') }}" required autocomplete="phone" minlength="7" pattern="^\S+$">
+                                        name="phone" value="{{ old('phone') }}" required autocomplete="phone"
+                                        minlength="7" pattern="^\S+$">
 
                                     @error('phone')
                                         <span class="invalid-feedback" role="alert">
@@ -105,14 +108,15 @@
                                     @enderror
                                 </div>
                             </div>
-                            
+
                             {{-- VAT --}}
                             <div class="form-group row">
                                 <label for="vat" class="col-md-4 col-form-label text-md-right">{{ __('P.Iva') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="vat" type="text" class="form-control @error('vat') is-invalid @enderror"
-                                        name="vat" value="{{ old('vat') }}" required autocomplete="vat" maxlength="11" minlength="11" pattern="^\S+$">
+                                        name="vat" value="{{ old('vat') }}" required autocomplete="vat" maxlength="11"
+                                        minlength="11" pattern="^\S+$">
 
                                     @error('vat')
                                         <span class="invalid-feedback" role="alert">
@@ -147,7 +151,8 @@
 
                                 <div class="col-md-6">
                                     <input id="password-confirm" type="password" class="form-control"
-                                        name="password_confirmation" required autocomplete="new-password" minlength="8" maxlength="255">
+                                        name="password_confirmation" required autocomplete="new-password" minlength="8"
+                                        maxlength="255">
                                 </div>
                             </div>
 
@@ -181,24 +186,25 @@
             let checkboxes = document.querySelectorAll('input[type=checkbox]');
             let message = document.getElementById('message');
             let register = document.getElementById('register-button');
-            
-            checkboxes.forEach(function (checkbox) {
-                checkbox.addEventListener('click', function(){
+
+            checkboxes.forEach(function(checkbox) {
+                checkbox.addEventListener('click', function() {
                     message.innerHTML = '';
                 });
             });
-            
-            register.addEventListener('click', function(){
+
+            register.addEventListener('click', function() {
                 let atLeastOneChecked = false;
-                
+
                 checkboxes.forEach(checkbox => {
-                    if(checkbox.checked) {
+                    if (checkbox.checked) {
                         atLeastOneChecked = true;
                     }
                 })
-                if(!atLeastOneChecked) {
-                    
-                    message.innerHTML = `<div class="alert alert-danger mt-3" role="alert">Scegli almeno una Categoria</div>`;
+                if (!atLeastOneChecked) {
+
+                    message.innerHTML =
+                        `<div class="alert alert-danger mt-3" role="alert">Scegli almeno una Categoria</div>`;
                     return false;
                 }
             });

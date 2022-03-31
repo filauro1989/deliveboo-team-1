@@ -67,7 +67,7 @@ export default {
                         // UTILIZZIAMO UN BEARER TOKEN INVIANDOLO COME STRINGA E CI AGGIUNGIAMO LA CHIAVE API
                         Authorization: "Bearer " + this.apiKey,
                     },
-                    params: { categoriesArray: 5 },
+                    params: { categoriesArray: this.selectedCategories },
                 })
                 .then((res) => {
                     console.log(res);

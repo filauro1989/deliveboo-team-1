@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Model\Dish;
+use App\Model\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -30,6 +31,22 @@ class OrderController extends Controller
         // $orders2 = Order::all();
         
         // dd($orders[0]->dishes()->first());
+
+        // $restaurant = Category::where('name', 'Pizza')->first()->users()->get();
+
+        // $categories = [
+        //     'Pizza',
+        //     'Sushi',
+        // ];
+        // $restaurant = [];
+
+        // foreach ($categories as $category) {
+        //     $myrestaurants = Category::where('name', $category)->first()->users()->get();
+        //     array_push($restaurant, $myrestaurants);
+
+        // }
+
+        // dd($restaurant);
         
         $allDishes = Dish::where('user_id', Auth::user()->id)->get();
         

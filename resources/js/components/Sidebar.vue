@@ -70,7 +70,7 @@ export default {
                     params: { categoriesArray: this.selectedCategories },
                 })
                 .then((res) => {
-                    console.log(res);
+                    console.log(res.data.results);
                 })
                 .catch((err) => {
                     console.log(err);

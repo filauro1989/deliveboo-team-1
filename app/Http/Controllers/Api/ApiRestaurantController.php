@@ -16,4 +16,19 @@ class ApiRestaurantController extends Controller
             "results" => $restaurants,
         ]);
     }
+
+    public function sendFilteredRestaurantsData(Request $request){
+        // $restaurants = User::all();
+
+        $restaurants = null;
+
+        // foreach ($variable as $key => $value) {
+        //     # code...
+        // }
+
+        return response()->json([
+            "success" => true,
+            "results" => $request,
+        ]);
+    }
 }

@@ -1,7 +1,7 @@
 <template>
     <div class="row">
         <div
-            v-for="(restaurant, index) in restaurants"
+            v-for="(restaurant, index) in filteredRestaurants"
             :key="index"
             class="col-12 col-md-6 col-lg-3 card mb-3 mx-2"
             style="max-width: 400px"
@@ -19,26 +19,58 @@ import Axios from "axios";
 
 export default {
     name: "Home",
+    // PRENDO TRAMITE LE PROPS L'ARRAY CATEGORIES DALLA PAGINA APP.VUE
+    props: {
+        categoriesArray: Array,
+    },
     data() {
         return {
             restaurants: [],
+            filteredRestaurants: [],
             apiKey: "deliveboo26313334",
         };
     },
     created() {
         axios
+            // CHIAMATA AXION PER PRENDERE I DATI DALLA ROTTA IN API.PHP
             .get("http://127.0.0.1:8000/api/restaurants/data", {
                 headers: {
+                    // UTILIZZIAMO UN BEARER TOKEN INVIANDOLO COME STRINGA E CI AGGIUNGIAMO LA CHIAVE API
                     Authorization: "Bearer " + this.apiKey,
                 },
             })
             .then((res) => {
                 this.restaurants = res.data.results;
-                console.log(this.restaurants);
+                // console.log(this.restaurants);
+                // SE LA LUNGHEZZA DELL'ARRAY FILTRATO è 0 CI PUSHO TUTTI I RISTORANTI (ALTRIMENTI AVREI PAGINA VUOTA SEMPRE)
+                if (this.filteredRestaurants.length == 0) {
+                    this.filteredRestaurants.push(...this.restaurants);
+                }
             })
             .catch((err) => {
                 console.log(err);
             });
+    },
+    methods: {
+        // filterCategories() {
+        //     // this.restaurants.forEach((el) => {});
+        //     axios
+        //         .get("http://127.0.0.1:8000/api/restaurants/filtered", {
+        //             headers: {
+        //                 // UTILIZZIAMO UN BEARER TOKEN INVIANDOLO COME STRINGA E CI AGGIUNGIAMO LA CHIAVE API
+        //                 Authorization: "Bearer " + this.apiKey,
+        //             },
+        //             params: {
+        //                 categoriesArray,
+        //             },
+        //         })
+        //         .then((res) => {
+        //             console.log(res);
+        //         })
+        //         .catch((err) => {
+        //             console.log(err);
+        //         });
+        // },
     },
 };
 </script>

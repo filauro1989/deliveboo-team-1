@@ -27,41 +27,50 @@ class ApiRestaurantController extends Controller
         $categories = $request->categoriesArray;
 
         $restaurants = [];
-        $allCategories = true;
 
         foreach ($categories as $category) {
             $myrestaurants = Category::where('name', $category)->first()->users()->get();
 
 
             foreach ($myrestaurants as $singleRestaurant) {
-                // if ($singleRestaurant->category->name == $category) {
-                // }
+  
                 array_push($restaurants, $singleRestaurant);
+            
             }
         }
 
-        // $categoria = $restaurants[0]->categories()->first()->name;
         $finaleRestaurants = [];
+        $alreadyIn = [];
+        $allCategories = true;
+
         foreach ($restaurants as $restaurant) {
+
+        $restaurantCategoryName = [];
+
+            $restaurantCategories = $restaurant->categories()->get();
+
+            foreach ($restaurantCategories as $restaurantCategory) {
+                array_push($restaurantCategoryName, $restaurantCategory->name);
+            }
+
             foreach ($categories as $category) {
-                // foreach ($categories as $category) {
-                // if ($category != $restaurantCategory->name) {
-                if (!in_array($category, $restaurant->categories()->get())) {
+
+                if (!in_array($category, $restaurantCategoryName)) {
 
                     $allCategories = false;
                 }
-                // array_push($finaleRestaurants, $restaurant);
-                // }
             }
             if ($allCategories) {
-                array_push($finaleRestaurants, $restaurant);
+
+                if(!in_array($restaurant->id, $alreadyIn)) {
+                    array_push($finaleRestaurants, $restaurant);
+                    array_push($alreadyIn, $restaurant->id);
+                }
+                
             }
             $allCategories = true;
         }
-        // if ($allCategories) {
-        //     array_push($finaleRestaurants, $restaurant);
-        // }
-        // $allCategories = true;
+
 
         return response()->json([
             "success" => true,
@@ -73,17 +82,3 @@ class ApiRestaurantController extends Controller
 
 
 
-// $finaleRestaurants = [];
-// foreach ($restaurants as $restaurant) {
-//     foreach ($restaurant->categories()->get() as $restaurantCategory) {
-
-//         if (in_array($restaurantCategory, $categories)) {
-
-//             $allCategories = false;
-//         }
-//     }
-//     if ($allCategories) {
-//         array_push($finaleRestaurants, $restaurant);
-//     }
-//     $allCategories = true;
-// }

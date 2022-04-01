@@ -21,10 +21,13 @@ class ApiRestaurantController extends Controller
 
     public function sendFilteredRestaurantsData(Request $request)
     {
-        // $restaurants = User::all();
-
-        // SPECIFICO restaurants COME DATO RICHIESTO ALL'API SELEZIONANDO categoriesArray(params della chiamata axios)
+        
         $categories = $request->categoriesArray;
+
+        if(!empty($categories)) {
+
+        
+        // SPECIFICO restaurants COME DATO RICHIESTO ALL'API SELEZIONANDO categoriesArray(params della chiamata axios)
 
         $restaurants = [];
 
@@ -70,6 +73,10 @@ class ApiRestaurantController extends Controller
             }
             $allCategories = true;
         }
+    }
+    else {
+        $finaleRestaurants = User::all();
+    }
 
 
         return response()->json([

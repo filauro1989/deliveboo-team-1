@@ -1,7 +1,7 @@
 <template>
     <div class="row">
         <div
-            v-for="(restaurant, index) in filteredRestaurants"
+            v-for="(restaurant, index) in restaurantsArray"
             :key="index"
             class="col-12 col-md-6 col-lg-3 card mb-3 mx-2"
             style="max-width: 400px"
@@ -21,7 +21,7 @@ export default {
     name: "Home",
     // PRENDO TRAMITE LE PROPS L'ARRAY CATEGORIES DALLA PAGINA APP.VUE
     props: {
-        categoriesArray: Array,
+        restaurantsArray: Array,
     },
     data() {
         return {
@@ -51,27 +51,7 @@ export default {
                 console.log(err);
             });
     },
-    methods: {
-        // filterCategories() {
-        //     // this.restaurants.forEach((el) => {});
-        //     axios
-        //         .get("http://127.0.0.1:8000/api/restaurants/filtered", {
-        //             headers: {
-        //                 // UTILIZZIAMO UN BEARER TOKEN INVIANDOLO COME STRINGA E CI AGGIUNGIAMO LA CHIAVE API
-        //                 Authorization: "Bearer " + this.apiKey,
-        //             },
-        //             params: {
-        //                 categoriesArray,
-        //             },
-        //         })
-        //         .then((res) => {
-        //             console.log(res);
-        //         })
-        //         .catch((err) => {
-        //             console.log(err);
-        //         });
-        // },
-    },
+    methods: {},
 };
 </script>
 

@@ -2,9 +2,9 @@
     <div>
         <Header></Header>
         <!-- RICHIAMO DALLA SIDEBAR LA FUNZIONE EMIT sendCategories E LA COLLEGO CON LA FUNZIONE getCategory nei METHODS  -->
-        <Sidebar @sendCategories="getCategory($event)"> </Sidebar>
+        <Sidebar @sendRestaurants="getRestaurant($event)"> </Sidebar>
         <!-- MANDO LE PROPS A HOME.VUE INVIANDO L'ARRAY categories -->
-        <router-view :categoriesArray="categories"></router-view>
+        <router-view :restaurantsArray="restaurants"></router-view>
         <Footer></Footer>
     </div>
 </template>
@@ -19,7 +19,7 @@ export default {
     name: "App",
     data() {
         return {
-            categories: [],
+            restaurants: [],
         };
     },
     components: {
@@ -29,9 +29,9 @@ export default {
         Footer,
     },
     methods: {
-        // CREO FUNZIONE PER PUSHARE L'EMIT DENTRO L'ARRAY categories
-        getCategory(input) {
-            this.categories = input;
+        // CREO FUNZIONE PER PUSHARE L'EMIT DENTRO L'ARRAY restaurants
+        getRestaurant(input) {
+            this.restaurants = input;
             // console.log(this.categories);
         },
     },

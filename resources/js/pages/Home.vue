@@ -1,9 +1,9 @@
 <template>
-<div class="">
-    <div class="row">
-        <!-- <a href=""> -->
-            <router-link
-                :to="{name: 'restaurant', params: {id: restaurant.id}}"
+    <div class="">
+        <div class="row">
+            <!-- <a href=""> -->
+            <!-- <router-link
+                :to="{ name: 'restaurant', params: { id: restaurant.id } }"
                 v-for="(restaurant, index) in restaurantsArray"
                 :key="index"
                 class="col-12 col-md-6 col-lg-3 card mb-3 mx-2"
@@ -13,23 +13,35 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ restaurant.restaurant_name }}</h5>
                 </div>
-            </router-link>
-        <!-- </a> -->
+            </router-link> -->
 
-        <!-- COMPONENTE CARD RISTORANTE -->
-        <RestaurantCard
-            v-for="(restaurant, index) in filteredRestaurants"
-            :key="index"
-            :restaurantName = "restaurant.restaurant_name"
-            :restaurantImg = "restaurant.image"
-        />
+            <router-link
+                class="col-sm-12 col-md-6 col-lg-3 p-0"
+                :to="{ name: 'restaurant', params: { id: restaurant.id } }"
+                v-for="(restaurant, index) in restaurantsArray"
+                :key="index"
+            >
+                <RestaurantCard
+                    :restaurantName="restaurant.restaurant_name"
+                    :restaurantImg="restaurant.image"
+                />
+            </router-link>
+            <!-- </a> -->
+
+            <!-- COMPONENTE CARD RISTORANTE -->
+            <!-- <RestaurantCard
+                v-for="(restaurant, index) in restaurantsArray"
+                :key="index"
+                :restaurantName="restaurant.restaurant_name"
+                :restaurantImg="restaurant.image"
+            /> -->
+        </div>
     </div>
-</div>
 </template>
 
 <script>
 import Axios from "axios";
-import RestaurantCard from '../components/RestaurantCard.vue';
+import RestaurantCard from "../components/RestaurantCard.vue";
 
 export default {
     name: "Home",
@@ -73,6 +85,4 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>

@@ -1,5 +1,5 @@
 <template>
-    <div class="">
+    <div class="col-2">
         <div class="checkbox-group">
             <div
                 v-for="(category, index) in categories"
@@ -9,9 +9,7 @@
                 <!-- INVIO LE CATEGORIE ALL'APP TRAMITE L'EMIT -->
                 <!-- PUSHO NELL'ARRAY selectedCategories TRAMITE IL V-MODEL -->
                 <input
-                    @change="
-                        filterCategories();
-                    "
+                    @change="filterCategories()"
                     v-model="selectedCategories"
                     class="form-check-input"
                     type="checkbox"
@@ -89,7 +87,7 @@ export default {
                 .then((res) => {
                     this.restaurants = res.data.results;
                     console.log(this.restaurants);
-                    this.$emit('sendRestaurants', this.restaurants);
+                    this.$emit("sendRestaurants", this.restaurants);
                 })
                 .catch((err) => {
                     console.log(err);

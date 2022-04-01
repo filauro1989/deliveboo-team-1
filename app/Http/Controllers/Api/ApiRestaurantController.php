@@ -83,17 +83,21 @@ class ApiRestaurantController extends Controller
         ]);
     }
 
-    public function findRestaurantMenu(Request $request) {
+    public function findRestaurantMenu($id) {
 
-        $restaurantId = $request->id;
+        // $restaurantId = $request->id;
 
-        $menu = Dish::where("user_id", $restaurantId)->get();
+        $restaurant = User::where("id", $id)->first();
+        $menu = Dish::where("user_id", $id)->get();
 
 
 
         return response()->json([
             "success" => true,
-            "result" => $menu
+            "results" => [
+                "menu" => $menu,
+                "restaurant" => $restaurant
+            ],
         ]);
     }
 }

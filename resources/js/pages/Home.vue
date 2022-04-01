@@ -2,7 +2,7 @@
     <div class="row">
         <!-- <a href=""> -->
             <router-link
-                :to="{name: 'restaurant', params: {id: restaurant.id, singleRestaurant: restaurant}}"
+                :to="{name: 'restaurant', params: {id: restaurant.id}}"
                 v-for="(restaurant, index) in restaurantsArray"
                 :key="index"
                 class="col-12 col-md-6 col-lg-3 card mb-3 mx-2"

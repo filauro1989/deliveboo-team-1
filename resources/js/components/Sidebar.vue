@@ -68,7 +68,7 @@ export default {
             .then((res) => {
                 this.restaurants = res.data.results;
                 // console.log(this.categories);
-                console.log(this.restaurants);
+                // console.log(this.restaurants);
                 this.$emit("sendRestaurants", this.restaurants);
             })
             .catch((err) => {

@@ -13,10 +13,26 @@ class CategoryUserSeeder extends Seeder
      */
     public function run()
     {
-        $restaurant = User::all()->first();
-        $pizzaCategory = Category::where('name', 'Pizza')->first();
+        // chiamo tutti i ristoranti del db
+        $restaurants = User::all();
 
-        // COLLEGA ID DEL RISTORANTE ALl'ID DELLA CATEGORIA NELLA TABELLA PONTE
-        $restaurant->categories()->attach($pizzaCategory);
+        // giro su ogni ristorante
+        foreach ($restaurants as $restaurant) {
+            
+            //assegno una categoria a caso
+            $category = Category::inRandomOrder()->first();
+            $restaurant->categories()->attach($category);
+            
+            // in modo randomico ne assegno una seconda
+            if(rand(0, 1)) {
+                $secondCategory = Category::inRandomOrder()->first();
+                if($secondCategory != $category) {
+                $restaurant->categories()->attach($secondCategory);
+                }
+            }
+        }
+
     }
 }
+
+

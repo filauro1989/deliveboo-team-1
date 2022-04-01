@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\User;
 use App\Model\Category;
+use App\Model\Dish;
 
 class ApiRestaurantController extends Controller
 {
@@ -79,6 +80,20 @@ class ApiRestaurantController extends Controller
         return response()->json([
             "success" => true,
             "results" => $finaleRestaurants,
+        ]);
+    }
+
+    public function findRestaurantMenu(Request $request) {
+
+        $restaurantId = $request->id;
+
+        $menu = Dish::where("user_id", $restaurantId)->get();
+
+
+
+        return response()->json([
+            "success" => true,
+            "result" => $menu
         ]);
     }
 }

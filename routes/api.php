@@ -25,3 +25,4 @@ Route::get("orders/data", "Api\ApiOrderController@sendOrdersData")->middleware('
 Route::get("categories/data", "Api\ApiCategoryController@sendCategoriesData")->middleware('api.auth');
 Route::get("restaurants/data", "Api\ApiRestaurantController@sendRestaurantsData")->middleware('api.auth');
 Route::get("restaurants/filtered", "Api\ApiRestaurantController@sendFilteredRestaurantsData")->middleware('api.auth');
+Route::get("restaurants/restaurantfilter", "Api\ApiRestaurantController@findRestaurantMenu")->middleware('api.auth');

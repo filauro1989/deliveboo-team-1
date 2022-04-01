@@ -1,16 +1,19 @@
 <template>
     <div class="row">
-        <div
-            v-for="(restaurant, index) in restaurantsArray"
-            :key="index"
-            class="col-12 col-md-6 col-lg-3 card mb-3 mx-2"
-            style="max-width: 400px"
-        >
-            <div class="h-100"></div>
-            <div class="card-body">
-                <h5 class="card-title">{{ restaurant.restaurant_name }}</h5>
-            </div>
-        </div>
+        <!-- <a href=""> -->
+            <router-link
+                :to="{name: 'restaurant', params: {id: restaurant.id, singleRestaurant: restaurant}}"
+                v-for="(restaurant, index) in restaurantsArray"
+                :key="index"
+                class="col-12 col-md-6 col-lg-3 card mb-3 mx-2"
+                style="max-width: 400px"
+            >
+                <div class="h-100"></div>
+                <div class="card-body">
+                    <h5 class="card-title">{{ restaurant.restaurant_name }}</h5>
+                </div>
+            </router-link>
+        <!-- </a> -->
     </div>
 </template>
 

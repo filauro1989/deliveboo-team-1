@@ -1,4 +1,5 @@
 <template>
+<div class="">
     <div class="row">
         <!-- <a href=""> -->
             <router-link
@@ -14,14 +15,25 @@
                 </div>
             </router-link>
         <!-- </a> -->
+        <RestaurantCard
+            v-for="(restaurant, index) in filteredRestaurants"
+            :key="index"
+            :restaurantName = "restaurant.restaurant_name"
+            :restaurantImg = "restaurant.image"
+        />
     </div>
+</div>
 </template>
 
 <script>
 import Axios from "axios";
+import RestaurantCard from '../components/RestaurantCard.vue';
 
 export default {
     name: "Home",
+    components: {
+        RestaurantCard,
+    },
     // PRENDO TRAMITE LE PROPS L'ARRAY CATEGORIES DALLA PAGINA APP.VUE
     props: {
         restaurantsArray: Array,
@@ -35,7 +47,7 @@ export default {
     },
     created() {
         axios
-            // CHIAMATA AXION PER PRENDERE I DATI DALLA ROTTA IN API.PHP
+            // CHIAMATA AXIOS PER PRENDERE I DATI DALLA ROTTA IN API.PHP
             .get("http://127.0.0.1:8000/api/restaurants/data", {
                 headers: {
                     // UTILIZZIAMO UN BEARER TOKEN INVIANDOLO COME STRINGA E CI AGGIUNGIAMO LA CHIAVE API
@@ -48,6 +60,7 @@ export default {
                 // SE LA LUNGHEZZA DELL'ARRAY FILTRATO è 0 CI PUSHO TUTTI I RISTORANTI (ALTRIMENTI AVREI PAGINA VUOTA SEMPRE)
                 if (this.filteredRestaurants.length == 0) {
                     this.filteredRestaurants.push(...this.restaurants);
+                    console.log(this.restaurants);
                 }
             })
             .catch((err) => {
@@ -58,4 +71,6 @@ export default {
 };
 </script>
 
-<style lang="scss"></style>
+<style lang="scss" scoped>
+
+</style>

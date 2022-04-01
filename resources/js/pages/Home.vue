@@ -15,6 +15,8 @@
                 </div>
             </router-link>
         <!-- </a> -->
+
+        <!-- COMPONENTE CARD RISTORANTE -->
         <RestaurantCard
             v-for="(restaurant, index) in filteredRestaurants"
             :key="index"

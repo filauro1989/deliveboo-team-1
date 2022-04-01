@@ -30,6 +30,7 @@ export default {
     .card {
         height: 150px;
         min-width: 250px;
+        max-width: 350px;
         overflow: hidden;
         border-radius: 20px;
         box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.2);

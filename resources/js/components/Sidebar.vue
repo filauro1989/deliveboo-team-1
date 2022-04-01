@@ -9,8 +9,8 @@
                 <!-- INVIO LE CATEGORIE ALL'APP TRAMITE L'EMIT -->
                 <!-- PUSHO NELL'ARRAY selectedCategories TRAMITE IL V-MODEL -->
                 <input
-                    @change="
-                        $emit('sendCategories', selectedCategories);
+                    @click="
+                        $emit('sendRestaurants', restaurants);
                         filterCategories();
                     "
                     v-model="selectedCategories"
@@ -35,6 +35,7 @@ export default {
     name: "Sidebar",
     data() {
         return {
+            restaurants: [],
             categories: [],
             selectedCategories: [],
             // CHIAVE INSERITA ANCHE NEL FILE ENV
@@ -52,7 +53,24 @@ export default {
             })
             .then((res) => {
                 this.categories = res.data.results;
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+
+        axios
+            // CHIAMATA AXION PER PRENDERE I DATI DALLA ROTTA IN API.PHP
+            .get("http://127.0.0.1:8000/api/restaurants/data", {
+                headers: {
+                    // UTILIZZIAMO UN BEARER TOKEN INVIANDOLO COME STRINGA E CI AGGIUNGIAMO LA CHIAVE API
+                    Authorization: "Bearer " + this.apiKey,
+                },
+            })
+            .then((res) => {
+                this.restaurants = res.data.results;
                 // console.log(this.categories);
+                console.log(this.restaurants);
+                this.$emit("sendRestaurants", this.restaurants);
             })
             .catch((err) => {
                 console.log(err);
@@ -70,7 +88,8 @@ export default {
                     params: { categoriesArray: this.selectedCategories },
                 })
                 .then((res) => {
-                    console.log(res.data.results);
+                    this.restaurants = res.data.results;
+                    console.log(this.restaurants);
                 })
                 .catch((err) => {
                     console.log(err);

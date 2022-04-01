@@ -21,62 +21,59 @@ class ApiRestaurantController extends Controller
 
     public function sendFilteredRestaurantsData(Request $request)
     {
-        
+
         $categories = $request->categoriesArray;
 
-        if(!empty($categories)) {
-
-        
-        // SPECIFICO restaurants COME DATO RICHIESTO ALL'API SELEZIONANDO categoriesArray(params della chiamata axios)
-
-        $restaurants = [];
-
-        foreach ($categories as $category) {
-            $myrestaurants = Category::where('name', $category)->first()->users()->get();
+        if (!empty($categories)) {
 
 
-            foreach ($myrestaurants as $singleRestaurant) {
-  
-                array_push($restaurants, $singleRestaurant);
-            
-            }
-        }
+            // SPECIFICO restaurants COME DATO RICHIESTO ALL'API SELEZIONANDO categoriesArray(params della chiamata axios)
 
-        $finaleRestaurants = [];
-        $alreadyIn = [];
-        $allCategories = true;
-
-        foreach ($restaurants as $restaurant) {
-
-        $restaurantCategoryName = [];
-
-            $restaurantCategories = $restaurant->categories()->get();
-
-            foreach ($restaurantCategories as $restaurantCategory) {
-                array_push($restaurantCategoryName, $restaurantCategory->name);
-            }
+            $restaurants = [];
 
             foreach ($categories as $category) {
+                $myrestaurants = Category::where('name', $category)->first()->users()->get();
 
-                if (!in_array($category, $restaurantCategoryName)) {
 
-                    $allCategories = false;
+                foreach ($myrestaurants as $singleRestaurant) {
+
+                    array_push($restaurants, $singleRestaurant);
                 }
             }
-            if ($allCategories) {
 
-                if(!in_array($restaurant->id, $alreadyIn)) {
-                    array_push($finaleRestaurants, $restaurant);
-                    array_push($alreadyIn, $restaurant->id);
-                }
-                
-            }
+            $finaleRestaurants = [];
+            $alreadyIn = [];
             $allCategories = true;
+
+            foreach ($restaurants as $restaurant) {
+
+                $restaurantCategoryName = [];
+
+                $restaurantCategories = $restaurant->categories()->get();
+
+                foreach ($restaurantCategories as $restaurantCategory) {
+                    array_push($restaurantCategoryName, $restaurantCategory->name);
+                }
+
+                foreach ($categories as $category) {
+
+                    if (!in_array($category, $restaurantCategoryName)) {
+
+                        $allCategories = false;
+                    }
+                }
+                if ($allCategories) {
+
+                    if (!in_array($restaurant->id, $alreadyIn)) {
+                        array_push($finaleRestaurants, $restaurant);
+                        array_push($alreadyIn, $restaurant->id);
+                    }
+                }
+                $allCategories = true;
+            }
+        } else {
+            $finaleRestaurants = User::all();
         }
-    }
-    else {
-        $finaleRestaurants = User::all();
-    }
 
 
         return response()->json([
@@ -85,7 +82,3 @@ class ApiRestaurantController extends Controller
         ]);
     }
 }
-
-
-
-

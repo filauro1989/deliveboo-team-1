@@ -5,6 +5,7 @@
         <Sidebar @sendRestaurants="getRestaurant($event)"> </Sidebar>
         <!-- MANDO LE PROPS A HOME.VUE INVIANDO L'ARRAY categories -->
         <router-view :restaurantsArray="restaurants"></router-view>
+        <Cart></Cart>
         <Footer></Footer>
     </div>
 </template>
@@ -12,6 +13,7 @@
 <script>
 import Header from "../components/partials/Header.vue";
 import Sidebar from "../components/Sidebar.vue";
+import Cart from "../components/Cart.vue";
 import Main from "../components/partials/Main.vue";
 import Footer from "../components/partials/Footer.vue";
 
@@ -25,6 +27,7 @@ export default {
     components: {
         Header,
         Sidebar,
+        Cart,
         Main,
         Footer,
     },

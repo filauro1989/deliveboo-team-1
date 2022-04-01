@@ -9,8 +9,7 @@
                 <!-- INVIO LE CATEGORIE ALL'APP TRAMITE L'EMIT -->
                 <!-- PUSHO NELL'ARRAY selectedCategories TRAMITE IL V-MODEL -->
                 <input
-                    @click="
-                        $emit('sendRestaurants', restaurants);
+                    @change="
                         filterCategories();
                     "
                     v-model="selectedCategories"
@@ -90,6 +89,7 @@ export default {
                 .then((res) => {
                     this.restaurants = res.data.results;
                     console.log(this.restaurants);
+                    this.$emit('sendRestaurants', this.restaurants);
                 })
                 .catch((err) => {
                     console.log(err);

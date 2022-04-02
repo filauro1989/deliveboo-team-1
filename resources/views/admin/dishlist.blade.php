@@ -64,7 +64,7 @@
                             </div>
                         </div>
 
-                        <a class="btn btn-info" href="{{ route('admin.dishes.show', $dish->slug) }}">Visualizza
+                        <a class="btn btn-info mt-2" href="{{ route('admin.dishes.show', $dish->slug) }}">Visualizza
                             Piatto</a>
                     </div>
                 </div>

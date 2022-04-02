@@ -46,20 +46,22 @@ class DishController extends Controller
     {
         $data  = $request->all();
         $data["user_id"] = Auth::user()->id;
-        
 
-        $validation = $request->validate([
-            "name" => "required|max:255|profane:it,en",
-            "description" => "required|max:4000|profane:it,en",
-            "price" => "required|numeric|gt:0",
-            "visible" => "nullable",
-            "image" => "nullable|image",
-            "course_id" => "exists:App\Model\Course,id"
-        ], 
-        [
-            'profane' => "Volgarità rilevata nel testo inserito",
-            'required' => "Questo campo è obbligatorio"
-        ]);
+
+        $validation = $request->validate(
+            [
+                "name" => "required|max:255|profane:it",
+                "description" => "required|max:4000|profane:it",
+                "price" => "required|numeric|gt:0",
+                "visible" => "nullable",
+                "image" => "nullable|image",
+                "course_id" => "exists:App\Model\Course,id"
+            ],
+            [
+                'profane' => "Volgarità rilevata nel testo inserito",
+                'required' => "Questo campo è obbligatorio"
+            ]
+        );
 
         if (!empty($data['image'])) {
             $img_path = Storage::put('uploads', $data['image']);
@@ -112,22 +114,24 @@ class DishController extends Controller
     {
         $data  = $request->all();
         $data["user_id"] = Auth::user()->id;
-        
 
-        $validation = $request->validate([
-            "name" => "required|max:255|profane:it,en",
-            "description" => "required|max:4000|profane:it,en",
-            "price" => "required|numeric|gt:0", //validazione virgola?
-            "visible" => "nullable",
-            "image" => "nullable|image",
-            "course_id" => "exists:App\Model\Course,id"
-        ], 
-        [
-            'profane' => "Volgarità rilevata nel testo inserito",
-            'required' => "Questo campo è obbligatorio"
-        ]);
 
-        if(!empty($data['image'])){
+        $validation = $request->validate(
+            [
+                "name" => "required|max:255|profane:it",
+                "description" => "required|max:4000|profane:it",
+                "price" => "required|numeric|gt:0", //validazione virgola?
+                "visible" => "nullable",
+                "image" => "nullable|image",
+                "course_id" => "exists:App\Model\Course,id"
+            ],
+            [
+                'profane' => "Volgarità rilevata nel testo inserito",
+                'required' => "Questo campo è obbligatorio"
+            ]
+        );
+
+        if (!empty($data['image'])) {
             Storage::delete($dish->image);
             $img_path = Storage::put('uploads', $data['image']);
             $data['image'] = $img_path;
@@ -149,7 +153,7 @@ class DishController extends Controller
         if ($data['course_id'] != $dish->course_id) {
             $dish->course_id = $data['course_id'];
         }
-            
+
         $dish->update($data);
 
         return redirect()->route('admin.dishes.show', ['dish' => $dish]);
@@ -163,7 +167,7 @@ class DishController extends Controller
      */
     public function destroy(Dish $dish)
     {
-        if(Auth::user()->id != $dish->user_id) {
+        if (Auth::user()->id != $dish->user_id) {
             abort("403");
         }
         // $dish->orders()->detach();

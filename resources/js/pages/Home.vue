@@ -1,5 +1,5 @@
 <template>
-    <div class="">
+    <div class="col-10">
         <div class="row">
             <!-- <a href=""> -->
             <!-- <router-link

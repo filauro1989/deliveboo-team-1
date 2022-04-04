@@ -18,7 +18,14 @@
                                 <li class="list-group-item">
                                     {{ dish.price }}€
                                 </li>
-                                <li>quantità:</li>
+                                <li>
+                                    quantità:
+                                    <input
+                                        v-model="dish.quantity"
+                                        type="number"
+                                        min="1"
+                                    />
+                                </li>
                                 <li>
                                     <button
                                         @click="addToCart(dish)"
@@ -33,7 +40,7 @@
                 </div>
             </div>
             <div class="col-5">
-                <Cart />
+                <Cart :elementfromCart="elementCart" />
             </div>
         </div>
     </div>
@@ -53,23 +60,19 @@ export default {
             myRestaurant: [],
             restaurantIdLocalStorage: null,
             restId: this.$route.params.id,
-            cart: [
-                // {
-                //     productName: null,
-                //     qty: 0,
-                //     price: null
-                // }
-            ],
+            elementCart: {},
         };
     },
     methods: {
         addToCart(products) {
-            this.cart.push({
+            this.elementCart = {
                 productName: products.name,
                 price: products.price,
-            });
+                quantity: products.quantity,
+            };
 
-            localStorage.setItem("cart", JSON.stringify(this.cart));
+            // inserisco nel localStorage, sotto nome "cart" l'array elementCart trasformandolo in stringa
+            // localStorage.setItem("cart", JSON.stringify(this.elementCart));
         },
     },
     // props: {
@@ -103,6 +106,10 @@ export default {
                 let response = res.data.results;
 
                 this.menu = response.menu;
+                this.menu.forEach((dish) => {
+                    dish.quantity = 1;
+                });
+                console.log(this.menu);
                 this.myRestaurant = response.restaurant;
             })
             .catch((err) => {

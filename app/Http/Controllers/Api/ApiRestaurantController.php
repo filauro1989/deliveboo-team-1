@@ -90,8 +90,6 @@ class ApiRestaurantController extends Controller
         $restaurant = User::where("id", $id)->first();
         $menu = Dish::where("user_id", $id)->get();
 
-
-
         return response()->json([
             "success" => true,
             "results" => [

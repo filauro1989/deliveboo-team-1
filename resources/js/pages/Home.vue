@@ -17,20 +17,22 @@
             </router-link> -->
             <div class="col-10">
                 <div class="row">
-                    <router-link
-                        class="col-sm-12 col-md-6 col-lg-3 p-0"
-                        :to="{
-                            name: 'restaurant',
-                            params: { id: restaurant.id },
-                        }"
-                        v-for="(restaurant, index) in restaurantsApp"
-                        :key="index"
-                    >
-                        <RestaurantCard
-                            :restaurantName="restaurant.restaurant_name"
-                            :restaurantImg="restaurant.image"
-                        />
-                    </router-link>
+                    <div class="link" @click="clearLocalStorage()">
+                        <router-link
+                            class="col-sm-12 col-md-6 col-lg-3 p-0"
+                            :to="{
+                                name: 'restaurant',
+                                params: { id: restaurant.id },
+                            }"
+                            v-for="(restaurant, index) in restaurantsApp"
+                            :key="index"
+                        >
+                            <RestaurantCard
+                                :restaurantName="restaurant.restaurant_name"
+                                :restaurantImg="restaurant.image"
+                            />
+                        </router-link>
+                    </div>
                 </div>
             </div>
             <!-- </a> -->
@@ -96,6 +98,10 @@ export default {
         getRestaurant(input) {
             this.restaurantsApp = input;
             // console.log(this.categories);
+        },
+        clearLocalStorage() {
+            localStorage.clear();
+            console.log("sticazzi");
         },
     },
 };

@@ -48,11 +48,60 @@
                                                 class="d-flex flex-row align-items-center"
                                             >
                                                 <div class="px-2 me-3">
-                                                    <h5 class="fw-normal mb-0">
+                                                    <!-- <h5 class="fw-normal mb-0">
                                                         {{
                                                             cartElement.quantity
                                                         }}
-                                                    </h5>
+                                                    </h5> -->
+                                                    <div
+                                                        class="d-flex mb-4"
+                                                        style="max-width: 300px"
+                                                    >
+                                                        <button
+                                                            class="btn btn-primary px-3 me-2"
+                                                            onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
+                                                            @click="
+                                                                modifyQuantity(
+                                                                    cartElement,
+                                                                    -1
+                                                                )
+                                                            "
+                                                        >
+                                                            <i
+                                                                class="fas fa-minus"
+                                                            ></i>
+                                                        </button>
+
+                                                        <div
+                                                            class="form-outline"
+                                                        >
+                                                            <input
+                                                                id="form1"
+                                                                min="0"
+                                                                name="quantity"
+                                                                :value="
+                                                                    cartElement.quantity
+                                                                "
+                                                                type="number"
+                                                                class="form-control"
+                                                            />
+                                                        </div>
+
+                                                        <button
+                                                            @click="
+                                                                modifyQuantity(
+                                                                    cartElement,
+                                                                    1
+                                                                )
+                                                            "
+                                                            class="btn btn-primary px-3 ms-2"
+                                                            onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
+                                                        >
+                                                            <i
+                                                                class="fas fa-plus"
+                                                            ></i>
+                                                        </button>
+                                                    </div>
                                                 </div>
                                                 <div class="me-3">
                                                     <h5 class="mb-0">
@@ -77,6 +126,7 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="total-amount"></div>
                             <div>
                                 <button
                                     class="btn btn-danger"
@@ -84,6 +134,15 @@
                                 >
                                     Svuota Carrello
                                 </button>
+                                <router-link
+                                    :to="{
+                                        name: 'checkout',
+                                    }"
+                                >
+                                    <button class="btn btn-primary">
+                                        Checkout
+                                    </button>
+                                </router-link>
                             </div>
                         </div>
                     </div>
@@ -100,6 +159,7 @@ export default {
         return {
             cart: [],
             cartStorage: [],
+            totalAmount: 0,
         };
     },
 
@@ -112,18 +172,43 @@ export default {
             this.cartStorage = [];
         },
         deleteItem(dish) {
-            let cartOnDelete = [];
-            cartOnDelete = JSON.parse(localStorage.getItem("cart"));
-            console.log(cartOnDelete);
+            // CREO UN ARRAY DI APPOGGIO
+            let parsedCart = [];
+            // TRASFORMO LA STRINGA IN JSON E LA PUSHO NELL'ARRAY DI APPOGGIO
+            parsedCart = JSON.parse(localStorage.getItem("cart"));
+            // CICLO SULL'ARRAY cartStorage
             for (let index = 0; index < this.cartStorage.length; index++) {
                 const element = this.cartStorage[index];
+                // SE IL NOME DEL PIATTO è UGUALE AL NOME DELL'ELEMENTO SU CUI CICLO
                 if (dish.productName == element.productName) {
                     // INDEX STA PER LA POSIZIONE NELL'ARRAY cartStorage DELL'Element
+                    // ELIMINO UN OGGETTO DALL'ARRAY cartStorage
                     this.cartStorage.splice(index, 1);
-                    cartOnDelete.splice(index, 1);
+                    // ELIMINO UN OGGETTO DALL'ARRAY parsedCart
+                    parsedCart.splice(index, 1);
                 }
             }
-            localStorage.setItem("cart", JSON.stringify(cartOnDelete));
+            // TRASFORMO L'ARRAY IN STRINGA PUSHO L'ARRAY DI APPOGGIO NEL localStorage
+            localStorage.setItem("cart", JSON.stringify(parsedCart));
+        },
+        modifyQuantity(dish, num) {
+            // CREO UN ARRAY DI APPOGGIO
+            let parsedCart = [];
+            // TRASFORMO LA STRINGA IN JSON E LA PUSHO NELL'ARRAY DI APPOGGIO
+            parsedCart = JSON.parse(localStorage.getItem("cart"));
+            // CICLO SULL'ARRAY cartStorage
+            for (let index = 0; index < this.cartStorage.length; index++) {
+                const element = this.cartStorage[index];
+                // SE IL NOME DEL PIATTO è UGUALE AL NOME DELL'ELEMENTO SU CUI CICLO
+                if (dish.productName == element.productName) {
+                    // VARIO LA QUANTITà DELL'ELEMENTO DI += num
+                    element.quantity += num;
+                    // VARIO LA QUANTITà DELL'ARRAY DI APPOGGIO DI += num
+                    parsedCart[index].quantity += num;
+                }
+            }
+            // TRASFORMO L'ARRAY IN STRINGA PUSHO L'ARRAY DI APPOGGIO NEL localStorage
+            localStorage.setItem("cart", JSON.stringify(parsedCart));
         },
     },
     created() {
@@ -171,6 +256,11 @@ export default {
             } else {
                 this.cartStorage.push(this.elementfromCart);
             }
+        },
+        cartStorage: function () {
+            cartStorage.forEach((element) => {
+                this.totalAmount += element.quantity * element.price;
+            });
         },
     },
 };

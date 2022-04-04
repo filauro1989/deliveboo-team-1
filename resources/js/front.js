@@ -16,6 +16,7 @@ import VueRouter from 'vue-router';
 
 import Home from './pages/Home.vue';
 import Restaurant from './pages/Restaurant.vue';
+import Checkout from './pages/Checkout.vue';
 
 Vue.use(VueRouter);
 
@@ -36,6 +37,12 @@ const router = new VueRouter({
             name: 'restaurant',
             props: true,
             component: Restaurant,
+        },
+        {
+            path: '/checkout',
+            name: 'checkout',
+            props: true,
+            component: Checkout,
         },
     ]
 });

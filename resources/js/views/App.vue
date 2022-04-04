@@ -3,7 +3,7 @@
         <Header></Header>
         <!-- RICHIAMO DALLA SIDEBAR LA FUNZIONE EMIT sendCategories E LA COLLEGO CON LA FUNZIONE getCategory nei METHODS  -->
         <div class="row w-100">
-            <Sidebar @sendRestaurants="getRestaurant($event)"> </Sidebar>
+            <!-- <Sidebar @sendRestaurants="getRestaurant($event)"> </Sidebar> -->
             <!-- MANDO LE PROPS A HOME.VUE INVIANDO L'ARRAY categories -->
             <router-view :restaurantsArray="restaurants"></router-view>
         </div>

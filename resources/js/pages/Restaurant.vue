@@ -1,11 +1,9 @@
 <template>
-    <div class="col-10">
+    <div class="col">
+        <h1>{{ myRestaurant.restaurant_name }}</h1>
         <div class="row w-100">
             <div class="col-7">
-                <div class="row">
-                    <h1>{{ myRestaurant.restaurant_name }}</h1>
-                </div>
-                <div class="row row-cols-3 gy-2">
+                <div class="row row-cols-1 row-cols-md-2 row-cols-xl-4 gy-2">
                     <div v-for="(dish, index) in menu" :key="index" class="col">
                         <div class="card h-100">
                             <div class="card-header">Menù</div>

@@ -1,6 +1,7 @@
 <template>
-    <div class="col-10">
+    <div class="col">
         <div class="row">
+            <Sidebar @sendRestaurants="getRestaurant($event)" class="col-2" />
             <!-- <a href=""> -->
             <!-- <router-link
                 :to="{ name: 'restaurant', params: { id: restaurant.id } }"
@@ -14,18 +15,24 @@
                     <h5 class="card-title">{{ restaurant.restaurant_name }}</h5>
                 </div>
             </router-link> -->
-
-            <router-link
-                class="col-sm-12 col-md-6 col-lg-3 p-0"
-                :to="{ name: 'restaurant', params: { id: restaurant.id } }"
-                v-for="(restaurant, index) in restaurantsArray"
-                :key="index"
-            >
-                <RestaurantCard
-                    :restaurantName="restaurant.restaurant_name"
-                    :restaurantImg="restaurant.image"
-                />
-            </router-link>
+            <div class="col-10">
+                <div class="row">
+                    <router-link
+                        class="col-sm-12 col-md-6 col-lg-3 p-0"
+                        :to="{
+                            name: 'restaurant',
+                            params: { id: restaurant.id },
+                        }"
+                        v-for="(restaurant, index) in restaurantsApp"
+                        :key="index"
+                    >
+                        <RestaurantCard
+                            :restaurantName="restaurant.restaurant_name"
+                            :restaurantImg="restaurant.image"
+                        />
+                    </router-link>
+                </div>
+            </div>
             <!-- </a> -->
 
             <!-- COMPONENTE CARD RISTORANTE -->
@@ -42,11 +49,13 @@
 <script>
 import Axios from "axios";
 import RestaurantCard from "../components/RestaurantCard.vue";
+import Sidebar from "../components/Sidebar.vue";
 
 export default {
     name: "Home",
     components: {
         RestaurantCard,
+        Sidebar,
     },
     // PRENDO TRAMITE LE PROPS L'ARRAY CATEGORIES DALLA PAGINA APP.VUE
     props: {
@@ -57,6 +66,7 @@ export default {
             restaurants: [],
             filteredRestaurants: [],
             apiKey: "deliveboo26313334",
+            restaurantsApp: [],
         };
     },
     created() {
@@ -81,7 +91,13 @@ export default {
                 console.log(err);
             });
     },
-    methods: {},
+    methods: {
+        // CREO FUNZIONE PER PUSHARE L'EMIT DENTRO L'ARRAY restaurants
+        getRestaurant(input) {
+            this.restaurantsApp = input;
+            // console.log(this.categories);
+        },
+    },
 };
 </script>
 

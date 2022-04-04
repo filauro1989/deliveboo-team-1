@@ -63,6 +63,9 @@
                                                     </h5>
                                                 </div>
                                                 <a
+                                                    @click="
+                                                        deleteItem(cartElement)
+                                                    "
                                                     href="#!"
                                                     style="color: #cecece"
                                                     ><i
@@ -97,7 +100,6 @@ export default {
         return {
             cart: [],
             cartStorage: [],
-            // found: false,
         };
     },
 
@@ -108,6 +110,20 @@ export default {
         refresh() {
             localStorage.clear();
             this.cartStorage = [];
+        },
+        deleteItem(dish) {
+            let cartOnDelete = [];
+            cartOnDelete = JSON.parse(localStorage.getItem("cart"));
+            console.log(cartOnDelete);
+            for (let index = 0; index < this.cartStorage.length; index++) {
+                const element = this.cartStorage[index];
+                if (dish.productName == element.productName) {
+                    // INDEX STA PER LA POSIZIONE NELL'ARRAY cartStorage DELL'Element
+                    this.cartStorage.splice(index, 1);
+                    cartOnDelete.splice(index, 1);
+                }
+            }
+            localStorage.setItem("cart", JSON.stringify(cartOnDelete));
         },
     },
     created() {
@@ -121,6 +137,8 @@ export default {
     watch: {
         elementfromCart: function () {
             let found = false;
+
+            // console.log(localStorage.key());
 
             // SE 'ARRAY esiste
             if (this.cartStorage) {

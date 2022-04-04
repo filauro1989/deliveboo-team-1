@@ -1,7 +1,5 @@
 <template>
-    <!-- <button class="btn btn-primary" @click="show()">show</button>
-    <button class="btn btn-primary" @click="refresh()">refresh</button> -->
-    <div class="container-fluid h-100">
+    <div class="container-fluid">
         <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col">
                 <div class="card">
@@ -343,6 +341,18 @@
                                                     ></i
                                                 ></span>
                                             </div>
+                                        </button>
+                                        <button
+                                            class="btn btn-danger"
+                                            @click="show()"
+                                        >
+                                            show
+                                        </button>
+                                        <button
+                                            class="btn btn-danger"
+                                            @click="refresh()"
+                                        >
+                                            refresh
                                         </button>
                                     </div>
                                 </div>

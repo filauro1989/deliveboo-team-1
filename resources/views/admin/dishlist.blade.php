@@ -15,8 +15,7 @@
                             <img class="h-100 img-fluid" src="{{ asset('storage/' . $dish->image) }}"
                                 alt="{{ $dish->image }}">
                         @else
-                            <img class="img-fluid" src="{{ asset('storage/default_images/default-placeholder.png') }}"
-                                alt="no-photo">
+                            <img class="img-fluid" src="{{ asset('storage/default_image.jpg') }}" alt="no-photo">
                         @endif
                     </div>
                     <div class="card-body">

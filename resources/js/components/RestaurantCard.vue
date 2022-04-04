@@ -9,9 +9,7 @@
         />
         <img
             v-else
-            :src="
-                require(`../../../public/storage/default_images/default-placeholder.png`)
-            "
+            :src="require(`../../../public/storage/uploads/default_image.jpg`)"
             alt="default-image"
         />
         <div class="card-img-overlay h-100 posision-relative">

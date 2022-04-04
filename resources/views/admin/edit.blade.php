@@ -67,7 +67,7 @@
         @if (!empty($dish->image))
             <img class="img-fluid" src="{{ asset('storage/' . $dish->image) }}" alt="">
         @else
-            <img class="img-fluid" src="{{ asset('storage/default_images/default-placeholder.png') }}" alt="">
+            <img class="img-fluid" src="{{ asset('storage/default_image.jpg') }}" alt="">
         @endif
         <div class="mb-3">
             <label for="image" class="form-label">Carica immagine del piatto</label>

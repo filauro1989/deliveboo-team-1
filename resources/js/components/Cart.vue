@@ -64,7 +64,8 @@
                                                                 modifyQuantity(
                                                                     cartElement,
                                                                     -1
-                                                                )
+                                                                );
+                                                                changeAmount();
                                                             "
                                                         >
                                                             <i
@@ -92,7 +93,8 @@
                                                                 modifyQuantity(
                                                                     cartElement,
                                                                     1
-                                                                )
+                                                                );
+                                                                changeAmount();
                                                             "
                                                             class="btn btn-primary px-3 ms-2"
                                                             onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
@@ -109,6 +111,7 @@
                                                             cartElement.price *
                                                             cartElement.quantity
                                                         }}
+                                                        &euro;
                                                     </h5>
                                                 </div>
                                                 <a
@@ -126,7 +129,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="total-amount"></div>
+                            <div class="total-amount">
+                                {{ totalAmount }} &euro;
+                            </div>
                             <div>
                                 <button
                                     class="btn btn-danger"
@@ -257,12 +262,24 @@ export default {
                 this.cartStorage.push(this.elementfromCart);
             }
         },
-        cartStorage: function () {
-            cartStorage.forEach((element) => {
-                this.totalAmount += element.quantity * element.price;
-            });
+        cartStorage: function changeAmount() {
+            console.log("ciao");
+            if (this.cartStorage) {
+                this.cartStorage.forEach((element) => {
+                    this.totalAmount += element.quantity * element.price;
+                });
+            }
         },
     },
+    // computed: {
+    //     cartStorageChange() {
+    //         if (this.cartStorage) {
+    //             this.cartStorage.forEach((element) => {
+    //                 this.totalAmount = element.quantity * element.price;
+    //             });
+    //         }
+    //     },
+    // },
 };
 </script>
 

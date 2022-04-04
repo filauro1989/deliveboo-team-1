@@ -64,8 +64,8 @@
                                                                 modifyQuantity(
                                                                     cartElement,
                                                                     -1
-                                                                );
-                                                                changeAmount();
+                                                                ),
+                                                                getTotalCart();
                                                             "
                                                         >
                                                             <i
@@ -81,7 +81,7 @@
                                                                 min="0"
                                                                 name="quantity"
                                                                 :value="
-                                                                    cartElement.quantity
+                                                                    parseInt(cartElement.quantity)
                                                                 "
                                                                 type="number"
                                                                 class="form-control"
@@ -93,8 +93,8 @@
                                                                 modifyQuantity(
                                                                     cartElement,
                                                                     1
-                                                                );
-                                                                changeAmount();
+                                                                ),
+                                                                getTotalCart();
                                                             "
                                                             class="btn btn-primary px-3 ms-2"
                                                             onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
@@ -175,6 +175,8 @@ export default {
         refresh() {
             localStorage.clear();
             this.cartStorage = [];
+            this.getTotalCart();
+
         },
         deleteItem(dish) {
             // CREO UN ARRAY DI APPOGGIO
@@ -195,6 +197,7 @@ export default {
             }
             // TRASFORMO L'ARRAY IN STRINGA PUSHO L'ARRAY DI APPOGGIO NEL localStorage
             localStorage.setItem("cart", JSON.stringify(parsedCart));
+
         },
         modifyQuantity(dish, num) {
             // CREO UN ARRAY DI APPOGGIO
@@ -215,12 +218,21 @@ export default {
             // TRASFORMO L'ARRAY IN STRINGA PUSHO L'ARRAY DI APPOGGIO NEL localStorage
             localStorage.setItem("cart", JSON.stringify(parsedCart));
         },
+        getTotalCart() {
+            this.totalAmount = 0;
+            console.log("test");
+            this.cartStorage.forEach(el => {
+                this.totalAmount += el.quantity * el.price;
+            });
+        }
     },
     created() {
         // this.cartStorage = [];
         setTimeout(() => {
             if (JSON.parse(localStorage.getItem("cart"))) {
                 this.cartStorage = JSON.parse(localStorage.getItem("cart"));
+                this.getTotalCart();
+
             }
         }, 100);
     },
@@ -240,7 +252,7 @@ export default {
                         element.productName == this.elementfromCart.productName
                     ) {
                         // AUMENTO LA QUANTITà DEL PRODOTTO NEL CARRELLO, FERMO IL CICLO SETTANDO INDEX ALLA LUNGHEZZA DELL'ARRAY E CAMBIO VARIABILE IN TRUE
-                        element.quantity += this.elementfromCart.quantity;
+                        element.quantity += parseInt(this.elementfromCart.quantity);
                         index = this.cartStorage.length;
                         found = true;
                         localStorage.setItem(
@@ -261,16 +273,19 @@ export default {
             } else {
                 this.cartStorage.push(this.elementfromCart);
             }
+
+            this.getTotalCart();
         },
-        cartStorage: function changeAmount() {
-            console.log("ciao");
-            if (this.cartStorage) {
-                this.cartStorage.forEach((element) => {
-                    this.totalAmount += element.quantity * element.price;
-                });
-            }
-        },
+        // cartStorage: function() {
+        //     console.log("ciao");
+        //     if (this.cartStorage) {
+        //         this.cartStorage.forEach((element) => {
+        //             this.totalAmount += parseInt(element.quantity) * parseInt(element.price);
+        //         });
+        //     }
+        // },
     },
+    
     // computed: {
     //     cartStorageChange() {
     //         if (this.cartStorage) {

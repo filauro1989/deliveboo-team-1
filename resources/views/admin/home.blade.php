@@ -1,5 +1,11 @@
 @extends('layouts.admin.dashboard')
 
+@php
+use App\Model\Dish;
+
+    $totalDishes = count(Dish::where("user_id", Auth::user()->id)->get());
+@endphp
+
 @section('content')
     <div class="row">
         <div class="col-12 col-md-6 col-xl-3 my-2">
@@ -16,7 +22,7 @@
         <div class="col-12 col-md-6 col-xl-3 my-2">
             <div id="stat-card-2" class="stat-card rounded d-flex justify-content-around align-items-center">
                 <div class="stat-card-info d-flex flex-column">
-                    <span class="stat-card-info-number">300</span>
+                    <span class="stat-card-info-number">{{$totalDishes}}</span>
                     <span class="stat-card-info-text">Numero Piatti</span>
                 </div>
                 <div class="stat-card-logo rounded-circle d-flex align-items-center justify-content-center">

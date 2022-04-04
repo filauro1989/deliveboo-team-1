@@ -1,31 +1,37 @@
 <template>
-    <div class="col-10 d-flex">
+    <div class="col-10">
         <div class="row w-100">
             <div class="col-7">
-                <div class="card" style="width: 18rem">
+                <div class="row">
                     <h1>{{ myRestaurant.restaurant_name }}</h1>
-                    <div class="card-header">Menù</div>
-                    <ul
-                        v-for="(dish, index) in menu"
-                        :key="index"
-                        class="list-group list-group-flush"
-                    >
-                        <li v-if="dish.img" class="list-group-item">
-                            {{ dish.img }}
-                        </li>
-                        <li class="list-group-item">{{ dish.name }}</li>
-                        <li class="list-group-item">{{ dish.description }}</li>
-                        <li class="list-group-item">{{ dish.price }}€</li>
-                        <li>quantità:</li>
-                        <li>
-                            <button
-                                @click="addToCart(dish)"
-                                class="btn btn-primary"
-                            >
-                                aggiungi al carrello
-                            </button>
-                        </li>
-                    </ul>
+                </div>
+                <div class="row row-cols-3 gy-2">
+                    <div v-for="(dish, index) in menu" :key="index" class="col">
+                        <div class="card h-100">
+                            <div class="card-header">Menù</div>
+                            <ul class="list-group list-group-flush">
+                                <li v-if="dish.img" class="list-group-item">
+                                    {{ dish.img }}
+                                </li>
+                                <li class="list-group-item">{{ dish.name }}</li>
+                                <li class="list-group-item">
+                                    {{ dish.description }}
+                                </li>
+                                <li class="list-group-item">
+                                    {{ dish.price }}€
+                                </li>
+                                <li>quantità:</li>
+                                <li>
+                                    <button
+                                        @click="addToCart(dish)"
+                                        class="btn btn-primary"
+                                    >
+                                        aggiungi al carrello
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="col-5">

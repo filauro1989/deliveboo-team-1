@@ -2,19 +2,6 @@
     <div class="col">
         <div class="row">
             <Sidebar @sendRestaurants="getRestaurant($event)" class="col-2" />
-            <!-- <a href=""> -->
-            <!-- <router-link
-                :to="{ name: 'restaurant', params: { id: restaurant.id } }"
-                v-for="(restaurant, index) in restaurantsArray"
-                :key="index"
-                class="col-12 col-md-6 col-lg-3 card mb-3 mx-2"
-                style="max-width: 400px"
-            >
-                <div class="h-100"></div>
-                <div class="card-body">
-                    <h5 class="card-title">{{ restaurant.restaurant_name }}</h5>
-                </div>
-            </router-link> -->
             <div class="col-10">
                 <div class="row row-cols-1 row-cols-md-2 row-cols-xl-4">
                     <div
@@ -37,15 +24,6 @@
                     </div>
                 </div>
             </div>
-            <!-- </a> -->
-
-            <!-- COMPONENTE CARD RISTORANTE -->
-            <!-- <RestaurantCard
-                v-for="(restaurant, index) in restaurantsArray"
-                :key="index"
-                :restaurantName="restaurant.restaurant_name"
-                :restaurantImg="restaurant.image"
-            /> -->
         </div>
     </div>
 </template>

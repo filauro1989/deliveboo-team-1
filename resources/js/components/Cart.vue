@@ -289,25 +289,7 @@ export default {
 
             this.getTotalCart();
         },
-        // cartStorage: function() {
-        //     console.log("ciao");
-        //     if (this.cartStorage) {
-        //         this.cartStorage.forEach((element) => {
-        //             this.totalAmount += parseInt(element.quantity) * parseInt(element.price);
-        //         });
-        //     }
-        // },
     },
-
-    // computed: {
-    //     cartStorageChange() {
-    //         if (this.cartStorage) {
-    //             this.cartStorage.forEach((element) => {
-    //                 this.totalAmount = element.quantity * element.price;
-    //             });
-    //         }
-    //     },
-    // },
 };
 </script>
 

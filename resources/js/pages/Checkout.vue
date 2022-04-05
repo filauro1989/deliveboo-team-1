@@ -95,24 +95,18 @@ export default {
                 surname: "",
                 address: "",
                 mail: "",
+                // INTERCETTO I PARAMS DAL CARRELLO
                 totalAmount: this.$route.params.totalAmount,
             },
             apiKey: "deliveboo26313334",
-            // totalAmount: this.$route.params.totalAmount,
         };
     },
     components: {
         Cart,
     },
-    // props: {
-    //     totalAmountFromApp: Number,
-    // },
     methods: {
         onSuccess(payload) {
             let nonce = payload.nonce;
-
-            // AL BUON FINE DEL PAGAMENTO PRENDO LA PROPS RICEVUTA E LA SALVO NELL'OGGETTO orderInfo
-            // this.orderInfo.totalAmount = this.totalAmountFromApp;
 
             const headers = {
                 "Content-Type": "application/json",
@@ -142,12 +136,9 @@ export default {
             let message = error.message;
             // Whoops, an error has occured while trying to get the nonce
         },
-        // getTotalFromCart(event) {
-        //     console.log("log");
-        //     this.totalAmount = event;
-        // },
     },
     created() {
+        // BRAINTREE JAVASCRIPT AL CREATED
         var button = document.querySelector("#submit-button");
 
         braintree.dropin.create(

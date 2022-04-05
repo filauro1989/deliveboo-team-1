@@ -1,16 +1,10 @@
 <template>
     <div class="container-fluid">
         <Header></Header>
-        <!-- RICHIAMO DALLA SIDEBAR LA FUNZIONE EMIT sendCategories E LA COLLEGO CON LA FUNZIONE getCategory nei METHODS  -->
         <div class="row w-100">
-            <!-- <Sidebar @sendRestaurants="getRestaurant($event)"> </Sidebar> -->
             <!-- MANDO LE PROPS A HOME.VUE INVIANDO L'ARRAY categories -->
-            <!-- MANDO LE PROPS totalAmountFromApp ad CHECKOUT.VUE -->
-            <!-- @sendToApp="getCartTotalAmount($event)" -->
-            <router-view
-                :restaurantsArray="restaurants"
-                :totalAmountFromApp="cartTotalAmount"
-            ></router-view>
+            <!-- :restaurantsArray="restaurants" -->
+            <router-view></router-view>
         </div>
         <Footer></Footer>
     </div>
@@ -38,13 +32,9 @@ export default {
     },
     methods: {
         // CREO FUNZIONE PER PUSHARE L'EMIT DENTRO L'ARRAY restaurants
-        getRestaurant(input) {
-            this.restaurants = input;
-            // console.log(this.categories);
-        },
-        // FUNZIONE CHE CATTURA EVENT E PUSHA DENTRO L'ARRAY cartTotalAmount
-        // getCartTotalAmount(event) {
-        //     this.cartTotalAmount = event;
+        // getRestaurant(input) {
+        //     this.restaurants = input;
+        //     // console.log(this.categories);
         // },
     },
 };

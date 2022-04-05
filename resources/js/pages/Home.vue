@@ -13,7 +13,10 @@
                         <router-link
                             :to="{
                                 name: 'restaurant',
-                                params: { id: restaurant.id },
+                                params: {
+                                    slug: restaurant.slug,
+                                    id: restaurant.id,
+                                },
                             }"
                         >
                             <RestaurantCard

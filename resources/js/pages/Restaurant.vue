@@ -40,8 +40,6 @@
                 </div>
             </div>
             <div class="col-5">
-                <!-- CATTURA EVENTO DA CART -->
-                <!-- @sendTotalAmount="getTotalFromCart($event)" -->
                 <Cart :elementfromCart="elementCart" />
             </div>
         </div>
@@ -61,6 +59,7 @@ export default {
             menu: [],
             myRestaurant: [],
             restaurantIdLocalStorage: null,
+            // PRENDO ID DEL RISTORANTE DAI PARAMS CHE CI MANDA home.vue
             restId: this.$route.params.id,
             elementCart: {},
         };
@@ -74,13 +73,11 @@ export default {
                 id: products.id,
             };
         },
-        // getTotalFromCart(event) {
-        //     this.$emit("sendToApp", event);
-        // },
     },
 
     created() {
         axios
+            // CHIAMATA AXIOS CON AGGIUNTO L'ID DEL RISTORANTE
             .get(
                 "http://127.0.0.1:8000/api/restaurants/filter/" + this.restId,
                 {

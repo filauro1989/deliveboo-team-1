@@ -26,8 +26,6 @@ Vue.use(VueRouter);
 const router = new VueRouter({
     // mode history serve per nn fare comparire il cancelletto alla fine dell'url nel browser
     mode: 'history',
-    // attribuiamo alla rotta la classe active
-    // linkExactActiveClass: 'active',
     // tutte le rotte a cui colleghiamo le pagine
     routes: [
         {
@@ -35,8 +33,9 @@ const router = new VueRouter({
             name: 'home',
             component: Home,
         },
+        // :slug ALLA FINE PER SETTARE LA ROTTA SULLO SLUG DINAMICO
         {
-            path: '/restaurant/:id',
+            path: '/restaurant/:slug',
             name: 'restaurant',
             props: true,
             component: Restaurant,

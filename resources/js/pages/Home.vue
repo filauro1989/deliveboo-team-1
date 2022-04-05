@@ -16,16 +16,18 @@
                 </div>
             </router-link> -->
             <div class="col-10">
-                <div class="row">
-                    <div class="link" @click="clearLocalStorage()">
+                <div class="row row-cols-1 row-cols-md-2 row-cols-xl-4">
+                    <div
+                        v-for="(restaurant, index) in restaurantsApp"
+                        :key="index"
+                        class="col p-0"
+                        @click="clearLocalStorage()"
+                    >
                         <router-link
-                            class="col-sm-12 col-md-6 col-lg-3 p-0"
                             :to="{
                                 name: 'restaurant',
                                 params: { id: restaurant.id },
                             }"
-                            v-for="(restaurant, index) in restaurantsApp"
-                            :key="index"
                         >
                             <RestaurantCard
                                 :restaurantName="restaurant.restaurant_name"

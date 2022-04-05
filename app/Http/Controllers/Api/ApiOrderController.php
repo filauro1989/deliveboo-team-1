@@ -24,9 +24,12 @@ class ApiOrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function sendOrdersData()
+    public function sendOrdersData(Request $request)
     {   
-        $orders = Order::all();
+        $restaurantId = $request->params["id"][0];
+        // $orders = Order::all();
+        
+
         // $orders = DB::table("orders")
         // ->select("orders.*")
         // ->distinct()
@@ -35,11 +38,10 @@ class ApiOrderController extends Controller
         // ->where("user_id", Auth::user()->id) //Auth::user()->id non gli piace, bisognerà passargli dei parametri dall'home
         // ->get();
         
-        $user = auth();
 
         return response()->json([
             "success" => true,
-            "results" => $user,
+            "results" => $restaurantId,
         ]);
     }
 

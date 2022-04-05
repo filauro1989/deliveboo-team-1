@@ -69,7 +69,7 @@ export default {
             this.elementCart = {
                 productName: products.name,
                 price: products.price,
-                quantity: products.quantity,
+                quantity: parseInt(products.quantity),
                 id: products.id,
             };
         },

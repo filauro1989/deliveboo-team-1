@@ -21,7 +21,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 // CREO ROTTA orders/data nella quale richiamo la funzione sendOrdersData dall' ApiOrderController
-Route::get("orders/data", "Api\ApiOrderController@sendOrdersData")->middleware('api.auth');
+Route::post("orders/data", "Api\ApiOrderController@sendOrdersData");
 Route::get("categories/data", "Api\ApiCategoryController@sendCategoriesData")->middleware('api.auth');
 Route::get("restaurants/data", "Api\ApiRestaurantController@sendRestaurantsData")->middleware('api.auth');
 Route::get("restaurants/filtered", "Api\ApiRestaurantController@sendFilteredRestaurantsData")->middleware('api.auth');

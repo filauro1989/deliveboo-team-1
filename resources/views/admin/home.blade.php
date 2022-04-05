@@ -3,7 +3,7 @@
 @php
 use App\Model\Dish;
 
-    $totalDishes = count(Dish::where("user_id", Auth::user()->id)->get());
+$totalDishes = count(Dish::where('user_id', Auth::user()->id)->get());
 @endphp
 
 @section('content')
@@ -22,7 +22,7 @@ use App\Model\Dish;
         <div class="col-12 col-md-6 col-xl-3 my-2">
             <div id="stat-card-2" class="stat-card rounded d-flex justify-content-around align-items-center">
                 <div class="stat-card-info d-flex flex-column">
-                    <span class="stat-card-info-number">{{$totalDishes}}</span>
+                    <span class="stat-card-info-number">{{ $totalDishes }}</span>
                     <span class="stat-card-info-text">Numero Piatti</span>
                 </div>
                 <div class="stat-card-logo rounded-circle d-flex align-items-center justify-content-center">
@@ -83,6 +83,7 @@ use App\Model\Dish;
         let ordersData = [];
         const apiKey = 'deliveboo26313334';
 
+        // CHIAMATA PER I DATI DEL GRAFICO
         axios.get("http://127.0.0.1:8000/api/orders/data", {
                 headers: {
                     'Authorization': 'Bearer ' + apiKey

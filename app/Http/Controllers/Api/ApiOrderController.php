@@ -35,10 +35,11 @@ class ApiOrderController extends Controller
         // ->where("user_id", Auth::user()->id) //Auth::user()->id non gli piace, bisognerà passargli dei parametri dall'home
         // ->get();
         
+        $user = auth();
 
         return response()->json([
             "success" => true,
-            "results" => $orders,
+            "results" => $user,
         ]);
     }
 

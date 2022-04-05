@@ -37,19 +37,29 @@ class ApiOrderController extends Controller
 
     public function makeOrder(Request $request) {
         // INSERISCO PARAMS RICEVUTI TRAMITE REQUEST DEL FORM NELLA VARIABILE info
-        $info = $request->params['form'];
+        $userForm = $request->params['form'];
+        $userCart = $request->params['form']['cartStorage'];
+
         $today = new Carbon();
 
         // CREO NUOVO ORDINE
         $newOrder = new Order();
-        $newOrder->first_name = $info['name'];
-        $newOrder->last_name = $info['surname'];
+        $newOrder->first_name = $userForm['name'];
+        $newOrder->last_name = $userForm['surname'];
         $newOrder->date = $today->now();
-        $newOrder->customer_email = $info['mail'];
-        $newOrder->delivery_address = $info['address'];
+        $newOrder->customer_email = $userForm['mail'];
+        $newOrder->delivery_address = $userForm['address'];
         $newOrder->payment_method = 'Credit Card';
-        $newOrder->total_amount = $info['totalAmount'];
+        $newOrder->total_amount = $userForm['totalAmount'];
         $newOrder->save();
+
+        // CICLO SU TUTTI GLI ELEMENTI DEL CARRELLO
+        foreach ($userCart as $cartElement) {
+
+            // COLLEGO L'ID DI OGNI cartElement E PASSO ANCHE LA COLONNA quantity COLLEGANDOLA ALLA QUANTITà DELL'ELEMENTO
+            $newOrder->dishes()->attach($cartElement['id'], ['quantity' => $cartElement['quantity']]);
+        }
+
 
         return response()->json([
             "success" =>true,

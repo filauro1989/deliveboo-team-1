@@ -97,6 +97,7 @@ export default {
                 mail: "",
                 // INTERCETTO I PARAMS DAL CARRELLO
                 totalAmount: this.$route.params.totalAmount,
+                cartStorage: this.$route.params.cartStorage,
             },
             apiKey: "deliveboo26313334",
         };
@@ -107,7 +108,6 @@ export default {
     methods: {
         onSuccess(payload) {
             let nonce = payload.nonce;
-
             const headers = {
                 "Content-Type": "application/json",
                 Authorization: "Bearer " + this.apiKey,
@@ -139,21 +139,20 @@ export default {
     },
     created() {
         // BRAINTREE JAVASCRIPT AL CREATED
-        var button = document.querySelector("#submit-button");
-
-        braintree.dropin.create(
-            {
-                authorization: "sandbox_g42y39zw_348pk9cgf3bgyw2b",
-                selector: "#dropin-container",
-            },
-            function (err, instance) {
-                button.addEventListener("click", function () {
-                    instance.requestPaymentMethod(function (err, payload) {
-                        // Submit payload.nonce to your server
-                    });
-                });
-            }
-        );
+        // var button = document.querySelector("#submit-button");
+        // braintree.dropin.create(
+        //     {
+        //         authorization: "sandbox_g42y39zw_348pk9cgf3bgyw2b",
+        //         selector: "#dropin-container",
+        //     },
+        //     function (err, instance) {
+        //         button.addEventListener("click", function () {
+        //             instance.requestPaymentMethod(function (err, payload) {
+        //                 // Submit payload.nonce to your server
+        //             });
+        //         });
+        //     }
+        // );
     },
 };
 </script>

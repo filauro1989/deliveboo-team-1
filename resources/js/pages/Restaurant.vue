@@ -71,6 +71,7 @@ export default {
                 productName: products.name,
                 price: products.price,
                 quantity: products.quantity,
+                id: products.id,
             };
         },
         // getTotalFromCart(event) {
@@ -97,7 +98,7 @@ export default {
                 this.menu.forEach((dish) => {
                     dish.quantity = 1;
                 });
-                console.log(this.menu);
+                console.log(response, "response");
                 this.myRestaurant = response.restaurant;
             })
             .catch((err) => {

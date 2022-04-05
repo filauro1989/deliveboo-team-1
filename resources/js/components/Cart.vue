@@ -144,7 +144,10 @@
                                 <router-link
                                     :to="{
                                         name: 'checkout',
-                                        params: { totalAmount: totalAmount },
+                                        params: {
+                                            totalAmount: totalAmount,
+                                            cartStorage: cartStorage,
+                                        },
                                     }"
                                 >
                                     <!-- @click="setTotalAmount()" -->

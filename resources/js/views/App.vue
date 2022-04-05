@@ -5,7 +5,12 @@
         <div class="row w-100">
             <!-- <Sidebar @sendRestaurants="getRestaurant($event)"> </Sidebar> -->
             <!-- MANDO LE PROPS A HOME.VUE INVIANDO L'ARRAY categories -->
-            <router-view :restaurantsArray="restaurants"></router-view>
+            <!-- MANDO LE PROPS totalAmountFromApp ad CHECKOUT.VUE -->
+            <!-- @sendToApp="getCartTotalAmount($event)" -->
+            <router-view
+                :restaurantsArray="restaurants"
+                :totalAmountFromApp="cartTotalAmount"
+            ></router-view>
         </div>
         <Footer></Footer>
     </div>
@@ -22,6 +27,7 @@ export default {
     data() {
         return {
             restaurants: [],
+            cartTotalAmount: 0,
         };
     },
     components: {
@@ -36,6 +42,10 @@ export default {
             this.restaurants = input;
             // console.log(this.categories);
         },
+        // FUNZIONE CHE CATTURA EVENT E PUSHA DENTRO L'ARRAY cartTotalAmount
+        // getCartTotalAmount(event) {
+        //     this.cartTotalAmount = event;
+        // },
     },
 };
 </script>

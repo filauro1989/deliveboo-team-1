@@ -103,7 +103,6 @@ export default {
         },
         clearLocalStorage() {
             localStorage.clear();
-            console.log("sticazzi");
         },
     },
 };

@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 use App\Model\Order;
+use Carbon\Carbon;
 
 class ApiOrderController extends Controller
 {
@@ -34,5 +35,25 @@ class ApiOrderController extends Controller
         ]);
     }
 
-    
+    public function makeOrder(Request $request) {
+        // INSERISCO PARAMS RICEVUTI TRAMITE REQUEST DEL FORM NELLA VARIABILE info
+        $info = $request->params['form'];
+        $today = new Carbon();
+
+        // CREO NUOVO ORDINE
+        $newOrder = new Order();
+        $newOrder->first_name = $info['name'];
+        $newOrder->last_name = $info['surname'];
+        $newOrder->date = $today->now();
+        $newOrder->customer_email = $info['mail'];
+        $newOrder->delivery_address = $info['address'];
+        $newOrder->payment_method = 'Credit Card';
+        $newOrder->total_amount = $info['totalAmount'];
+        $newOrder->save();
+
+        return response()->json([
+            "success" =>true,
+            "results" => $newOrder,
+        ]);
+    }
 }

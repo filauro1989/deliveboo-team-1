@@ -40,6 +40,8 @@
                 </div>
             </div>
             <div class="col-5">
+                <!-- CATTURA EVENTO DA CART -->
+                <!-- @sendTotalAmount="getTotalFromCart($event)" -->
                 <Cart :elementfromCart="elementCart" />
             </div>
         </div>
@@ -70,27 +72,13 @@ export default {
                 price: products.price,
                 quantity: products.quantity,
             };
-
-            // inserisco nel localStorage, sotto nome "cart" l'array elementCart trasformandolo in stringa
-            // localStorage.setItem("cart", JSON.stringify(this.elementCart));
         },
+        // getTotalFromCart(event) {
+        //     this.$emit("sendToApp", event);
+        // },
     },
-    // props: {
-    //     singleRestaurant: Object,
-    //     id: Number
-    // },
-    // props: ["singleRestaurant", "id"],
+
     created() {
-        // console.log(this.restId);
-        // recupero l'id da localstore
-        // localStorage.setItem('restaurantId',JSON.stringify(this.singleRestaurant.id));
-
-        // this.restaurantIdLocalStorage = JSON.parse(localStorage.getItem("restaurantId"));
-
-        // console.log(this.restaurantIdLocalStorage);
-
-        // if(this.singleRestaurant) {
-        // setTimeout(chiamata => {}, 1000);
         axios
             .get(
                 "http://127.0.0.1:8000/api/restaurants/filter/" + this.restId,

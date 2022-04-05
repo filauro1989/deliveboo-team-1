@@ -65,7 +65,7 @@
                                                                     cartElement,
                                                                     -1
                                                                 ),
-                                                                getTotalCart();
+                                                                    getTotalCart()
                                                             "
                                                         >
                                                             <i
@@ -81,7 +81,9 @@
                                                                 min="0"
                                                                 name="quantity"
                                                                 :value="
-                                                                    parseInt(cartElement.quantity)
+                                                                    parseInt(
+                                                                        cartElement.quantity
+                                                                    )
                                                                 "
                                                                 type="number"
                                                                 class="form-control"
@@ -94,7 +96,7 @@
                                                                     cartElement,
                                                                     1
                                                                 ),
-                                                                getTotalCart();
+                                                                    getTotalCart()
                                                             "
                                                             class="btn btn-primary px-3 ms-2"
                                                             onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
@@ -129,8 +131,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="total-amount">
-                                {{ totalAmount }} &euro;
+                            <div class="fw-bold total-amount">
+                                Totale Carrello: {{ totalAmount }} &euro;
                             </div>
                             <div>
                                 <button
@@ -142,8 +144,10 @@
                                 <router-link
                                     :to="{
                                         name: 'checkout',
+                                        params: { totalAmount: totalAmount },
                                     }"
                                 >
+                                    <!-- @click="setTotalAmount()" -->
                                     <button class="btn btn-primary">
                                         Checkout
                                     </button>
@@ -176,7 +180,6 @@ export default {
             localStorage.clear();
             this.cartStorage = [];
             this.getTotalCart();
-
         },
         deleteItem(dish) {
             // CREO UN ARRAY DI APPOGGIO
@@ -197,7 +200,7 @@ export default {
             }
             // TRASFORMO L'ARRAY IN STRINGA PUSHO L'ARRAY DI APPOGGIO NEL localStorage
             localStorage.setItem("cart", JSON.stringify(parsedCart));
-
+            this.getTotalCart();
         },
         modifyQuantity(dish, num) {
             // CREO UN ARRAY DI APPOGGIO
@@ -208,7 +211,10 @@ export default {
             for (let index = 0; index < this.cartStorage.length; index++) {
                 const element = this.cartStorage[index];
                 // SE IL NOME DEL PIATTO è UGUALE AL NOME DELL'ELEMENTO SU CUI CICLO
-                if (dish.productName == element.productName) {
+                if (
+                    dish.productName == element.productName &&
+                    element.quantity + num > 0
+                ) {
                     // VARIO LA QUANTITà DELL'ELEMENTO DI += num
                     element.quantity += num;
                     // VARIO LA QUANTITà DELL'ARRAY DI APPOGGIO DI += num
@@ -219,20 +225,25 @@ export default {
             localStorage.setItem("cart", JSON.stringify(parsedCart));
         },
         getTotalCart() {
+            // RESETTO IL totalAmount
             this.totalAmount = 0;
-            console.log("test");
-            this.cartStorage.forEach(el => {
+            // console.log("test");
+            // PER OGNI ELEMENTO DEL cartStorage AGGIUNGO AL totalAmount la quantità dell'elemento + il prezzo
+            this.cartStorage.forEach((el) => {
                 this.totalAmount += el.quantity * el.price;
             });
-        }
+        },
+        // setTotalAmount() {
+        //     this.$emit("sendTotalAmount", this.totalAmount);
+        // },
     },
+
     created() {
         // this.cartStorage = [];
         setTimeout(() => {
             if (JSON.parse(localStorage.getItem("cart"))) {
                 this.cartStorage = JSON.parse(localStorage.getItem("cart"));
                 this.getTotalCart();
-
             }
         }, 100);
     },
@@ -252,7 +263,9 @@ export default {
                         element.productName == this.elementfromCart.productName
                     ) {
                         // AUMENTO LA QUANTITà DEL PRODOTTO NEL CARRELLO, FERMO IL CICLO SETTANDO INDEX ALLA LUNGHEZZA DELL'ARRAY E CAMBIO VARIABILE IN TRUE
-                        element.quantity += parseInt(this.elementfromCart.quantity);
+                        element.quantity += parseInt(
+                            this.elementfromCart.quantity
+                        );
                         index = this.cartStorage.length;
                         found = true;
                         localStorage.setItem(
@@ -285,7 +298,7 @@ export default {
         //     }
         // },
     },
-    
+
     // computed: {
     //     cartStorageChange() {
     //         if (this.cartStorage) {

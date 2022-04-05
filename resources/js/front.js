@@ -13,6 +13,9 @@ window.Vue = require('vue');
 import App from './views/App.vue';
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import vueBraintree from 'vue-braintree';
+
+Vue.use(vueBraintree);
 
 import Home from './pages/Home.vue';
 import Restaurant from './pages/Restaurant.vue';

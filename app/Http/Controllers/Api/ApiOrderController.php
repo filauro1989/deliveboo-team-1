@@ -6,9 +6,16 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 use App\Model\Order;
+use App\Model\Dish;
+use App\User;
+use App\Lead;
+use App\Mail\SendNewMail;
+use App\Mail\SendRestaurantMail;
 use Carbon\Carbon;
+
 
 class ApiOrderController extends Controller
 {
@@ -60,7 +67,26 @@ class ApiOrderController extends Controller
             $newOrder->dishes()->attach($cartElement['id'], ['quantity' => $cartElement['quantity']]);
         }
 
+        // CREO NUOVO MODEL PER INVIARE MAIL ALL'UTENTE CHE COMPRA
+        $newLead = new Lead();
+        $newLead->name = $userForm['name'] ;
+        $newLead->mail = $userForm['mail'];
+        $newLead->save();
+        Mail::to($userForm['mail'])->send(new SendNewMail($newLead));
 
+        // PRENDO IL PRIMO PIATTO CON ID UGUALE ALL'ORDINE CHE è NEL userCart
+        $dish = Dish::where('id', $userCart[0]['id'])->first();
+
+        // PRENDO LA MAIL  DELLO USER CON ID UGUALE AL dish_id
+        $restaurant = User::where('id', $dish->user_id)->first();
+
+        // CREO NUOVO MODEL PER INVIARE MAIL AL RISTORANTE
+        $restaurantLead = new Lead();
+        $restaurantLead->name = $restaurant->restaurant_name;
+        $restaurantLead->mail = $restaurant->email;
+        $restaurantLead->save();
+        Mail::to($restaurant->email)->send(new SendRestaurantMail($restaurantLead));
+        
         return response()->json([
             "success" =>true,
             "results" => $newOrder,

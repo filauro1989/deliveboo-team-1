@@ -38,6 +38,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 // RESTAURANT CARD
 .card {
     height: 150px;

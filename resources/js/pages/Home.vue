@@ -3,14 +3,15 @@
         <div class="row">
             <Sidebar @sendRestaurants="getRestaurant($event)" class="col-2" />
             <div class="col-10">
-                <div class="row row-cols-1 row-cols-md-2 row-cols-xl-4">
+                <transition-group name="fade" class="row row-cols-1 row-cols-md-2 row-cols-xl-4">
                     <div
-                        v-for="(restaurant, index) in restaurantsApp"
+                        v-for="(restaurant, index) in restaurantLoaded"
                         :key="index"
                         class="col p-0"
                         @click="clearLocalStorage()"
                     >
-                        <router-link
+
+                        <router-link 
                             :to="{
                                 name: 'restaurant',
                                 params: {
@@ -19,12 +20,16 @@
                                 },
                             }"
                         >
+                    
                             <RestaurantCard
                                 :restaurantName="restaurant.restaurant_name"
                                 :restaurantImg="restaurant.image"
                             />
                         </router-link>
                     </div>
+                </transition-group>
+                <div class="d-flex justify-content-center align-items-end position-fixed fixed-bottom mb-5">
+                    <button class="btn btn-success rounded-pill text-white mt-3" @click="loadMore">Mostra altri</button>
                 </div>
             </div>
         </div>
@@ -52,6 +57,7 @@ export default {
             filteredRestaurants: [],
             apiKey: "deliveboo26313334",
             restaurantsApp: [],
+            listLength: 4,
         };
     },
     created() {
@@ -85,8 +91,37 @@ export default {
         clearLocalStorage() {
             localStorage.clear();
         },
+
+        loadMore() {
+            if (this.listLength > this.restaurantsApp.length) {
+                return;
+            }
+            this.listLength = this.listLength + 4;
+        },
     },
+    computed: {
+    restaurantLoaded() {
+        console.log("test");
+      return this.restaurantsApp.slice(0, this.listLength);
+    },
+  },
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+
+.test {
+    transition: all 1s;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+    transition: all 0.3s;
+    // transition-delay: 3s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+    opacity: 0;
+    transform: translateY(200%);
+}
+
+</style>

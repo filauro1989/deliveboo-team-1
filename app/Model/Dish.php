@@ -28,7 +28,7 @@ class Dish extends Model
         return $this->belongsTo('App\Model\Course');
     }
     public function orders() {
-        return $this->belongsToMany('App\Model\Order')->withTimestamps();
+        return $this->belongsToMany('App\Model\Order')->withPivot('quantity')->withTimestamps();
     }
 
     public function getRouteKeyName()

@@ -22,7 +22,6 @@ class OrderController extends Controller
     public function index()
     {
 
-
         $allDishes = Dish::where('user_id', Auth::user()->id)->get();
 
         $orders = [];
@@ -55,7 +54,8 @@ class OrderController extends Controller
             }
         }
 
-        // dd($orders[0]->dishes()->first());
+        // COLLECT PER AVERE UNA COLLEZIONE DI ORDINI E ORDINARLI PER created_at
+        $orders = collect($orders)->sortBy('created_at')->reverse();
 
         return view("admin.orderlist", compact("orders"));
     }

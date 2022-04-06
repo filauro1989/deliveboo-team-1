@@ -16,6 +16,7 @@
                     <th scope="col">Indirizzo spedizione</th>
                     <th scope="col">Metodo di Pagamento</th>
                     <th scope="col">Totale Ordine</th>
+                    <th scope="col">Data</th>
                     <th scope="col">Azioni</th>
                 </tr>
             </thead>
@@ -27,6 +28,7 @@
                         <td>{{ $order->delivery_address }}</td>
                         <td>{{ $order->payment_method }}</td>
                         <td>{{ $order->total_amount }}</td>
+                        <td>{{ $order->created_at }}</td>
                         <td><a class="btn btn-success" href="" data-bs-toggle="modal"
                                 data-bs-target="#exampleModal{{ $order->id }}">Dettaglio Ordine</a></td>
 
@@ -53,6 +55,9 @@
                                             @endif
                                             <h5>Prezzo:</h5>
                                             <span> {{ $dish->price }}&euro;</span>
+                                            <h5>Quantità:</h5>
+                                            <span>
+                                                {{ $dish->orders()->where('order_id', $order->id)->first()->pivot->quantity }}</span>
                                         @endforeach
                                     </div>
                                     <div class="modal-footer">

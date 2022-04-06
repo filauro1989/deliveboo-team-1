@@ -128,6 +128,11 @@ export default {
     methods: {
         onSuccess(payload) {
             let nonce = payload.nonce;
+
+            setTimeout(() => {
+                this.$router.push("checkout/paymentaccepted");
+            }, 1200);
+
             const headers = {
                 "Content-Type": "application/json",
                 Authorization: "Bearer " + this.apiKey,
@@ -146,7 +151,6 @@ export default {
                     }
                 )
                 .then((res) => {
-                    this.$router.push("checkout/paymentaccepted");
                     if (!res.data.success) {
                         alert(res.data.results);
                     }

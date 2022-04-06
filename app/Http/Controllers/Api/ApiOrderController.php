@@ -30,18 +30,18 @@ class ApiOrderController extends Controller
         // $orders = Order::all();
         
 
-        // $orders = DB::table("orders")
-        // ->select("orders.*")
-        // ->distinct()
-        // ->join('dish_order', 'orders.id', '=', 'dish_order.order_id')
-        // ->join('dishes', 'dish_order.dish_id', '=', 'dishes.id')
-        // ->where("user_id", Auth::user()->id) //Auth::user()->id non gli piace, bisognerà passargli dei parametri dall'home
-        // ->get();
+        $orders = DB::table("orders")
+        ->select("orders.*")
+        ->distinct()
+        ->join('dish_order', 'orders.id', '=', 'dish_order.order_id')
+        ->join('dishes', 'dish_order.dish_id', '=', 'dishes.id')
+        ->where("user_id", $restaurantId) //Auth::user()->id non gli piace, bisognerà passargli dei parametri dall'home
+        ->get();
         
 
         return response()->json([
             "success" => true,
-            "results" => $restaurantId,
+            "results" => $orders,
         ]);
     }
 

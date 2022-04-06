@@ -4,6 +4,22 @@
 use App\Model\Dish;
 
     $totalDishes = count(Dish::where("user_id", Auth::user()->id)->get());
+
+    $orders = DB::table("orders")
+        ->select("orders.*")
+        ->distinct()
+        ->join('dish_order', 'orders.id', '=', 'dish_order.order_id')
+        ->join('dishes', 'dish_order.dish_id', '=', 'dishes.id')
+        ->where("user_id", Auth::user()->id) //Auth::user()->id non gli piace, bisognerà passargli dei parametri dall'home
+        ->get();
+
+    $ordersNumber = count($orders);
+
+    $totalRevenue = 0;
+
+    foreach ($orders as $order) {
+        $totalRevenue += $order->total_amount;
+    }
 @endphp
 
 @section('content')
@@ -11,7 +27,7 @@ use App\Model\Dish;
         <div class="col-12 col-md-6 col-xl-3 my-2">
             <div id="stat-card-1" class="stat-card rounded d-flex justify-content-around align-items-center">
                 <div class="stat-card-info d-flex flex-column">
-                    <span class="stat-card-info-number">300</span>
+                    <span class="stat-card-info-number">{{$ordersNumber}}</span>
                     <span class="stat-card-info-text">Totale Ordini</span>
                 </div>
                 <div class="stat-card-logo rounded-circle d-flex align-items-center justify-content-center">
@@ -33,7 +49,7 @@ use App\Model\Dish;
         <div class="col-12 col-md-6 col-xl-3 my-2">
             <div id="stat-card-3" class="stat-card rounded d-flex justify-content-around align-items-center">
                 <div class="stat-card-info d-flex flex-column">
-                    <span class="stat-card-info-number">300</span>
+                    <span class="stat-card-info-number">{{$totalRevenue}}</span>
                     <span class="stat-card-info-text">Totale Guadagni</span>
                 </div>
                 <div class="stat-card-logo rounded-circle d-flex align-items-center justify-content-center">
@@ -44,7 +60,11 @@ use App\Model\Dish;
         <div class="col-12 col-md-6 col-xl-3 my-2">
             <div id="stat-card-4" class="stat-card rounded d-flex justify-content-around align-items-center">
                 <div class="stat-card-info d-flex flex-column">
-                    <span class="stat-card-info-number">300</span>
+                    @if($ordersNumber > 0)
+                        <span class="stat-card-info-number">{{$totalRevenue / $ordersNumber}}</span>
+                    @else 
+                        <span class="stat-card-info-number">0</span>
+                    @endif
                     <span class="stat-card-info-text">Media Ordini</span>
                 </div>
                 <div class="stat-card-logo rounded-circle d-flex align-items-center justify-content-center">

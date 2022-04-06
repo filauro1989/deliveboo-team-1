@@ -20,6 +20,7 @@ Vue.use(vueBraintree);
 import Home from './pages/Home.vue';
 import Restaurant from './pages/Restaurant.vue';
 import Checkout from './pages/Checkout.vue';
+import PaymentAccepted from './pages/PaymentAccepted.vue';
 
 Vue.use(VueRouter);
 
@@ -45,6 +46,11 @@ const router = new VueRouter({
             name: 'checkout',
             props: true,
             component: Checkout,
+        },
+        {
+            path: '/checkout/paymentaccepted',
+            name: 'paymentaccepted',
+            component: PaymentAccepted,
         },
     ]
 });

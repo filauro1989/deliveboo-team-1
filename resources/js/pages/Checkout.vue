@@ -69,20 +69,23 @@
                         />
                     </div>
 
-                    
-                    <button @click="checkIfChecked()" type="submit" class="btn btn-primary mt-2">
+                    <button
+                        @click="checkIfChecked()"
+                        type="submit"
+                        class="btn btn-primary mt-2"
+                    >
                         Conferma
                     </button>
                 </form>
                 <transition name="fade">
                     <div
                         v-if="
-                                dataChecked &&
-                                orderInfo.name.trim().length > 0 &&
-                                orderInfo.surname.trim().length > 0 &&
-                                orderInfo.address.trim().length > 0 &&
-                                orderInfo.mail.trim().length > 0
-                            "
+                            dataChecked &&
+                            orderInfo.name.trim().length > 0 &&
+                            orderInfo.surname.trim().length > 0 &&
+                            orderInfo.address.trim().length > 0 &&
+                            orderInfo.mail.trim().length > 0
+                        "
                     >
                         <v-braintree
                             authorization="sandbox_8hskcmnn_tcmvbbfg3pvh5s7s"
@@ -143,8 +146,8 @@ export default {
                     }
                 )
                 .then((res) => {
-                    
-                    if(!res.data.success) {
+                    this.$router.push("checkout/paymentaccepted");
+                    if (!res.data.success) {
                         alert(res.data.results);
                     }
                 })

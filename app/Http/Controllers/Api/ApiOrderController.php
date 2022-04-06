@@ -25,19 +25,19 @@ class ApiOrderController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function sendOrdersData(Request $request)
-    {   
+    {
         $restaurantId = $request->params["id"][0];
         // $orders = Order::all();
-        
+
 
         $orders = DB::table("orders")
-        ->select("orders.*")
-        ->distinct()
-        ->join('dish_order', 'orders.id', '=', 'dish_order.order_id')
-        ->join('dishes', 'dish_order.dish_id', '=', 'dishes.id')
-        ->where("user_id", $restaurantId) //Auth::user()->id non gli piace, bisognerà passargli dei parametri dall'home
-        ->get();
-        
+            ->select("orders.*")
+            ->distinct()
+            ->join('dish_order', 'orders.id', '=', 'dish_order.order_id')
+            ->join('dishes', 'dish_order.dish_id', '=', 'dishes.id')
+            ->where("user_id", $restaurantId) //Auth::user()->id non gli piace, bisognerà passargli dei parametri dall'home
+            ->get();
+
 
         return response()->json([
             "success" => true,
@@ -45,11 +45,25 @@ class ApiOrderController extends Controller
         ]);
     }
 
-    public function makeOrder(Request $request) {
+    public function makeOrder(Request $request)
+    {
         // INSERISCO PARAMS RICEVUTI TRAMITE REQUEST DEL FORM NELLA VARIABILE info
         $userForm = $request->params['form'];
         $userCart = $request->params['form']['cartStorage'];
 
+
+        $validation = $userForm->validate(
+            [
+                "name" => "required|max:255|profane:it",
+                "surname" => "required|max:255|profane:it",
+                "email" => "require|email",
+                "address" => "required|max:255"
+            ],
+            [
+                'profane' => "Volgarità rilevata nel testo inserito",
+                'required' => "Questo campo è obbligatorio"
+            ]
+        );
         $today = new Carbon();
 
         // CREO NUOVO ORDINE
@@ -72,7 +86,7 @@ class ApiOrderController extends Controller
 
         // CREO NUOVO MODEL PER INVIARE MAIL ALL'UTENTE CHE COMPRA
         $newLead = new Lead();
-        $newLead->name = $userForm['name'] ;
+        $newLead->name = $userForm['name'];
         $newLead->mail = $userForm['mail'];
         $newLead->save();
         Mail::to($userForm['mail'])->send(new SendNewMail($newLead));
@@ -89,9 +103,9 @@ class ApiOrderController extends Controller
         $restaurantLead->mail = $restaurant->email;
         $restaurantLead->save();
         Mail::to($restaurant->email)->send(new SendRestaurantMail($restaurantLead));
-        
+
         return response()->json([
-            "success" =>true,
+            "success" => true,
             "results" => $newOrder,
         ]);
     }

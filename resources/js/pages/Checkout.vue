@@ -10,13 +10,15 @@
                 >
                     Purchase
                 </button> -->
-                <form>
+                <form @submit.prevent>
+                    <p>
+                        Inserisci tutti i tuoi dati per procedere al pagamento:
+                    </p>
                     <div class="form-group">
                         <label for="name">Nome</label>
                         <input
                             min="3"
                             max="50"
-                            required
                             v-model="orderInfo.name"
                             type="text"
                             class="form-control"
@@ -29,7 +31,6 @@
                         <input
                             min="3"
                             max="50"
-                            required
                             v-model="orderInfo.surname"
                             type="text"
                             class="form-control"
@@ -44,7 +45,6 @@
                         <input
                             min="3"
                             max="50"
-                            required
                             v-model="orderInfo.address"
                             type="text"
                             class="form-control"
@@ -57,7 +57,6 @@
                             >Inserisci il tuo indirizzo e-mail</label
                         >
                         <input
-                            required
                             v-model="orderInfo.mail"
                             type="email"
                             class="form-control"
@@ -66,15 +65,27 @@
                         />
                     </div>
 
-                    <!-- <button type="submit" class="btn btn-primary">
-                        Submit
-                    </button> -->
-                    <v-braintree
-                        authorization="sandbox_8hskcmnn_tcmvbbfg3pvh5s7s"
-                        @success="onSuccess"
-                        @error="onError"
-                    ></v-braintree>
+                    <!-- @click="checkIfChecked()" -->
+                    <button type="submit" class="btn btn-primary mt-2">
+                        Conferma
+                    </button>
                 </form>
+                <transition name="fade">
+                    <!-- v-if="
+                            dataChecked &&
+                            orderInfo.name.trim().length > 0 &&
+                            orderInfo.surname.trim().length > 0 &&
+                            orderInfo.address.trim().length > 0 &&
+                            orderInfo.mail.trim().length > 0
+                        " -->
+                    <div>
+                        <v-braintree
+                            authorization="sandbox_8hskcmnn_tcmvbbfg3pvh5s7s"
+                            @success="onSuccess"
+                            @error="onError"
+                        ></v-braintree>
+                    </div>
+                </transition>
             </div>
             <div class="col-6">
                 <Cart />
@@ -100,6 +111,7 @@ export default {
                 cartStorage: this.$route.params.cartStorage,
             },
             apiKey: "deliveboo26313334",
+            dataChecked: false,
         };
     },
     components: {
@@ -134,7 +146,18 @@ export default {
         },
         onError(error) {
             let message = error.message;
-            // Whoops, an error has occured while trying to get the nonce
+            console.log(message);
+        },
+
+        checkIfChecked() {
+            if (
+                this.orderInfo.name.trim().length > 0 &&
+                this.orderInfo.surname.trim().length > 0 &&
+                this.orderInfo.address.trim().length > 0 &&
+                this.orderInfo.mail.trim().length > 0
+            ) {
+                this.dataChecked = true;
+            }
         },
     },
 };
@@ -173,5 +196,15 @@ export default {
 .button--green:hover {
     background-color: #8bdda8;
     color: white;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+    transition: 1s all 1s;
+    // transition-delay: 3s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+    opacity: 0;
+    transform: translateX(-100%);
 }
 </style>

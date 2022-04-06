@@ -151,7 +151,13 @@
                                     }"
                                 >
                                     <!-- @click="setTotalAmount()" -->
-                                    <button class="btn btn-primary">
+                                    <button
+                                        v-if="
+                                            currentRoute != 'checkout' &&
+                                            cartStorage.length > 0
+                                        "
+                                        class="btn btn-primary"
+                                    >
                                         Checkout
                                     </button>
                                 </router-link>
@@ -172,6 +178,7 @@ export default {
             cart: [],
             cartStorage: [],
             totalAmount: 0,
+            currentRoute: this.$route.name,
         };
     },
 

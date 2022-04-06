@@ -62,6 +62,7 @@ export default {
             // PRENDO ID DEL RISTORANTE DAI PARAMS CHE CI MANDA home.vue
             restId: this.$route.params.id,
             elementCart: {},
+            slug: this.$route.params.slug,
         };
     },
     methods: {
@@ -77,17 +78,14 @@ export default {
 
     created() {
         axios
-            // CHIAMATA AXIOS CON AGGIUNTO L'ID DEL RISTORANTE
-            .get(
-                "http://127.0.0.1:8000/api/restaurants/filter/" + this.restId,
-                {
-                    headers: {
-                        // UTILIZZIAMO UN BEARER TOKEN INVIANDOLO COME STRINGA E CI AGGIUNGIAMO LA CHIAVE API
-                        Authorization: "Bearer " + this.apiKey,
-                    },
-                    params: { id: this.restId },
-                }
-            )
+            // CHIAMATA AXIOS CON AGGIUNTO LO SLUG DEL RISTORANTE
+            .get("http://127.0.0.1:8000/api/restaurants/filter/" + this.slug, {
+                headers: {
+                    // UTILIZZIAMO UN BEARER TOKEN INVIANDOLO COME STRINGA E CI AGGIUNGIAMO LA CHIAVE API
+                    Authorization: "Bearer " + this.apiKey,
+                },
+                params: { id: this.slug },
+            })
             .then((res) => {
                 let response = res.data.results;
 
@@ -101,7 +99,6 @@ export default {
             .catch((err) => {
                 console.log(err);
             });
-        // }
     },
 };
 </script>

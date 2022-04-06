@@ -83,12 +83,14 @@ class ApiRestaurantController extends Controller
         ]);
     }
 
-    public function findRestaurantMenu($id) {
+    // PASSIAMO ALL'API IL PARAMETRO slug
+    public function findRestaurantMenu($slug)
+    {
 
         // $restaurantId = $request->id;
 
-        $restaurant = User::where("id", $id)->first();
-        $menu = Dish::where("user_id", $id)->get();
+        $restaurant = User::where("slug", $slug)->first();
+        $menu = Dish::where("user_id", $restaurant->id)->get();
 
         return response()->json([
             "success" => true,

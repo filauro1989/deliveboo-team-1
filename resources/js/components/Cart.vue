@@ -110,8 +110,10 @@
                                                 <div class="me-3">
                                                     <h5 class="mb-0">
                                                         {{
-                                                            cartElement.price *
-                                                            cartElement.quantity
+                                                            (
+                                                                cartElement.price *
+                                                                cartElement.quantity
+                                                            ).toFixed(2)
                                                         }}
                                                         &euro;
                                                     </h5>
@@ -132,7 +134,8 @@
                                 </div>
                             </div>
                             <div class="fw-bold total-amount">
-                                Totale Carrello: {{ totalAmount }} &euro;
+                                Totale Carrello:
+                                {{ totalAmount.toFixed(2) }} &euro;
                             </div>
                             <div>
                                 <button

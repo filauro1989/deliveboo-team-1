@@ -3,23 +3,23 @@
 @php
 use App\Model\Dish;
 
-    $totalDishes = count(Dish::where("user_id", Auth::user()->id)->get());
+$totalDishes = count(Dish::where('user_id', Auth::user()->id)->get());
 
-    $orders = DB::table("orders")
-        ->select("orders.*")
-        ->distinct()
-        ->join('dish_order', 'orders.id', '=', 'dish_order.order_id')
-        ->join('dishes', 'dish_order.dish_id', '=', 'dishes.id')
-        ->where("user_id", Auth::user()->id) //Auth::user()->id non gli piace, bisognerà passargli dei parametri dall'home
-        ->get();
+$orders = DB::table('orders')
+    ->select('orders.*')
+    ->distinct()
+    ->join('dish_order', 'orders.id', '=', 'dish_order.order_id')
+    ->join('dishes', 'dish_order.dish_id', '=', 'dishes.id')
+    ->where('user_id', Auth::user()->id) //Auth::user()->id non gli piace, bisognerà passargli dei parametri dall'home
+    ->get();
 
-    $ordersNumber = count($orders);
+$ordersNumber = count($orders);
 
-    $totalRevenue = 0;
+$totalRevenue = 0;
 
-    foreach ($orders as $order) {
-        $totalRevenue += $order->total_amount;
-    }
+foreach ($orders as $order) {
+    $totalRevenue += $order->total_amount;
+}
 @endphp
 
 @section('content')
@@ -27,7 +27,7 @@ use App\Model\Dish;
         <div class="col-12 col-md-6 col-xl-3 my-2">
             <div id="stat-card-1" class="stat-card rounded d-flex justify-content-around align-items-center">
                 <div class="stat-card-info d-flex flex-column">
-                    <span class="stat-card-info-number">{{$ordersNumber}}</span>
+                    <span class="stat-card-info-number">{{ $ordersNumber }}</span>
                     <span class="stat-card-info-text">Totale Ordini</span>
                 </div>
                 <div class="stat-card-logo rounded-circle d-flex align-items-center justify-content-center">
@@ -38,7 +38,7 @@ use App\Model\Dish;
         <div class="col-12 col-md-6 col-xl-3 my-2">
             <div id="stat-card-2" class="stat-card rounded d-flex justify-content-around align-items-center">
                 <div class="stat-card-info d-flex flex-column">
-                    <span class="stat-card-info-number">{{$totalDishes}}</span>
+                    <span class="stat-card-info-number">{{ $totalDishes }}</span>
                     <span class="stat-card-info-text">Numero Piatti</span>
                 </div>
                 <div class="stat-card-logo rounded-circle d-flex align-items-center justify-content-center">
@@ -49,7 +49,7 @@ use App\Model\Dish;
         <div class="col-12 col-md-6 col-xl-3 my-2">
             <div id="stat-card-3" class="stat-card rounded d-flex justify-content-around align-items-center">
                 <div class="stat-card-info d-flex flex-column">
-                    <span class="stat-card-info-number">{{$totalRevenue}}</span>
+                    <span class="stat-card-info-number">{{ $totalRevenue }}</span>
                     <span class="stat-card-info-text">Totale Guadagni</span>
                 </div>
                 <div class="stat-card-logo rounded-circle d-flex align-items-center justify-content-center">
@@ -60,9 +60,10 @@ use App\Model\Dish;
         <div class="col-12 col-md-6 col-xl-3 my-2">
             <div id="stat-card-4" class="stat-card rounded d-flex justify-content-around align-items-center">
                 <div class="stat-card-info d-flex flex-column">
-                    @if($ordersNumber > 0)
-                        <span class="stat-card-info-number">{{$totalRevenue / $ordersNumber}}</span>
-                    @else 
+                    @if ($ordersNumber > 0)
+                        <span
+                            class="stat-card-info-number">{{ number_format(round($totalRevenue / $ordersNumber, 2), 2, '.', '') }}</span>
+                    @else
                         <span class="stat-card-info-number">0</span>
                     @endif
                     <span class="stat-card-info-text">Media Ordini</span>
@@ -85,7 +86,7 @@ use App\Model\Dish;
         </div>
     </div>
     <script>
-        let restaurantId = {!! json_encode((array)auth()->user()->id) !!};
+        let restaurantId = {!! json_encode((array) auth()->user()->id) !!};
         console.log(restaurantId);
         const labels = [
             'Gennaio',
@@ -113,18 +114,17 @@ use App\Model\Dish;
         //             id: this.restaurantId
         //         }
         //     })
-        
-            axios
-                .post(
-                    "http://127.0.0.1:8000/api/orders/data",
-                    {
-                        headers: {
-                            'Authorization': 'Bearer ' + apiKey,
-                        }, 
-                        params: {
-                            id: restaurantId
-                        }
-                    })
+
+        axios
+            .post(
+                "http://127.0.0.1:8000/api/orders/data", {
+                    headers: {
+                        'Authorization': 'Bearer ' + apiKey,
+                    },
+                    params: {
+                        id: restaurantId
+                    }
+                })
             .then(res => {
                 this.ordersData = res.data.results;
                 console.log(res);

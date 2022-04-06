@@ -21,7 +21,7 @@
                                     {{ dish.description }}
                                 </li>
                                 <li class="list-group-item">
-                                    {{ dish.price }}€
+                                    {{ dish.price.toFixed(2) }}€
                                 </li>
                                 <li>
                                     quantità:

@@ -122,16 +122,27 @@ export default {
             dataChecked: false,
         };
     },
+    created() {
+        if (
+            this.orderInfo.cartStorage == undefined &&
+            this.orderInfo.totalAmount == undefined
+        ) {
+            console.log(this.cartStorage);
+            this.orderInfo.cartStorage = JSON.parse(
+                localStorage.getItem("cart")
+            );
+            this.orderInfo.totalAmount = 0;
+            this.orderInfo.cartStorage.forEach((el) => {
+                this.orderInfo.totalAmount += el.quantity * el.price;
+            });
+        }
+    },
     components: {
         Cart,
     },
     methods: {
         onSuccess(payload) {
             let nonce = payload.nonce;
-
-            setTimeout(() => {
-                this.$router.push("checkout/paymentaccepted");
-            }, 1200);
 
             const headers = {
                 "Content-Type": "application/json",
@@ -151,6 +162,11 @@ export default {
                     }
                 )
                 .then((res) => {
+                    // setTimeout(() => {
+                    //     }, 1200);
+
+                    this.$router.push("checkout/paymentaccepted");
+
                     if (!res.data.success) {
                         alert(res.data.results);
                     }

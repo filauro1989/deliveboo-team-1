@@ -3,15 +3,17 @@
         <div class="row">
             <Sidebar @sendRestaurants="getRestaurant($event)" class="col-2" />
             <div class="col-10">
-                <transition-group name="fade" class="row row-cols-1 row-cols-md-2 row-cols-xl-4">
+                <transition-group
+                    name="fade"
+                    class="row row-cols-1 row-cols-md-2 row-cols-xl-4"
+                >
                     <div
                         v-for="(restaurant, index) in restaurantLoaded"
-                        :key="index"
+                        :key="index + 1"
                         class="col p-0"
                         @click="clearLocalStorage()"
                     >
-
-                        <router-link 
+                        <router-link
                             :to="{
                                 name: 'restaurant',
                                 params: {
@@ -20,7 +22,6 @@
                                 },
                             }"
                         >
-                    
                             <RestaurantCard
                                 :restaurantName="restaurant.restaurant_name"
                                 :restaurantImg="restaurant.image"
@@ -28,8 +29,16 @@
                         </router-link>
                     </div>
                 </transition-group>
-                <div class="d-flex justify-content-center align-items-end position-fixed fixed-bottom mb-5">
-                    <button class="btn btn-success rounded-pill text-white mt-3" @click="loadMore">Mostra altri</button>
+                <div
+                    class="d-flex justify-content-center align-items-end position-fixed fixed-bottom mb-5"
+                >
+                    <button
+                        v-if="listLength < restaurantsApp.length"
+                        class="btn btn-success rounded-pill text-white mt-3"
+                        @click="loadMore"
+                    >
+                        Mostra altri
+                    </button>
                 </div>
             </div>
         </div>
@@ -100,16 +109,15 @@ export default {
         },
     },
     computed: {
-    restaurantLoaded() {
-        console.log("test");
-      return this.restaurantsApp.slice(0, this.listLength);
+        restaurantLoaded() {
+            console.log("test");
+            return this.restaurantsApp.slice(0, this.listLength);
+        },
     },
-  },
 };
 </script>
 
 <style lang="scss" scoped>
-
 .test {
     transition: all 1s;
 }
@@ -123,5 +131,4 @@ export default {
     opacity: 0;
     transform: translateY(200%);
 }
-
 </style>

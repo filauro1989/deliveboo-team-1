@@ -4,8 +4,13 @@
         <div class="row w-100">
             <div class="col-7">
                 <div class="row row-cols-1 row-cols-md-2 row-cols-xl-4 gy-2">
-                    <div v-for="(dish, index) in menu" :key="index" class="col">
-                        <div class="card h-100">
+                    <template v-for="(dish, index) in menu" class="col">
+                        <!-- LA KEY DEL CICLO V-FOR VA NEL V-IF  -->
+                        <div
+                            v-if="dish.visible"
+                            :key="index"
+                            class="card h-100"
+                        >
                             <div class="card-header">Menù</div>
                             <ul class="list-group list-group-flush">
                                 <li v-if="dish.img" class="list-group-item">
@@ -36,7 +41,7 @@
                                 </li>
                             </ul>
                         </div>
-                    </div>
+                    </template>
                 </div>
             </div>
             <div class="col-5">
@@ -93,8 +98,9 @@ export default {
                 this.menu.forEach((dish) => {
                     dish.quantity = 1;
                 });
-                console.log(response, "response");
+                // console.log(response, "response");
                 this.myRestaurant = response.restaurant;
+                console.log(this.menu, "menu");
             })
             .catch((err) => {
                 console.log(err);

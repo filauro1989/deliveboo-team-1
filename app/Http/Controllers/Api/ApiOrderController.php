@@ -51,62 +51,65 @@ class ApiOrderController extends Controller
         $userForm = $request->params['form'];
         $userCart = $request->params['form']['cartStorage'];
 
+        $errors = false;
 
-        $validation = $userForm->validate(
-            [
-                "name" => "required|max:255|profane:it",
-                "surname" => "required|max:255|profane:it",
-                "email" => "require|email",
-                "address" => "required|max:255"
-            ],
-            [
-                'profane' => "Volgarità rilevata nel testo inserito",
-                'required' => "Questo campo è obbligatorio"
-            ]
-        );
-        $today = new Carbon();
+        if(strlen(trim($userForm["name"], " ")) == 0 || strlen(trim($userForm["surname"], " ")) == 0 || strlen(trim($userForm["mail"], " ")) == 0 || strlen(trim($userForm["address"], " ")) == 0) {
+            $errors = true;
+        }else {
+            $today = new Carbon();
+    
+            // CREO NUOVO ORDINE
+            $newOrder = new Order();
+            $newOrder->first_name = $userForm['name'];
+            $newOrder->last_name = $userForm['surname'];
+            $newOrder->date = $today->now();
+            $newOrder->customer_email = $userForm['mail'];
+            $newOrder->delivery_address = $userForm['address'];
+            $newOrder->payment_method = 'Credit Card';
+            $newOrder->total_amount = $userForm['totalAmount'];
+            $newOrder->save();
+    
+            // CICLO SU TUTTI GLI ELEMENTI DEL CARRELLO
+            foreach ($userCart as $cartElement) {
+    
+                // COLLEGO L'ID DI OGNI cartElement E PASSO ANCHE LA COLONNA quantity COLLEGANDOLA ALLA QUANTITà DELL'ELEMENTO
+                $newOrder->dishes()->attach($cartElement['id'], ['quantity' => $cartElement['quantity']]);
+            }
+    
+            // CREO NUOVO MODEL PER INVIARE MAIL ALL'UTENTE CHE COMPRA
+            $newLead = new Lead();
+            $newLead->name = $userForm['name'];
+            $newLead->mail = $userForm['mail'];
+            $newLead->save();
+            Mail::to($userForm['mail'])->send(new SendNewMail($newLead));
+    
+            // PRENDO IL PRIMO PIATTO CON ID UGUALE ALL'ORDINE CHE è NEL userCart
+            $dish = Dish::where('id', $userCart[0]['id'])->first();
+    
+            // PRENDO LA MAIL  DELLO USER CON ID UGUALE AL dish_id
+            $restaurant = User::where('id', $dish->user_id)->first();
+    
+            // CREO NUOVO MODEL PER INVIARE MAIL AL RISTORANTE
+            $restaurantLead = new Lead();
+            $restaurantLead->name = $restaurant->restaurant_name;
+            $restaurantLead->mail = $restaurant->email;
+            $restaurantLead->save();
+            Mail::to($restaurant->email)->send(new SendRestaurantMail($restaurantLead));
 
-        // CREO NUOVO ORDINE
-        $newOrder = new Order();
-        $newOrder->first_name = $userForm['name'];
-        $newOrder->last_name = $userForm['surname'];
-        $newOrder->date = $today->now();
-        $newOrder->customer_email = $userForm['mail'];
-        $newOrder->delivery_address = $userForm['address'];
-        $newOrder->payment_method = 'Credit Card';
-        $newOrder->total_amount = $userForm['totalAmount'];
-        $newOrder->save();
-
-        // CICLO SU TUTTI GLI ELEMENTI DEL CARRELLO
-        foreach ($userCart as $cartElement) {
-
-            // COLLEGO L'ID DI OGNI cartElement E PASSO ANCHE LA COLONNA quantity COLLEGANDOLA ALLA QUANTITà DELL'ELEMENTO
-            $newOrder->dishes()->attach($cartElement['id'], ['quantity' => $cartElement['quantity']]);
         }
 
-        // CREO NUOVO MODEL PER INVIARE MAIL ALL'UTENTE CHE COMPRA
-        $newLead = new Lead();
-        $newLead->name = $userForm['name'];
-        $newLead->mail = $userForm['mail'];
-        $newLead->save();
-        Mail::to($userForm['mail'])->send(new SendNewMail($newLead));
 
-        // PRENDO IL PRIMO PIATTO CON ID UGUALE ALL'ORDINE CHE è NEL userCart
-        $dish = Dish::where('id', $userCart[0]['id'])->first();
-
-        // PRENDO LA MAIL  DELLO USER CON ID UGUALE AL dish_id
-        $restaurant = User::where('id', $dish->user_id)->first();
-
-        // CREO NUOVO MODEL PER INVIARE MAIL AL RISTORANTE
-        $restaurantLead = new Lead();
-        $restaurantLead->name = $restaurant->restaurant_name;
-        $restaurantLead->mail = $restaurant->email;
-        $restaurantLead->save();
-        Mail::to($restaurant->email)->send(new SendRestaurantMail($restaurantLead));
-
-        return response()->json([
-            "success" => true,
-            "results" => $newOrder,
-        ]);
+        if($errors) {
+            return response()->json([
+                "success" => false,
+                "results" => "Mancano dei campi obbligatori!"
+            ]);
+        }
+        else {
+            return response()->json([
+                "success" => true,
+                "results" => $newOrder,
+            ]);
+        }
     }
 }

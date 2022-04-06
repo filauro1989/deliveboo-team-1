@@ -19,6 +19,7 @@
                         <input
                             min="3"
                             max="50"
+                            required
                             v-model="orderInfo.name"
                             type="text"
                             class="form-control"
@@ -31,6 +32,7 @@
                         <input
                             min="3"
                             max="50"
+                            required
                             v-model="orderInfo.surname"
                             type="text"
                             class="form-control"
@@ -45,6 +47,7 @@
                         <input
                             min="3"
                             max="50"
+                            required
                             v-model="orderInfo.address"
                             type="text"
                             class="form-control"
@@ -59,26 +62,28 @@
                         <input
                             v-model="orderInfo.mail"
                             type="email"
+                            required
                             class="form-control"
                             id="email"
                             placeholder="Inserisci il tuo indirizzo e-mail"
                         />
                     </div>
 
-                    <!-- @click="checkIfChecked()" -->
-                    <button type="submit" class="btn btn-primary mt-2">
+                    
+                    <button @click="checkIfChecked()" type="submit" class="btn btn-primary mt-2">
                         Conferma
                     </button>
                 </form>
                 <transition name="fade">
-                    <!-- v-if="
-                            dataChecked &&
-                            orderInfo.name.trim().length > 0 &&
-                            orderInfo.surname.trim().length > 0 &&
-                            orderInfo.address.trim().length > 0 &&
-                            orderInfo.mail.trim().length > 0
-                        " -->
-                    <div>
+                    <div
+                        v-if="
+                                dataChecked &&
+                                orderInfo.name.trim().length > 0 &&
+                                orderInfo.surname.trim().length > 0 &&
+                                orderInfo.address.trim().length > 0 &&
+                                orderInfo.mail.trim().length > 0
+                            "
+                    >
                         <v-braintree
                             authorization="sandbox_8hskcmnn_tcmvbbfg3pvh5s7s"
                             @success="onSuccess"
@@ -138,7 +143,10 @@ export default {
                     }
                 )
                 .then((res) => {
-                    console.log(res);
+                    
+                    if(!res.data.success) {
+                        alert(res.data.results);
+                    }
                 })
                 .catch((err) => {
                     console.log(err);

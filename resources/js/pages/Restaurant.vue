@@ -45,7 +45,10 @@
                 </div>
             </div>
             <div class="col-5">
-                <Cart :elementfromCart="elementCart" />
+                <Cart 
+                    :elementfromCart="elementCart"
+                    :slug="slug"
+                />
             </div>
         </div>
     </div>
@@ -100,12 +103,27 @@ export default {
                 });
                 // console.log(response, "response");
                 this.myRestaurant = response.restaurant;
-                console.log(this.menu, "menu");
+                // console.log(this.menu, "menu");
             })
             .catch((err) => {
                 console.log(err);
             });
     },
+
+
+    beforeRouteLeave (to, from , next) {
+
+        if(localStorage.getItem("cart")) {
+
+            if (confirm("Sei sicuro di voler uscire? Se cambi ristorante il tuo carrello verrà cestinato")) {
+                next();
+            } else {
+                next(false);
+            }
+        } else {
+            next();
+        }
+    }
 };
 </script>
 

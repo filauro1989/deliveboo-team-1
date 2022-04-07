@@ -11,7 +11,7 @@
                         v-for="(restaurant, index) in restaurantLoaded"
                         :key="index + 1"
                         class="col p-0"
-                        @click="clearLocalStorage()"
+                        @click="clearLocalStorage(restaurant.slug)"
                     >
                         <router-link
                             :to="{
@@ -84,7 +84,7 @@ export default {
                 // SE LA LUNGHEZZA DELL'ARRAY FILTRATO è 0 CI PUSHO TUTTI I RISTORANTI (ALTRIMENTI AVREI PAGINA VUOTA SEMPRE)
                 if (this.filteredRestaurants.length == 0) {
                     this.filteredRestaurants.push(...this.restaurants);
-                    console.log(this.restaurants);
+                    // console.log(this.restaurants);
                 }
             })
             .catch((err) => {
@@ -97,8 +97,11 @@ export default {
             this.restaurantsApp = input;
             // console.log(this.categories);
         },
-        clearLocalStorage() {
-            localStorage.clear();
+        clearLocalStorage(currentRestaurantSlug) {
+            
+            if(JSON.parse(localStorage.getItem("restaurantSlug")) != currentRestaurantSlug) {
+                localStorage.clear();
+            }
         },
 
         loadMore() {
@@ -110,7 +113,7 @@ export default {
     },
     computed: {
         restaurantLoaded() {
-            console.log("test");
+            // console.log("test");
             return this.restaurantsApp.slice(0, this.listLength);
         },
     },

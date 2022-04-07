@@ -2,7 +2,7 @@
     <div>
         <div class="container-fluid">
             <Header></Header>
-            <div class="row mx-0 w-100 overflow-auto">
+            <div class="row mx-0 w-100 main-overflow overflow-scroll">
                 <!-- MANDO LE PROPS A HOME.VUE INVIANDO L'ARRAY categories -->
                 <!-- :restaurantsArray="restaurants" -->
                 <router-view></router-view>
@@ -42,8 +42,15 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 template {
     font-family: "Nunito", sans-serif !important;
+}
+.main-overflow::-webkit-scrollbar {
+    display: none;
+}
+.main-overflow {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
 }
 </style>

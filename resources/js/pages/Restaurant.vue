@@ -113,13 +113,21 @@ export default {
 
     beforeRouteLeave (to, from , next) {
 
+        //se il carrello del localStorage è pieno entro nella condizione
         if(localStorage.getItem("cart")) {
-
-            if (confirm("Sei sicuro di voler uscire? Se cambi ristorante il tuo carrello verrà cestinato")) {
-                next();
-            } else {
-                next(false);
+            //se la destinazione è diversa dal checkout chiedo la conferma
+            if(to.name != "checkout") {
+                if (confirm("Sei sicuro di voler uscire? Se cambi ristorante il tuo carrello verrà cestinato")) {
+                    next();
+                } else {
+                    next(false);
+                }
             }
+            //se la destinazione è checkout vado avanti senza chiedere
+            else {
+                next();
+            }
+            // se il localStorage è vuoto vado avanti senza chiedere
         } else {
             next();
         }

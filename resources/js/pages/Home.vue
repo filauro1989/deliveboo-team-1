@@ -64,7 +64,7 @@ export default {
             filteredRestaurants: [],
             apiKey: "deliveboo26313334",
             restaurantsApp: [],
-            listLength: 4,
+            listLength: 16,
         };
     },
     created() {

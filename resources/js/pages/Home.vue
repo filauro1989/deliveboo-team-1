@@ -1,5 +1,5 @@
 <template>
-    <div class="col">
+    <div class="col home-container">
         <div class="row">
             <Sidebar @sendRestaurants="getRestaurant($event)" class="col-2" />
             <div class="col-10">
@@ -116,6 +116,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.home-container {
+    height: 100vh;
+}
 .test {
     transition: all 1s;
 }

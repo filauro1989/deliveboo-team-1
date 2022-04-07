@@ -32,7 +32,7 @@
                         target="_blank"
                         ><i class="fs-4 fa-brands fa-github me-2"></i
                     ></a>
-                    Francesco Filauro
+                    <span>Francesco Filauro</span>
                 </li>
                 <li class="d-flex align-items-center list-inline-item me-5">
                     <a
@@ -47,7 +47,7 @@
                         target="_blank"
                         ><i class="fs-4 fa-brands fa-github me-2"></i
                     ></a>
-                    Matteo Giuseppe Gallitano
+                    <span>Matteo Giuseppe Gallitano</span>
                 </li>
                 <li class="d-flex align-items-center list-inline-item">
                     <a
@@ -62,7 +62,7 @@
                         target="_blank"
                         ><i class="fs-4 fa-brands fa-github me-2"></i
                     ></a>
-                    Fabio Giannitrapani
+                    <span>Fabio Giannitrapani</span>
                 </li>
             </ul>
         </div>

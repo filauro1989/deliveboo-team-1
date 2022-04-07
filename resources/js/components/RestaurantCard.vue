@@ -36,13 +36,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
-
 // RESTAURANT CARD
 .card {
-    height: 150px;
+    height: 180px;
     min-width: 250px;
-    max-width: 350px;
+    max-width: 400px;
     overflow: hidden;
     border-radius: 20px;
     box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.2);

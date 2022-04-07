@@ -187,12 +187,14 @@ export default {
 
     props: {
         elementfromCart: Object,
+        slug: String
     },
     methods: {
         refresh() {
             localStorage.clear();
             this.cartStorage = [];
             this.getTotalCart();
+            localStorage.setItem("restaurantSlug", JSON.stringify(this.slug));
         },
         deleteItem(dish) {
             // CREO UN ARRAY DI APPOGGIO
@@ -254,12 +256,16 @@ export default {
     created() {
         // this.cartStorage = [];
         setTimeout(() => {
+            // mi salvo lo slug del ristorante in una variabile del localstorage
+            localStorage.setItem("restaurantSlug",JSON.stringify(this.slug));
+
             if (JSON.parse(localStorage.getItem("cart"))) {
                 this.cartStorage = JSON.parse(localStorage.getItem("cart"));
                 this.getTotalCart();
             }
         }, 100);
     },
+    
     watch: {
         elementfromCart: function () {
             let found = false;

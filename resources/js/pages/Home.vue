@@ -1,8 +1,8 @@
 <template>
     <div class="col home-container">
         <div class="row">
-            <Sidebar @sendRestaurants="getRestaurant($event)" class="col-2" />
-            <div class="col-10">
+            <Sidebar @sendRestaurants="getRestaurant($event)" class="col-12" />
+            <div class="col-12">
                 <transition-group
                     name="fade"
                     class="row row-cols-1 row-cols-md-2 row-cols-xl-4"
@@ -11,7 +11,7 @@
                         v-for="(restaurant, index) in restaurantLoaded"
                         :key="index + 1"
                         class="col p-0"
-                        @click="clearLocalStorage()"
+                        @click="clearLocalStorage(restaurant.slug)"
                     >
                         <router-link
                             :to="{
@@ -82,7 +82,7 @@ export default {
                 // SE LA LUNGHEZZA DELL'ARRAY FILTRATO è 0 CI PUSHO TUTTI I RISTORANTI (ALTRIMENTI AVREI PAGINA VUOTA SEMPRE)
                 if (this.filteredRestaurants.length == 0) {
                     this.filteredRestaurants.push(...this.restaurants);
-                    console.log(this.restaurants);
+                    // console.log(this.restaurants);
                 }
             })
             .catch((err) => {
@@ -95,8 +95,11 @@ export default {
             this.restaurantsApp = input;
             // console.log(this.categories);
         },
-        clearLocalStorage() {
-            localStorage.clear();
+        clearLocalStorage(currentRestaurantSlug) {
+            
+            if(JSON.parse(localStorage.getItem("restaurantSlug")) != currentRestaurantSlug) {
+                localStorage.clear();
+            }
         },
 
         loadMore() {
@@ -108,7 +111,7 @@ export default {
     },
     computed: {
         restaurantLoaded() {
-            console.log("test");
+            // console.log("test");
             return this.restaurantsApp.slice(0, this.listLength);
         },
     },

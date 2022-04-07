@@ -1,7 +1,7 @@
 <template>
     <div class="container-fluid">
         <Header></Header>
-        <div class="row w-100">
+        <div class="row mx-0 w-100">
             <!-- MANDO LE PROPS A HOME.VUE INVIANDO L'ARRAY categories -->
             <!-- :restaurantsArray="restaurants" -->
             <router-view></router-view>
@@ -42,9 +42,6 @@ export default {
 
 <style lang="scss">
 template {
-
-    font-family: "Nunito", sans-serif!important;
+    font-family: "Nunito", sans-serif !important;
 }
-
-
 </style>

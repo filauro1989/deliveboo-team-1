@@ -4,20 +4,24 @@
             <div
                 v-for="(category, index) in categories"
                 :key="index"
-                class="form-check"
+                class="btn-group"
+                aria-label="Basic checkbox toggle button"
             >
                 <!-- INVIO LE CATEGORIE ALL'APP TRAMITE L'EMIT -->
                 <!-- PUSHO NELL'ARRAY selectedCategories TRAMITE IL V-MODEL -->
                 <input
                     @change="filterCategories()"
                     v-model="selectedCategories"
-                    class="form-check-input"
+                    class="form-check-input btn-check"
                     type="checkbox"
                     :name="category.name"
                     :value="category.name"
-                    id="flexCheckDefault"
+                    :id="category.name"
                 />
-                <label class="form-check-label" :for="category.name">
+                <label
+                    class="btn btn-outline-primary btn-sm rounded-pill m-1"
+                    :for="category.name"
+                >
                     {{ category.name }}
                 </label>
             </div>
@@ -97,4 +101,28 @@ export default {
 };
 </script>
 
-<style></style>
+<style lang="scss" scoped>
+@import "bootstrap";
+
+.form-check {
+    padding-left: 0;
+}
+
+.btn:active,
+.btn:hover,
+.btn:focus {
+    // background-color: #ff9999 !important;
+    box-shadow: 0 0 5px black;
+}
+
+.btn-outline-primary {
+    color: #7f282f;
+    border-color: #7f282f;
+    @include button-outline-variant(
+        #7f282f,
+        #222222,
+        lighten(#ff9999, 5%),
+        #7f282f
+    );
+}
+</style>

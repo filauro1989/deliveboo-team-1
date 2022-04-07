@@ -1,8 +1,8 @@
 <template>
     <div class="col">
         <div class="row">
-            <Sidebar @sendRestaurants="getRestaurant($event)" class="col-2" />
-            <div class="col-10">
+            <Sidebar @sendRestaurants="getRestaurant($event)" class="col-12" />
+            <div class="col-12">
                 <transition-group
                     name="fade"
                     class="row row-cols-1 row-cols-md-2 row-cols-xl-4"

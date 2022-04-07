@@ -1,6 +1,6 @@
 <template>
     <div class="col-2">
-        <div class="checkbox-group">
+        <div class="checkbox-group d-flex justify-content-center flex-wrap">
             <div
                 v-for="(category, index) in categories"
                 :key="index"

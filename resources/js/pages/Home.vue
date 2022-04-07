@@ -1,5 +1,5 @@
 <template>
-    <div class="col">
+    <div class="col home-container">
         <div class="row">
             <Sidebar @sendRestaurants="getRestaurant($event)" class="col-12" />
             <div class="col-12">
@@ -29,9 +29,7 @@
                         </router-link>
                     </div>
                 </transition-group>
-                <div
-                    class="d-flex justify-content-center align-items-end position-fixed fixed-bottom mb-5"
-                >
+                <div class="d-flex justify-content-center align-items-end mb-5">
                     <button
                         v-if="listLength < restaurantsApp.length"
                         class="btn btn-success rounded-pill text-white mt-3"
@@ -121,6 +119,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.home-container {
+    height: 100vh;
+}
 .test {
     transition: all 1s;
 }

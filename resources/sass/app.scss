@@ -8,3 +8,7 @@
 @import "~bootstrap/scss/bootstrap";
 @import "./partials/dashboard";
 @import "./partials/home";
+
+body {
+    font-family: "Nunito", sans-serif !important;
+}

@@ -40,4 +40,11 @@ export default {
 };
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+template {
+
+    font-family: "Nunito", sans-serif!important;
+}
+
+
+</style>

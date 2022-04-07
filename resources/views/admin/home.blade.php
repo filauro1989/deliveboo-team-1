@@ -49,7 +49,7 @@ foreach ($orders as $order) {
         <div class="col-12 col-md-6 col-xl-3 my-2">
             <div id="stat-card-3" class="stat-card rounded d-flex justify-content-around align-items-center">
                 <div class="stat-card-info d-flex flex-column">
-                    <span class="stat-card-info-number">{{ $totalRevenue }}</span>
+                    <span class="stat-card-info-number">{{ $totalRevenue }}&euro;</span>
                     <span class="stat-card-info-text">Totale Guadagni</span>
                 </div>
                 <div class="stat-card-logo rounded-circle d-flex align-items-center justify-content-center">
@@ -62,7 +62,7 @@ foreach ($orders as $order) {
                 <div class="stat-card-info d-flex flex-column">
                     @if ($ordersNumber > 0)
                         <span
-                            class="stat-card-info-number">{{ number_format(round($totalRevenue / $ordersNumber, 2), 2, '.', '') }}</span>
+                            class="stat-card-info-number">{{ number_format(round($totalRevenue / $ordersNumber, 2), 2, '.', '') }}&euro;</span>
                     @else
                         <span class="stat-card-info-number">0</span>
                     @endif

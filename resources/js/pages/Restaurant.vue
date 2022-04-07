@@ -2,11 +2,76 @@
     <div class="col">
         <h1>{{ myRestaurant.restaurant_name }}</h1>
         <div class="row w-100">
-            <div class="col-7">
-                <div class="row row-cols-1 row-cols-md-2 row-cols-xl-4 gy-2">
-                    <template v-for="(dish, index) in menu" class="col">
-                        <!-- LA KEY DEL CICLO V-FOR VA NEL V-IF  -->
+            <div class="col-xl-7">
+                <!-- row-cols-1 row-cols-md-2 row-cols-xl-4 -->
+                <div class="row gy-5 gx-2 mb-5">
+                    <template v-for="(dish, index) in menu">
                         <div
+                            v-if="dish.visible"
+                            :key="index"
+                            class="col-12 col-md-4 col-xl-3"
+                        >
+                            <div
+                                class="card card-product d-flex justify-content-between"
+                            >
+                                <div class="card-image">
+                                    <a href="#">
+                                        <img
+                                            v-if="dish.image"
+                                            class="img"
+                                            :src="'/storage/' + dish.image"
+                                        />
+                                        <img
+                                            v-else
+                                            class="img"
+                                            :src="'/storage/uploads/default_image.jpg'"
+                                        />
+                                    </a>
+                                </div>
+                                <div
+                                    class="table h-50 d-flex flex-column justify-content-between"
+                                >
+                                    <h4 class="card-caption">
+                                        <a href="#">{{ dish.name }}</a>
+                                    </h4>
+                                    <div class="card-description">
+                                        {{ dish.description }}
+                                    </div>
+                                </div>
+                                <div
+                                    class="ftr d-flex align-items-center justify-content-around"
+                                >
+                                    <div class="price">
+                                        <h4>{{ dish.price.toFixed(2) }}€</h4>
+                                    </div>
+                                    <input
+                                        v-model="dish.quantity"
+                                        type="number"
+                                        min="1"
+                                        class="w-25"
+                                    />
+                                    <div class="stats">
+                                        <button
+                                            type="button"
+                                            rel="tooltip"
+                                            title=""
+                                            class="btn btn-just-icon btn-simple btn-warning btn-cart"
+                                            data-original-title="Saved to Wishlist"
+                                            @click="addToCart(dish)"
+                                        >
+                                            <i class="fa fa-shopping-cart"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+            </div>
+
+            <!--<template v-for="(dish, index) in menu" class="col">
+                        <!-- LA KEY DEL CICLO V-FOR VA NEL V-IF  -->
+            <!-- <div
                             v-if="dish.visible"
                             :key="index"
                             class="card h-100"
@@ -40,15 +105,11 @@
                                     </button>
                                 </li>
                             </ul>
-                        </div>
-                    </template>
-                </div>
-            </div>
-            <div class="col-5">
-                <Cart 
-                    :elementfromCart="elementCart"
-                    :slug="slug"
-                />
+                        </div> -->
+            <!-- </template> -->
+
+            <div class="col-xl-5 my-5">
+                <Cart :elementfromCart="elementCart" :slug="slug" />
             </div>
         </div>
     </div>
@@ -110,14 +171,16 @@ export default {
             });
     },
 
-
-    beforeRouteLeave (to, from , next) {
-
+    beforeRouteLeave(to, from, next) {
         //se il carrello del localStorage è pieno entro nella condizione
-        if(localStorage.getItem("cart")) {
+        if (localStorage.getItem("cart")) {
             //se la destinazione è diversa dal checkout chiedo la conferma
-            if(to.name != "checkout") {
-                if (confirm("Sei sicuro di voler uscire? Se cambi ristorante il tuo carrello verrà cestinato")) {
+            if (to.name != "checkout") {
+                if (
+                    confirm(
+                        "Sei sicuro di voler uscire? Se cambi ristorante il tuo carrello verrà cestinato"
+                    )
+                ) {
                     next();
                 } else {
                     next(false);
@@ -131,8 +194,585 @@ export default {
         } else {
             next();
         }
-    }
+    },
 };
 </script>
 
-<style></style>
+<style lang="scss" scoped>
+/* This css file is to over write bootstarp css
+---------------------------------------------------------------------- */
+
+/*
+Theme Name: Modern - Bootstrap 4 Cards
+Theme URI: http://adamthemes.com/
+Author: AdamThemes
+Author URI: http://adamthemes.com/
+Description: Modern - Bootstrap 4 Cards by AdamThemes
+Version: 1.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Tags: card, cards, css3, modern, adamthemes, bootstrap, profile
+*---------------------------------------------------------------------- */
+
+/*---------------------------------------------------------------------- 
+TABLE OF CONTENTS
+
+// 1. SECTIONS
+// 2. CARDS
+//      2.1 Card Table 
+//      2.1 Card Blog 
+//      2.1 Card Background 
+//      2.1 Card Profile 
+//      2.1 Card Category 
+//      2.1 Card Author 
+//      2.1 Card Product
+//      2.1 Card Testimonial
+//      2.1 Text Color
+// 3. BUTTONS
+// 4. SOCIAL MEDIA BUTTONS
+// 5. BOOTSTRAP COL-MD-12 CLASS
+// 6. FONT AWESOME FA CLASS
+
+------------------------------------------------------------------------*/
+
+/*---------------------------------------------------------------------- /
+SECTIONS
+----------------------------------------------------------------------- */
+
+.section-cards {
+    z-index: 3;
+    position: relative;
+}
+
+.section-gray {
+    background: #e5e5e5;
+    padding: 60px 0 30px 0;
+}
+
+/*---------------------------------------------------------------------- /
+CARDS
+----------------------------------------------------------------------- */
+
+.card {
+    display: inline-block;
+    position: relative;
+    height: 100%;
+    // width: 100%;
+    margin-bottom: 30px;
+    border-radius: 6px;
+    color: rgba(0, 0, 0, 0.87);
+    background: #fff;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+        0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+}
+.stats {
+}
+
+.card .card-image {
+    width: 40%;
+    height: auto;
+    position: relative;
+    overflow: hidden;
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-top: -30px;
+    border-radius: 6px;
+    box-shadow: 0 16px 38px -12px rgba(0, 0, 0, 0.56),
+        0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+}
+
+.card .card-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+    pointer-events: none;
+}
+
+.card .card-image .card-caption {
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+    color: #fff;
+    font-size: 1em;
+    text-shadow: 0 2px 5px rgba(33, 33, 33, 0.5);
+}
+
+.card img {
+    width: 100%;
+    height: auto;
+}
+
+.img-raised {
+    box-shadow: 0 16px 38px -12px rgba(0, 0, 0, 0.56),
+        0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+}
+
+.card .ftr {
+    margin-top: 15px;
+}
+
+.card .ftr div {
+    display: inline-block;
+}
+
+.card .ftr .author {
+    color: #888;
+}
+
+.card .ftr .stats {
+    float: right;
+    line-height: 30px;
+}
+
+.card .ftr .stats {
+    position: relative;
+    top: 1px;
+    font-size: 14px;
+}
+
+/* ============ Card Table ============ */
+
+.table {
+    margin-bottom: 0px;
+}
+
+.card .table {
+    padding: 15px 30px;
+}
+
+.card .table-primary {
+    background: linear-gradient(60deg, #ab47bc, #7b1fa2);
+}
+
+.card .table-info {
+    background: linear-gradient(60deg, #26c6da, #0097a7);
+}
+
+.card .table-success {
+    background: linear-gradient(60deg, #66bb6a, #388e3c);
+}
+
+.card .table-warning {
+    background: linear-gradient(60deg, #ffa726, #f57c00);
+}
+
+.card .table-danger {
+    background: linear-gradient(60deg, #ef5350, #d32f2f);
+}
+
+.card .table-rose {
+    background: linear-gradient(60deg, #ec407a, #c2185b);
+}
+
+.card [class*="table-"] {
+    color: #ffffff;
+    border-radius: 6px;
+}
+
+.card [class*="table-"] .card-caption a,
+.card [class*="table-"] .card-caption,
+.card [class*="table-"] .icon i {
+    color: #ffffff;
+}
+
+.card [class*="table-"] .icon i {
+    border-color: rgba(255, 255, 255, 0.25);
+}
+
+.card [class*="table-"] .author a,
+.card [class*="table-"] .ftr .stats,
+.card [class*="table-"] .category,
+.card [class*="table-"] .card-description {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.card [class*="table-"] .author a:hover,
+.card [class*="table-"] .author a:focus,
+.card [class*="table-"] .author a:active {
+    color: #ffffff;
+}
+
+.card [class*="table-"] h1 small,
+.card [class*="table-"] h2 small,
+.card [class*="table-"] h3 small {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* ============ Card Background ============ */
+
+.card-background {
+    background-position: center;
+    background-size: cover;
+    text-align: center;
+}
+
+.card-background .table {
+    position: relative;
+    z-index: 2;
+    min-height: 280px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    max-width: 440px;
+    margin: 0 auto;
+}
+
+.card-background .category,
+.card-background .card-description,
+.card-background small {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.card-background .card-caption {
+    color: #ffffff;
+    margin-top: 10px;
+}
+
+.card-background:after {
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    display: block;
+    left: 0;
+    top: 0;
+    table: "";
+    background-color: rgba(0, 0, 0, 0.56);
+    border-radius: 6px;
+}
+
+/* ============ Card Product ============ */
+
+.card-product {
+    margin-top: 30px;
+}
+
+.card-product .btn-simple.btn-just-icon {
+    padding: 0;
+}
+
+.card-product .ftr {
+    margin-top: 5px;
+}
+
+.card-product .ftr .stats {
+    margin-top: 4px;
+    top: 0;
+}
+
+.card-product .ftr h4 {
+    margin-bottom: 0;
+}
+
+.card-product .card-caption,
+.card-product .category,
+.card-product .card-description {
+    text-align: center;
+}
+
+.card-description p {
+    color: #888;
+}
+
+.card-caption,
+.card-caption a {
+    color: #333;
+    text-decoration: none;
+}
+
+.card-caption {
+    font-weight: 700;
+    // font-family: "Roboto Slab", "Times New Roman", serif;
+}
+
+/* ============ Text Color ============ */
+
+.text-warning {
+    color: #ff9800;
+}
+
+.text-primary {
+    color: #9c27b0;
+}
+
+.text-danger {
+    color: #f44336;
+}
+
+.text-success {
+    color: #4caf50;
+}
+
+.text-info {
+    color: #00bcd4;
+}
+
+.text-rose {
+    color: #e91e63;
+}
+
+.text-gray {
+    color: #888;
+}
+
+/*---------------------------------------------------------------------- /
+BUTTONS
+----------------------------------------------------------------------- */
+
+.btn {
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+.btn-cart:hover,
+.btn-cart:active,
+.btn-cart:focus {
+    transform: scale(1.3);
+    transition: all 0.3s;
+}
+
+.btn,
+.navbar .navbar-nav > li > a.btn {
+    border: none;
+    border-radius: 3px;
+    position: relative;
+    padding: 12px 30px;
+    margin: 10px 1px;
+    font-size: 12px;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0;
+    will-change: box-shadow, transform;
+    transition: box-shadow 0.2s cubic-bezier(0.4, 0, 1, 1),
+        background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn:focus,
+.btn:active,
+.btn:active:focus {
+    outline: 0;
+}
+
+.btn.btn-round,
+.navbar .navbar-nav > li > a.btn.btn-round {
+    border-radius: 30px;
+}
+
+.btn.btn-just-icon,
+.navbar .navbar-nav > li > a.btn.btn-just-icon {
+    font-size: 20px;
+    padding: 12px 12px;
+    line-height: 1em;
+}
+
+.btn.btn-just-icon i,
+.navbar .navbar-nav > li > a.btn.btn-just-icon i {
+    width: 20px;
+}
+
+/* Button Info */
+
+.btn.btn-info {
+    background-color: #00bcd4;
+    color: #ffffff;
+}
+
+.btn.btn-info:focus,
+.btn.btn-info:active,
+.btn.btn-info:hover {
+    box-shadow: 0 14px 26px -12px rgba(0, 188, 212, 0.42),
+        0 4px 23px 0px rgba(0, 0, 0, 0.12),
+        0 8px 10px -5px rgba(0, 188, 212, 0.2);
+}
+
+/* Button Danger */
+
+.btn.btn-danger {
+    background-color: #f44336;
+    color: #ffffff;
+}
+
+.btn.btn-danger:focus,
+.btn.btn-danger:active,
+.btn.btn-danger:hover {
+    box-shadow: 0 14px 26px -12px rgba(244, 67, 54, 0.42),
+        0 4px 23px 0px rgba(0, 0, 0, 0.12),
+        0 8px 10px -5px rgba(244, 67, 54, 0.2);
+}
+
+/* Button Warning */
+
+.btn.btn-warning.btn-simple:hover,
+.btn.btn-warning.btn-simple:focus,
+.btn.btn-warning.btn-simple:active {
+    background-color: transparent;
+    color: #ff9800;
+}
+
+.btn.btn-warning.btn-simple,
+.navbar .navbar-nav > li > a.btn.btn-warning.btn-simple {
+    background-color: transparent;
+    color: #ff9800;
+    box-shadow: none;
+}
+
+.btn.btn-warning,
+.navbar .navbar-nav > li > a.btn.btn-warning {
+    box-shadow: 0 2px 2px 0 rgba(255, 152, 0, 0.14),
+        0 3px 1px -2px rgba(255, 152, 0, 0.2),
+        0 1px 5px 0 rgba(255, 152, 0, 0.12);
+}
+
+/* Button Rose */
+
+.btn.btn-rose.btn-simple:hover,
+.btn.btn-rose.btn-simple:focus,
+.btn.btn-rose.btn-simple:active {
+    background-color: transparent;
+    color: #e91e63;
+}
+
+.btn.btn-rose.btn-simple,
+.navbar .navbar-nav > li > a.btn.btn-rose.btn-simple {
+    background-color: transparent;
+    color: #e91e63;
+    box-shadow: none;
+}
+
+/* Button White */
+
+.btn.btn-white,
+.btn.btn-white:focus,
+.btn.btn-white:hover {
+    background-color: #ffffff;
+    color: #888;
+}
+
+.btn.btn-white.btn-simple,
+.navbar .navbar-nav > li > a.btn.btn-white.btn-simple {
+    color: #ffffff;
+    background: transparent;
+    box-shadow: none;
+}
+
+/*---------------------------------------------------------------------- /
+BOOTSTRAP COL-MD-12 CLASS
+----------------------------------------------------------------------- */
+
+.col-md-12 {
+    padding-right: 0px;
+    padding-left: 0px;
+}
+
+/*---------------------------------------------------------------------- /
+FONT AWESOME FA CLASS
+----------------------------------------------------------------------- */
+
+.fa {
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/***********Only4Demo*******************/
+/**************************************/
+
+/* ======= GENERAL  ======= */
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4 {
+    // font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-weight: 300;
+    line-height: 1.5em;
+}
+
+a {
+    color: #9c27b0;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #9c27b0;
+    text-decoration: underline;
+}
+
+p {
+    color: #3c4857;
+}
+
+header {
+    border-bottom: 1px solid #dedede;
+    text-align: center;
+}
+
+h1,
+.h1 {
+    font-size: 3.8em;
+}
+
+h2,
+.h2 {
+    font-size: 2em;
+    line-height: 1.6em;
+    margin: 15px 0 15px;
+    font-weight: 700;
+    // font-family: "Roboto Slab", "Times New Roman", serif;
+    text-align: center;
+}
+
+h3,
+.h3 {
+    font-size: 1.825em;
+    line-height: 1.4em;
+    margin: 30px 0 30px;
+    font-weight: 700;
+    // font-family: "Roboto Slab", "Times New Roman", serif;
+    text-align: center;
+}
+
+h4,
+.h4 {
+    font-size: 1.1em;
+    line-height: 1.55em;
+}
+
+h5,
+.h5 {
+    font-size: 1.25em;
+    line-height: 1.55em;
+    margin-bottom: 15px;
+}
+
+h6,
+.h6 {
+    font-size: 0.9em;
+    font-weight: 500;
+}
+</style>

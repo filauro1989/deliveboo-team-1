@@ -112,7 +112,7 @@
     </header>
     <section class="page-content">
 
-        <section class="container">
+        <section>
             <div>{{ Auth::user()->restaurant_name }}</div>
             <article class="row">
                 <div class="col"> @yield('content') </div>

@@ -1,5 +1,7 @@
 <template>
-    <div class="text-white text-center card m-2">
+    <div
+        class="text-white text-center card m-2 d-flex justify-content-center align-items-center"
+    >
         <img
             v-if="restaurantImg"
             class="card-img h-100 w-100"

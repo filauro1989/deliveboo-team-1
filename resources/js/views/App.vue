@@ -1,6 +1,6 @@
 <template>
-    <div class="container-fluid">
-        <Header></Header>
+    <div class="container">
+        <!-- <Header></Header> -->
         <div class="row w-100">
             <!-- MANDO LE PROPS A HOME.VUE INVIANDO L'ARRAY categories -->
             <!-- :restaurantsArray="restaurants" -->

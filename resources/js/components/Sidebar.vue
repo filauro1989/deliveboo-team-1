@@ -19,7 +19,7 @@
                     :id="category.name"
                 />
                 <label
-                    class="btn btn-outline-primary btn-sm"
+                    class="btn btn-outline-primary btn-sm rounded-pill m-1"
                     :for="category.name"
                 >
                     {{ category.name }}

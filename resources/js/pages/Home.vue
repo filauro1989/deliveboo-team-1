@@ -29,9 +29,7 @@
                         </router-link>
                     </div>
                 </transition-group>
-                <div
-                    class="d-flex justify-content-center align-items-end position-fixed fixed-bottom mb-5"
-                >
+                <div class="d-flex justify-content-center align-items-end mb-5">
                     <button
                         v-if="listLength < restaurantsApp.length"
                         class="btn btn-success rounded-pill text-white mt-3"

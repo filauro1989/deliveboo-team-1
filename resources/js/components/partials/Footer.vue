@@ -3,8 +3,10 @@
         class="my_container d-flex justify-content-center align-items-center text-white m-0"
     >
         <div>
-            <ul class="d-flex list-inline m-0">
-                <li class="d-flex align-items-center list-inline-item me-5">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4">
+                <div
+                    class="col d-flex justify-content-center align-items-center"
+                >
                     <a
                         class="d-flex align-items-center"
                         href="https://www.linkedin.com/in/nicol%C3%B2-fantini/"
@@ -18,8 +20,10 @@
                         ><i class="fs-4 fa-brands fa-github me-2"></i
                     ></a>
                     <span>Nicolò Fantini</span>
-                </li>
-                <li class="d-flex align-items-center list-inline-item me-5">
+                </div>
+                <div
+                    class="col justify-content-center d-flex align-items-center"
+                >
                     <a
                         class="d-flex align-items-center"
                         href="https://www.linkedin.com/in/francesco-filauro-4b1123197/"
@@ -33,8 +37,10 @@
                         ><i class="fs-4 fa-brands fa-github me-2"></i
                     ></a>
                     <span>Francesco Filauro</span>
-                </li>
-                <li class="d-flex align-items-center list-inline-item me-5">
+                </div>
+                <div
+                    class="col justify-content-center d-flex align-items-center"
+                >
                     <a
                         class="d-flex align-items-center"
                         href="https://www.linkedin.com/in/matteo-giuseppe-gallitano-421402b5/"
@@ -48,8 +54,10 @@
                         ><i class="fs-4 fa-brands fa-github me-2"></i
                     ></a>
                     <span>Matteo Giuseppe Gallitano</span>
-                </li>
-                <li class="d-flex align-items-center list-inline-item">
+                </div>
+                <div
+                    class="col d-flex justify-content-center align-items-center"
+                >
                     <a
                         class="d-flex align-items-center"
                         href="https://www.linkedin.com/in/fabio-giannitrapani/"
@@ -63,8 +71,8 @@
                         ><i class="fs-4 fa-brands fa-github me-2"></i
                     ></a>
                     <span>Fabio Giannitrapani</span>
-                </li>
-            </ul>
+                </div>
+            </div>
         </div>
     </div>
 </template>

@@ -127,22 +127,46 @@ foreach ($orders as $order) {
                 })
             .then(res => {
                 this.ordersData = res.data.results;
-                console.log(res);
+                // console.log(res);
                 //creo un array dove inserirò oggetti contenenti solo il mese e il totale di ogni ordine
                 let dateData = [];
                 dateData = this.ordersData.map(el => {
                     let date = new Date(el.date);
+                    
                     return {
                         month: date.getMonth() + 1,
                         total_amount: el.total_amount
                     }
                 });
 
+                // creo un array dove andranno inseriti il numero ordini per ogni mese
+                let numberOrderPerMonth = [];
+                //array che tiene traccia dei mesi già analizzati
+                let monthAnalized = [];
+                let maxOrders = 0;
+                for (let i = 0; i < dateData.length; i++) {
+                    let counter = 1;
+                    // controllo se il mese su cui sto ciclando non è contenuto nell'array di mesi già analizzati
+                    if (!monthAnalized.includes(dateData[i].month)) {
+                        for(let y = i + 1; y < dateData.length; y++) {
+                            //se i mesi su cui sto ciclando combaciano, aumento di 1 il contatore, significa che c'è un ordine in più per quel mese
+                            if(dateData[i].month == dateData[y].month) {
+                                counter++;
+                            }
+                        }
+                    monthAnalized.push(dateData[i].month)
+                    numberOrderPerMonth[dateData[i].month - 1] = counter;
+                    if(counter > maxOrders) {
+                        maxOrders = counter;
+                    }
+                    }
+                }
+
+
                 // creo un array dove andranno inseriti gli ordini e i totali raggruppati per mese
                 let monthlyTotal = [];
                 // creo un array dove inserirò i mesi già analizzati nel ciclo
-                let monthAnalized = [];
-
+                monthAnalized = [];
                 for (i = 0; i < dateData.length; i++) {
                     // controllo se il mese su cui sto ciclando non è contenuto nell'array di mesi già analizzati
                     if (!monthAnalized.includes(dateData[i].month)) {
@@ -153,6 +177,7 @@ foreach ($orders as $order) {
                             // se il mese su cui sto ciclando combacia, aggiorno la somma del totale e lo salvo in un oggetto
                             if (dateData[i].month == dateData[y].month) {
                                 totalPrice += dateData[y].total_amount;
+                                
                                 monthData = {
                                     month: dateData[y].month,
                                     total_amount: totalPrice
@@ -167,9 +192,7 @@ foreach ($orders as $order) {
 
                 // creo un array dove inserirò solo i totali degli ordini per poter creare la scala del grafico
                 let pricesForChart = [];
-                // monthlyTotal.forEach(element => {
-                //     pricesForChart.push(element.total_amount)
-                // });
+                
 
                 // uso il numero del mese (-1) come indice e ci metto dentro il valore del prezzo totale
                 //creo una variabile per scoprire qual'è il numero massimo del mese
@@ -183,24 +206,64 @@ foreach ($orders as $order) {
                 // faccio un ciclo da 0 a numero massimo del mese per riempire con uno 0 la parte di array rimasto vuoto
                 for (i = 0; i < maxMonth; i++) {
                     if (!pricesForChart[i]) {
+                        numberOrderPerMonth[i] = 0;
                         pricesForChart[i] = 0;
                     }
                 }
 
+
                 const data = {
+                //     labels: labels,
+                //     datasets: [{
+                //         label: 'Guadagni',
+                //         yAxisID: 'A',
+                //         backgroundColor: 'rgb(0, 153, 0)',
+                //         borderColor: 'rgb(0, 153, 0)',
+                //         data: [...pricesForChart],
+                //     },
+                //     {
+                //         label: 'Numero Ordini',
+                //         yAxisID: 'B',
+                //         backgroundColor: 'rgb(200, 10, 10)',
+                //         borderColor: 'rgb(200, 10, 10)',
+                //         data: [...numberOrderPerMonth],
+                //     }
+                // ]
                     labels: labels,
                     datasets: [{
-                        label: 'Ordini',
+                        label: 'Guadagni',
+                        yAxisID: 'A',
+                        data: [...pricesForChart],
                         backgroundColor: 'rgb(0, 153, 0)',
                         borderColor: 'rgb(0, 153, 0)',
-                        data: [...pricesForChart],
+                    }, {
+                        label: 'Numero Ordini',
+                        yAxisID: 'B',
+                        data: [...numberOrderPerMonth],
+                        backgroundColor: 'rgb(200, 10, 10)',
+                        borderColor: 'rgb(200, 10, 10)',
                     }]
                 };
 
                 const config = {
                     type: 'line',
                     data: data,
-                    options: {}
+                    
+                    options: {
+                        scales: {
+                            A: {
+                                type: 'linear',
+                                position: 'left',
+                            },
+                            B: {
+                                type: 'linear',
+                                position: 'right',
+                                suggestedMin: 0,
+                                suggestedMax: maxOrders + 5,
+                                
+                            }
+                        }
+                    }
                 };
 
                 const myChart = new Chart(

@@ -44,22 +44,29 @@
                                     <div class="price">
                                         <h4>{{ dish.price.toFixed(2) }}€</h4>
                                     </div>
-                                    <input
-                                        v-model="dish.quantity"
-                                        type="number"
-                                        min="1"
-                                        class="w-25"
-                                    />
+                                    <div class="w-25">
+                                        <label :for="dish.id">Quantità</label>
+                                        <input
+                                            :id="dish.id"
+                                            v-model="dish.quantity"
+                                            type="number"
+                                            min="1"
+                                            class="w-25"
+                                            name="quantity"
+                                        />
+                                    </div>
                                     <div class="stats">
                                         <button
                                             type="button"
                                             rel="tooltip"
                                             title=""
-                                            class="btn btn-just-icon btn-simple btn-warning btn-cart"
+                                            class="btn btn-just-icon btn-simple btn-warning rounded-pill"
                                             data-original-title="Saved to Wishlist"
                                             @click="addToCart(dish)"
                                         >
-                                            <i class="fa fa-shopping-cart"></i>
+                                            <i
+                                                class="btn-cart fa fa-shopping-cart"
+                                            ></i>
                                         </button>
                                     </div>
                                 </div>
@@ -265,8 +272,6 @@ CARDS
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
         0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
 }
-.stats {
-}
 
 .card .card-image {
     width: 40%;
@@ -279,6 +284,11 @@ CARDS
     border-radius: 6px;
     box-shadow: 0 16px 38px -12px rgba(0, 0, 0, 0.56),
         0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+}
+
+.card-image:hover {
+    transition: all 0.2s ease;
+    transform: scale(1.2);
 }
 
 .card .card-image img {
@@ -543,7 +553,7 @@ BUTTONS
 .btn-cart:active,
 .btn-cart:focus {
     transform: scale(1.3);
-    transition: all 0.3s;
+    transition: transform 0.2s ease-in-out;
 }
 
 .btn,

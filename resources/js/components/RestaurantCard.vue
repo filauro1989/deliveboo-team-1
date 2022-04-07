@@ -1,6 +1,5 @@
 <template>
-    <!-- <div class="col-sm-12 col-md-6 col-lg-3 p-0"> -->
-    <a class="text-white text-center card m-2" href="#">
+    <div class="text-white text-center card m-2">
         <img
             v-if="restaurantImg"
             class="card-img h-100 w-100"
@@ -19,8 +18,7 @@
                 {{ restaurantName }}
             </h5>
         </div>
-    </a>
-    <!-- </div> -->
+    </div>
 </template>
 
 <script>

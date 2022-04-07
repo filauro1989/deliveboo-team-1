@@ -1,10 +1,8 @@
 <template>
-    <div
-        class="text-white text-center card m-2 d-flex justify-content-center align-items-center"
-    >
+    <div class="text-white text-center card m-2 col">
         <img
             v-if="restaurantImg"
-            class="card-img h-100 w-100"
+            class="card-img"
             :src="require(`../../../public/storage/${restaurantImg}`)"
             :alt="restaurantName"
         />

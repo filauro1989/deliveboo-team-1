@@ -10,7 +10,7 @@
                     <div
                         v-for="(restaurant, index) in restaurantLoaded"
                         :key="index + 1"
-                        class="col p-0"
+                        class="col d-flex justify-content-center p-0"
                         @click="clearLocalStorage(restaurant.slug)"
                     >
                         <router-link
@@ -96,8 +96,10 @@ export default {
             // console.log(this.categories);
         },
         clearLocalStorage(currentRestaurantSlug) {
-            
-            if(JSON.parse(localStorage.getItem("restaurantSlug")) != currentRestaurantSlug) {
+            if (
+                JSON.parse(localStorage.getItem("restaurantSlug")) !=
+                currentRestaurantSlug
+            ) {
                 localStorage.clear();
             }
         },

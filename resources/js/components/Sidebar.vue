@@ -4,7 +4,7 @@
             <div
                 v-for="(category, index) in categories"
                 :key="index"
-                class="form-check"
+                class="btn-group"
                 aria-label="Basic checkbox toggle button"
             >
                 <!-- INVIO LE CATEGORIE ALL'APP TRAMITE L'EMIT -->

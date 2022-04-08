@@ -1,6 +1,7 @@
 <template>
     <div>
         <Jumbotron />
+        
         <div class="container">
             <div class="row">
                 <Sidebar

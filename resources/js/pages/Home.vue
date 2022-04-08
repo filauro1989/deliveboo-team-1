@@ -1,7 +1,7 @@
 <template>
     <div>
         <Jumbotron />
-        
+
         <div class="container">
             <div class="row">
                 <Sidebar
@@ -40,7 +40,7 @@
                     >
                         <button
                             v-if="listLength < restaurantsApp.length"
-                            class="btn btn-success rounded-pill text-white mt-3"
+                            class="btn my_btn rounded-pill text-white mt-3"
                             @click="loadMore"
                         >
                             Mostra altri
@@ -148,5 +148,9 @@ export default {
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
     opacity: 0;
     transform: translateY(200%);
+}
+
+.btn.my_btn {
+    background-color: #ff9999 !important;
 }
 </style>

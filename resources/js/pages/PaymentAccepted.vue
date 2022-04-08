@@ -20,11 +20,11 @@
 <script>
 export default {
     name: "PaymentAccepted",
-    // created() {
-    //     setTimeout(() => {
-    //         this.$router.push("/");
-    //     }, 5000);
-    // },
+    created() {
+        setTimeout(() => {
+            this.$router.push("/");
+        }, 5000);
+    },
 };
 </script>
 

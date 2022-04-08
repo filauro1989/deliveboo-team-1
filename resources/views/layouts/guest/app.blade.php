@@ -24,7 +24,7 @@
 <body>
 
     <header>
-        <nav class="main-navbar navbar navbar-expand-md navbar-light shadow-sm">
+        <nav class="main-navbar navbar navbar-expand-md navbar-light">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     <img class="" src="{{ asset('/storage/default_images/Guest-Deliveboo-Logo-10s-unscreen-crop.gif') }}"

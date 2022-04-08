@@ -14,28 +14,28 @@
                             <div
                                 class="card card-product d-flex justify-content-between"
                             >
-                                <div class="card-image">
-                                    <a href="#">
-                                        <img
-                                            v-if="dish.image"
-                                            class="img"
-                                            :src="'/storage/' + dish.image"
-                                        />
-                                        <img
-                                            v-else
-                                            class="img"
-                                            :src="'/storage/uploads/default_image.jpg'"
-                                        />
-                                    </a>
-                                </div>
-
-                                <div class="price">
-                                        <h4>{{ dish.price.toFixed(2) }}€</h4>
+                                <div class="image-price-container">
+                                    <div class="card-image">
+                                        <a href="#">
+                                            <img
+                                                v-if="dish.image"
+                                                class="img"
+                                                :src="'/storage/' + dish.image"
+                                            />
+                                            <img
+                                                v-else
+                                                class="img"
+                                                :src="'/storage/uploads/default_image.jpg'"
+                                            />
+                                        </a>
                                     </div>
-                                <div
 
-                                    class="table h-50 d-flex flex-column justify-content-between"
-                                >
+                                    <div class="price">
+                                            <h4 class="m-0">{{ dish.price.toFixed(2) }}€</h4>
+                                        </div>
+                                    <div class="table h-50 d-flex flex-column justify-content-between">
+
+                                </div>
                                     <h4 class="card-caption">
                                         {{ dish.name }}
                                     </h4>
@@ -195,45 +195,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-/* This css file is to over write bootstarp css
----------------------------------------------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&family=Pacifico&display=swap');
 
-/*
-Theme Name: Modern - Bootstrap 4 Cards
-Theme URI: http://adamthemes.com/
-Author: AdamThemes
-Author URI: http://adamthemes.com/
-Description: Modern - Bootstrap 4 Cards by AdamThemes
-Version: 1.0
-License: GNU General Public License v2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Tags: card, cards, css3, modern, adamthemes, bootstrap, profile
-*---------------------------------------------------------------------- */
-
-/*---------------------------------------------------------------------- 
-TABLE OF CONTENTS
-
-// 1. SECTIONS
-// 2. CARDS
-//      2.1 Card Table 
-//      2.1 Card Blog 
-//      2.1 Card Background 
-//      2.1 Card Profile 
-//      2.1 Card Category 
-//      2.1 Card Author 
-//      2.1 Card Product
-//      2.1 Card Testimonial
-//      2.1 Text Color
-// 3. BUTTONS
-// 4. SOCIAL MEDIA BUTTONS
-// 5. BOOTSTRAP COL-MD-12 CLASS
-// 6. FONT AWESOME FA CLASS
-
-------------------------------------------------------------------------*/
-
-/*---------------------------------------------------------------------- /
-SECTIONS
------------------------------------------------------------------------ */
 
 .section-cards {
     z-index: 3;
@@ -280,6 +243,22 @@ CARDS
     background: #fff;
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
         0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+}
+
+.image-price-container {
+    position: relative;
+
+    .price {
+        position: absolute;
+        top: -20px;
+        right: 0;
+        font-size: 1.2rem;
+        background-color: #00c7fa;
+        color: white;
+        padding: 0.2rem 0.7rem;
+        border-radius: 20px;
+        font-family: 'Pacifico', cursive;
+    }
 }
 
 .card .card-image {

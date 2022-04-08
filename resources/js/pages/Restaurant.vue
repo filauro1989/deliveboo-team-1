@@ -24,7 +24,7 @@
                     <div class="row m-0">
                         <div class="col-xl-7 pt-3">
                             <!-- row-cols-1 row-cols-md-2 row-cols-xl-4 -->
-                            <div class="row gy-5 gy-md-3 gx-2 mb-5">
+                            <div class="row gy-5 gx-4 mb-5">
                                 <template v-for="(dish, index) in menu">
                                     <div
                                         v-if="dish.visible"

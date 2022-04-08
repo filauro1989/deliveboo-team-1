@@ -1,7 +1,8 @@
 <template>
     <div>
         <Jumbotron />
-        <div class="home-container">
+        
+        <div class="container">
             <div class="row">
                 <Sidebar
                     @sendRestaurants="getRestaurant($event)"

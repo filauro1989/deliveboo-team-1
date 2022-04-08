@@ -1,5 +1,5 @@
 <template>
-    <div class="container-fluid">
+    <div>
         <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col">
                 <div class="card">

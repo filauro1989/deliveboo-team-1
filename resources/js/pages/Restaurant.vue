@@ -1,8 +1,8 @@
 <template>
     <div class="col">
         <h1>{{ myRestaurant.restaurant_name }}</h1>
-        <div class="row w-100">
-            <div class="col-xl-7">
+        <div class="row m-0">
+            <div class="col-xl-7 pt-3">
                 <!-- row-cols-1 row-cols-md-2 row-cols-xl-4 -->
                 <div class="row gy-5 gx-2 mb-5">
                     <template v-for="(dish, index) in menu">
@@ -30,10 +30,9 @@
                                 </div>
 
                                 <div class="price">
-                                        <h4>{{ dish.price.toFixed(2) }}€</h4>
-                                    </div>
+                                    <h4>{{ dish.price.toFixed(2) }}€</h4>
+                                </div>
                                 <div
-
                                     class="table h-50 d-flex flex-column justify-content-between"
                                 >
                                     <h4 class="card-caption">
@@ -46,10 +45,17 @@
                                 <div
                                     class="ftr d-flex align-items-center justify-content-around"
                                 >
-                                    
                                     <div class="d-flex align-items-end p-2">
-                                        <button class="quantity-btn" @click="changeQuantity(dish, -1)" onclick="this.parentNode.querySelector('input[type=number]').stepDown()">-</button>
-                                        <div class="quantity-container w-50 d-flex flex-column align-items-center">
+                                        <button
+                                            class="quantity-btn"
+                                            @click="changeQuantity(dish, -1)"
+                                            onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
+                                        >
+                                            -
+                                        </button>
+                                        <div
+                                            class="quantity-container w-50 d-flex flex-column align-items-center"
+                                        >
                                             <label :for="dish.id">Q.tà</label>
                                             <input
                                                 :id="dish.id"
@@ -61,7 +67,13 @@
                                                 name="quantity"
                                             />
                                         </div>
-                                        <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="quantity-btn" @click="changeQuantity(dish, +1)">+</button>
+                                        <button
+                                            onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
+                                            class="quantity-btn"
+                                            @click="changeQuantity(dish, +1)"
+                                        >
+                                            +
+                                        </button>
                                     </div>
                                     <div class="stats">
                                         <button
@@ -83,8 +95,6 @@
                     </template>
                 </div>
             </div>
-
-          
 
             <div class="col-xl-5 my-5">
                 <Cart :elementfromCart="elementCart" :slug="slug" />
@@ -122,7 +132,7 @@ export default {
             };
         },
         changeQuantity(dish, num) {
-            if(dish.quantity + num > 0) {
+            if (dish.quantity + num > 0) {
                 dish.quantity = parseInt(dish.quantity) + parseInt(num);
             }
             // for (let index = 0; index < this.menu.length; index++) {
@@ -135,10 +145,10 @@ export default {
             //         // VARIO LA QUANTITà DELL'ELEMENTO DI += num
             //         element.quantity += num;
             //         // VARIO LA QUANTITà DELL'ARRAY DI APPOGGIO DI += num
-                    
+
             //     }
             // }
-        }
+        },
     },
 
     created() {
@@ -166,7 +176,7 @@ export default {
                 console.log(err);
             });
     },
-    
+
     beforeRouteLeave(to, from, next) {
         //se il carrello del localStorage è pieno entro nella condizione
         if (localStorage.getItem("cart")) {
@@ -256,12 +266,12 @@ SECTIONS
     border-radius: 50%;
 }
 
-input[type='number']::-webkit-inner-spin-button, 
-input[type='number']::-webkit-outer-spin-button { 
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
-input[type='number'] {
+input[type="number"] {
     background-color: white;
 }
 

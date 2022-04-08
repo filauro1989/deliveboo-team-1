@@ -207,6 +207,7 @@
                                         params: {
                                             totalAmount: totalAmount,
                                             cartStorage: cartStorage,
+                                            slug: slug
                                         },
                                     }"
                                 >

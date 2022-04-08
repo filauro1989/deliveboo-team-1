@@ -109,7 +109,7 @@ export default {
         clearLocalStorage(currentRestaurantSlug) {
             if (
                 JSON.parse(localStorage.getItem("restaurantSlug")) !=
-                currentRestaurantSlug
+                currentRestaurantSlug || JSON.parse(localStorage.getItem("restaurantSlug")) == undefined
             ) {
                 localStorage.clear();
             }

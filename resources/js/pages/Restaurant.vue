@@ -32,7 +32,7 @@
                                     class="table h-50 d-flex flex-column justify-content-between"
                                 >
                                     <h4 class="card-caption">
-                                        <a href="#">{{ dish.name }}</a>
+                                        {{ dish.name }}
                                     </h4>
                                     <div class="card-description">
                                         {{ dish.description }}
@@ -45,7 +45,7 @@
                                         <h4>{{ dish.price.toFixed(2) }}€</h4>
                                     </div>
                                     <div class="w-25">
-                                        <label :for="dish.id">Quantità</label>
+                                        <label :for="dish.id">Q.tà</label>
                                         <input
                                             :id="dish.id"
                                             v-model="dish.quantity"

@@ -807,12 +807,18 @@ a {
     &:focus {
         outline: none;
         box-shadow: none;
-        border-color: #000;
+        // border-color: #000;
     }
 }
 .col-form-label {
     color: #000;
     font-size: 13px;
+}
+
+input.form-control {
+    outline: none !important;
+    border: none !important;
+    border-bottom: 1px solid #ccc !important;
 }
 // .btn,
 .form-control,

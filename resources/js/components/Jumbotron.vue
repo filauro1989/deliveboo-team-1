@@ -1,5 +1,5 @@
 <template>
-    <div class="jumbotron jumbotron-fluid my-4">
+    <div class="jumbotron jumbotron-fluid py-4">
         <div class="container">
             <div
                 id="jumbotron-carousel"
@@ -8,13 +8,7 @@
             >
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="https://www.foodaffairs.it/wp-content/uploads/2021/07/pizza-delivery-cartone-amici-televisione-tv.jpg" class="d-block w-100" alt="..." />
-                    </div>
-                    <div class="carousel-item">
-                        <img src="https://i0.wp.com/www.alphr.com/wp-content/uploads/2016/11/uber_of_food_sharing_culture-scaled.jpg?fit=2560%2C1440&ssl=1" class="d-block w-100" alt="..." />
-                    </div>
-                    <div class="carousel-item">
-                        <img src="https://ychef.files.bbci.co.uk/976x549/p065jzb2.jpg" class="d-block w-100" alt="..." />
+                        <img :src="require(`../../../public/storage/default_images/jumbotron-2-deliveboo.webp`)" class="d-block w-100" alt="..." />
                     </div>
                 </div>
             </div>
@@ -30,6 +24,7 @@ export default {
 
 <style lang="scss" scoped>
     .jumbotron {
+        background-color: #FF9999;
         .carousel {
             overflow: hidden;
             max-height: 400px;
@@ -37,7 +32,6 @@ export default {
             img {
                 object-fit: cover;
                 object-position: center;
-                border-radius: 20px;
             }
         }
     }

@@ -1,6 +1,7 @@
 <template>
-    <div class="col">
-        <Jumbotron/>
+<div>
+    <Jumbotron/>
+    <div class="container">
         <div class="row">
             <Sidebar @sendRestaurants="getRestaurant($event)" class="col-2" />
             <div class="col-10">
@@ -44,6 +45,7 @@
             </div>
         </div>
     </div>
+</div>
 </template>
 
 <script>

@@ -1,11 +1,8 @@
 <template>
-    <div class="container-fluid">
-        <Header/>
-        <div class="row w-100">
-            <!-- MANDO LE PROPS A HOME.VUE INVIANDO L'ARRAY categories -->
-            <!-- :restaurantsArray="restaurants" -->
-            <router-view></router-view>
-        </div>
+    <div>
+        <!-- MANDO LE PROPS A HOME.VUE INVIANDO L'ARRAY categories -->
+        <!-- :restaurantsArray="restaurants" -->
+        <router-view></router-view>
         <Footer/>
     </div>
 </template>
@@ -29,6 +26,7 @@ export default {
         Sidebar,
         Main,
         Footer,
+
     },
     methods: {
         // CREO FUNZIONE PER PUSHARE L'EMIT DENTRO L'ARRAY restaurants

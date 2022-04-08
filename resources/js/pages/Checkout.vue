@@ -266,7 +266,7 @@ export default {
     }
 }
 
-.payment .btn .btn-primary {
+.payment .btn.btn-primary {
     background-color: #FF9999 !important;
     color: white;
     border: none;

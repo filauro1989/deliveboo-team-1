@@ -22,7 +22,7 @@
 
         <div class="container">
             <div class="row">
-                <div class="mb-5 category-container p-5">
+                <div class="mb-5 category-container">
                     <h3 class="text-center">
                         Seleziona una o più categorie
                     </h3>
@@ -181,7 +181,7 @@ export default {
 }
 
 .category-container {
-    background-color: #f8da9e;
+    // background-color: #f8da9e;
     border-radius: 20px;
 }
 </style>

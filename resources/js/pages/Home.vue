@@ -151,6 +151,6 @@ export default {
 }
 
 .btn.my_btn {
-    background-color: #ff9999 !important;
+    background-color: #0075a5 !important;
 }
 </style>

@@ -98,7 +98,7 @@
                 </transition>
             </div>
             <div class="col-6">
-                <Cart />
+                <Cart :slug="slug"/>
             </div>
         </div>
     </div>
@@ -123,6 +123,7 @@ export default {
             },
             apiKey: "deliveboo26313334",
             dataChecked: false,
+            slug: this.$route.params.slug,
         };
     },
     created() {
@@ -139,6 +140,7 @@ export default {
                 this.orderInfo.totalAmount += el.quantity * el.price;
             });
         }
+
     },
     components: {
         Cart,

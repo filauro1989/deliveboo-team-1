@@ -8,7 +8,13 @@
             >
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img :src="require(`../../../public/storage/default_images/deliveboo-jumbotron-img.jpg`)" class="d-block w-100" alt="..." />
+                        <img
+                            :src="
+                                require(`../../../public/storage/uploads/deliveboo-jumbotron-img.jpg`)
+                            "
+                            class="d-block w-100"
+                            alt="..."
+                        />
                     </div>
                 </div>
             </div>
@@ -23,16 +29,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    .jumbotron {
-        background-color: #FF9999;
-        .carousel {
-            overflow: hidden;
-            max-height: 400px;
-            border-radius: 20px;
-            img {
-                object-fit: cover;
-                object-position: center;
-            }
+.jumbotron {
+    background-color: #ff9999;
+    .carousel {
+        overflow: hidden;
+        max-height: 400px;
+        border-radius: 20px;
+        box-shadow: 0 0 10px 1px #7f282f;
+        img {
+            object-fit: cover;
+            object-position: center;
         }
     }
+}
 </style>

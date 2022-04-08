@@ -27,8 +27,9 @@
         <nav class="main-navbar navbar navbar-expand-md navbar-light">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    <img class="" src="{{ asset('/storage/default_images/Guest-Deliveboo-Logo-10s-unscreen-crop.gif') }}"
-                    alt="DeliveBoo Logo pink">
+                    <img class=""
+                        src="{{ asset('/storage/uploads/Guest-Deliveboo-Logo-10s-unscreen-crop.gif') }}"
+                        alt="DeliveBoo Logo pink">
                 </a>
                 <button class="navbar-toggler bg-white" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -59,7 +60,7 @@
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item text-white" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                        document.getElementById('logout-form').submit();">
+                                            document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 

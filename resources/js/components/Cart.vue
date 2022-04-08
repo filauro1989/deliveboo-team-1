@@ -32,10 +32,11 @@
                                         <div
                                             class="d-flex justify-content-between"
                                         >
+                                            <!-- NOME PRODOTTO -->
                                             <div
-                                                class="d-flex flex-row align-items-center"
+                                                class="d-flex flex-row align-items-center w-40"
                                             >
-                                                <div class="ms-3">
+                                                <div class="">
                                                     <h5></h5>
                                                     <p class="small mb-0">
                                                         {{
@@ -45,20 +46,16 @@
                                                 </div>
                                             </div>
                                             <div
-                                                class="d-flex flex-row align-items-center"
+                                                class="d-flex flex-row align-items-center w-60"
                                             >
-                                                <div class="px-2 me-3">
-                                                    <!-- <h5 class="fw-normal mb-0">
-                                                        {{
-                                                            cartElement.quantity
-                                                        }}
-                                                    </h5> -->
+                                                <!-- QUANTITA -->
+                                                <div class="px-2 w-60">
                                                     <div
                                                         class="d-flex"
                                                         style="max-width: 300px"
                                                     >
                                                         <button
-                                                            class="btn btn-primary px-3 me-2"
+                                                            class="btn btn-primary px-1 px-md-2 px-xl-2 me-2"
                                                             onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
                                                             @click="
                                                                 modifyQuantity(
@@ -85,6 +82,7 @@
                                                                         cartElement.quantity
                                                                     )
                                                                 "
+                                                                disabled
                                                                 type="number"
                                                                 class="form-control quantity-input"
                                                             />
@@ -98,7 +96,7 @@
                                                                 ),
                                                                     getTotalCart()
                                                             "
-                                                            class="btn btn-primary px-3 ms-2"
+                                                            class="btn btn-primary px-1 px-md-2 px-xl-2 ms-2"
                                                             onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
                                                         >
                                                             <i
@@ -107,8 +105,9 @@
                                                         </button>
                                                     </div>
                                                 </div>
+                                                <!-- PREZZO -->
                                                 <div
-                                                    class="me-3 element-total-price"
+                                                    class="element-total-price w-30"
                                                 >
                                                     <h5 class="mb-0">
                                                         {{
@@ -120,7 +119,9 @@
                                                         &euro;
                                                     </h5>
                                                 </div>
+                                                <!-- CANCELLA -->
                                                 <a
+                                                    class="w-10"
                                                     @click="
                                                         deleteItem(cartElement)
                                                     "
@@ -373,6 +374,46 @@ export default {
     font-size: 0.9rem;
 }
 @import "bootstrap";
+.w-10 {
+    width: 10%;
+}
+.w-20 {
+    width: 20%;
+}
+.w-30 {
+    width: 30%;
+}
+.w-40 {
+    width: 40%;
+}
+.w-50 {
+    width: 50%;
+}
+.w-60 {
+    width: 60%;
+}
+.w-70 {
+    width: 70%;
+}
+
+@include media-breakpoint-down(md) {
+    .quantity-input {
+        width: 20px;
+    }
+}
+
+.quantity-input {
+    outline: none;
+    border: none;
+    padding-left: 0;
+    padding-right: 0;
+    text-align: center;
+    width: 20px;
+}
+.quantity-input[type="number"],
+textarea {
+    background-color: white;
+}
 
 .element-total-price {
     h5 {
@@ -380,21 +421,13 @@ export default {
     }
 }
 
-.quantity-input {
-    width: 50px;
-}
+// .quantity-input {
+//     width: 50px;
+// }
 
 .form-check {
     padding-left: 0;
 }
-
-// .btn:active,
-// .btn:hover,
-// .btn:focus {
-//     // background-color: #ff9999 !important;
-//     box-shadow: 0 0 5px black;
-// }
-
 .btn-primary {
     @include button-variant(
         #ff9999,

@@ -1,115 +1,156 @@
 <template>
-<div>
-    <svg id="visual" viewBox="0 0 900 100" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"><rect x="0" y="0" width="900" height="100" fill="#FFECEC"></rect><path d="M0 24L37.5 30.3C75 36.7 150 49.3 225 56C300 62.7 375 63.3 450 59.7C525 56 600 48 675 43.2C750 38.3 825 36.7 862.5 35.8L900 35L900 0L862.5 0C825 0 750 0 675 0C600 0 525 0 450 0C375 0 300 0 225 0C150 0 75 0 37.5 0L0 0Z" fill="#FF9999" stroke-linecap="round" stroke-linejoin="miter"></path></svg>
-    <div class="container">
-        <div class="row">
-            <div class="col">
-        <h1>{{ myRestaurant.restaurant_name }}</h1>
-        <div class="row m-0">
-            <div class="col-xl-7 pt-3">
-                <!-- row-cols-1 row-cols-md-2 row-cols-xl-4 -->
-                <div class="row gy-5 gx-2 mb-5">
-                    <template v-for="(dish, index) in menu">
-                        <div
-                            v-if="dish.visible"
-                            :key="index"
-                            class="col-12 col-md-4 col-xl-3"
-                        >
-                            <div
-                                class="card card-product d-flex justify-content-between"
-                            >
-                                <div class="image-price-container">
-                                    <div class="card-image">
-                                        <a href="#">
-                                            <img
-                                                v-if="dish.image"
-                                                class="img"
-                                                :src="'/storage/' + dish.image"
-                                            />
-                                            <img
-                                                v-else
-                                                class="img"
-                                                :src="'/storage/uploads/default_image.jpg'"
-                                            />
-                                        </a>
-                                    </div>
-
-                                    <div class="price">
-                                        <h4 class="m-0">
-                                            {{ dish.price.toFixed(2) }}€
-                                        </h4>
-                                    </div>
+    <div>
+        <svg
+            id="visual"
+            viewBox="0 0 900 100"
+            width="100%"
+            height="100%"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            version="1.1"
+        >
+            <rect x="0" y="0" width="900" height="100" fill="#FFECEC"></rect>
+            <path
+                d="M0 24L37.5 30.3C75 36.7 150 49.3 225 56C300 62.7 375 63.3 450 59.7C525 56 600 48 675 43.2C750 38.3 825 36.7 862.5 35.8L900 35L900 0L862.5 0C825 0 750 0 675 0C600 0 525 0 450 0C375 0 300 0 225 0C150 0 75 0 37.5 0L0 0Z"
+                fill="#FF9999"
+                stroke-linecap="round"
+                stroke-linejoin="miter"
+            ></path>
+        </svg>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h1>{{ myRestaurant.restaurant_name }}</h1>
+                    <div class="row m-0">
+                        <div class="col-xl-7 pt-3">
+                            <!-- row-cols-1 row-cols-md-2 row-cols-xl-4 -->
+                            <div class="row gy-5 gx-2 mb-5">
+                                <template v-for="(dish, index) in menu">
                                     <div
-                                        class="table h-50 d-flex flex-column justify-content-between"
-                                    ></div>
-                                    <h4 class="card-caption">
-                                        {{ dish.name }}
-                                    </h4>
-                                    <div class="card-description">
-                                        {{ dish.description }}
-                                    </div>
-                                </div>
-                                <div
-                                    class="ftr d-flex align-items-center justify-content-around"
-                                >
-                                    <div class="d-flex align-items-end p-2">
-                                        <button
-                                            class="quantity-btn"
-                                            @click="changeQuantity(dish, -1)"
-                                            onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
-                                        >
-                                            -
-                                        </button>
+                                        v-if="dish.visible"
+                                        :key="index"
+                                        class="col-12 col-md-4 col-xl-4 col-xxl-3"
+                                    >
                                         <div
-                                            class="quantity-container w-50 d-flex flex-column align-items-center"
+                                            class="card card-product d-flex justify-content-between"
                                         >
-                                            <label :for="dish.id">Q.tà</label>
-                                            <input
-                                                :id="dish.id"
-                                                v-model="dish.quantity"
-                                                type="number"
-                                                min="1"
-                                                disabled
-                                                class="w-50 text-center m-0"
-                                                name="quantity"
-                                            />
+                                            <div
+                                                class="image-price-container p-1"
+                                            >
+                                                <div class="card-image">
+                                                    <a href="#">
+                                                        <img
+                                                            v-if="dish.image"
+                                                            class="img"
+                                                            :src="
+                                                                '/storage/' +
+                                                                dish.image
+                                                            "
+                                                        />
+                                                        <img
+                                                            v-else
+                                                            class="img"
+                                                            :src="'/storage/uploads/default_image.jpg'"
+                                                        />
+                                                    </a>
+                                                </div>
+
+                                                <div class="price">
+                                                    <h4 class="m-0">
+                                                        {{
+                                                            dish.price.toFixed(
+                                                                2
+                                                            )
+                                                        }}€
+                                                    </h4>
+                                                </div>
+                                                <div
+                                                    class="table h-25 d-flex flex-column justify-content-between"
+                                                ></div>
+                                                <h4 class="card-caption">
+                                                    {{ dish.name }}
+                                                </h4>
+                                                <div class="card-description">
+                                                    {{ dish.description }}
+                                                </div>
+                                            </div>
+                                            <div
+                                                class="ftr d-flex align-items-center justify-content-around pb-2"
+                                            >
+                                                <div
+                                                    class="d-flex align-items-end p-2"
+                                                >
+                                                    <button
+                                                        class="quantity-btn"
+                                                        @click="
+                                                            changeQuantity(
+                                                                dish,
+                                                                -1
+                                                            )
+                                                        "
+                                                        onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
+                                                    >
+                                                        -
+                                                    </button>
+                                                    <div
+                                                        class="quantity-container w-50 d-flex flex-column align-items-center"
+                                                    >
+                                                        <label :for="dish.id"
+                                                            >Q.tà</label
+                                                        >
+                                                        <input
+                                                            :id="dish.id"
+                                                            v-model="
+                                                                dish.quantity
+                                                            "
+                                                            type="number"
+                                                            min="1"
+                                                            disabled
+                                                            class="w-50 text-center m-0"
+                                                            name="quantity"
+                                                        />
+                                                    </div>
+                                                    <button
+                                                        onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
+                                                        class="quantity-btn"
+                                                        @click="
+                                                            changeQuantity(
+                                                                dish,
+                                                                +1
+                                                            )
+                                                        "
+                                                    >
+                                                        +
+                                                    </button>
+                                                </div>
+                                                <div class="stats mt-4 me-2">
+                                                    <button
+                                                        type="button"
+                                                        rel="tooltip"
+                                                        title=""
+                                                        class="btn btn-just-icon btn-simple btn-warning rounded-pill"
+                                                        data-original-title="Saved to Wishlist"
+                                                        @click="addToCart(dish)"
+                                                    >
+                                                        <i
+                                                            class="btn-cart fa fa-shopping-cart"
+                                                        ></i>
+                                                    </button>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <button
-                                            onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
-                                            class="quantity-btn"
-                                            @click="changeQuantity(dish, +1)"
-                                        >
-                                            +
-                                        </button>
                                     </div>
-                                    <div class="stats">
-                                        <button
-                                            type="button"
-                                            rel="tooltip"
-                                            title=""
-                                            class="btn btn-just-icon btn-simple btn-warning rounded-pill"
-                                            data-original-title="Saved to Wishlist"
-                                            @click="addToCart(dish)"
-                                        >
-                                            <i
-                                                class="btn-cart fa fa-shopping-cart"
-                                            ></i>
-                                        </button>
-                                    </div>
-                                </div>
+                                </template>
                             </div>
                         </div>
-                    </template>
+                        <div class="col-xl-5 my-5">
+                            <Cart :elementfromCart="elementCart" :slug="slug" />
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="col-xl-5 my-5">
-                <Cart :elementfromCart="elementCart" :slug="slug" />
-            </div>
-        </div>
             </div>
         </div>
     </div>
-</div>
 </template>
 
 <script>

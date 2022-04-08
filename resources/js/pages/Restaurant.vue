@@ -28,7 +28,12 @@
                                         />
                                     </a>
                                 </div>
+
+                                <div class="price">
+                                        <h4>{{ dish.price.toFixed(2) }}€</h4>
+                                    </div>
                                 <div
+
                                     class="table h-50 d-flex flex-column justify-content-between"
                                 >
                                     <h4 class="card-caption">
@@ -41,19 +46,22 @@
                                 <div
                                     class="ftr d-flex align-items-center justify-content-around"
                                 >
-                                    <div class="price">
-                                        <h4>{{ dish.price.toFixed(2) }}€</h4>
-                                    </div>
-                                    <div class="w-25">
-                                        <label :for="dish.id">Q.tà</label>
-                                        <input
-                                            :id="dish.id"
-                                            v-model="dish.quantity"
-                                            type="number"
-                                            min="1"
-                                            class="w-25"
-                                            name="quantity"
-                                        />
+                                    
+                                    <div class="d-flex align-items-end p-2">
+                                        <button class="quantity-btn" @click="changeQuantity(dish, -1)" onclick="this.parentNode.querySelector('input[type=number]').stepDown()">-</button>
+                                        <div class="quantity-container w-50 d-flex flex-column align-items-center">
+                                            <label :for="dish.id">Q.tà</label>
+                                            <input
+                                                :id="dish.id"
+                                                v-model="dish.quantity"
+                                                type="number"
+                                                min="1"
+                                                disabled
+                                                class="w-50 text-center m-0"
+                                                name="quantity"
+                                            />
+                                        </div>
+                                        <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="quantity-btn" @click="changeQuantity(dish, +1)">+</button>
                                     </div>
                                     <div class="stats">
                                         <button
@@ -76,44 +84,7 @@
                 </div>
             </div>
 
-            <!--<template v-for="(dish, index) in menu" class="col">
-                        <!-- LA KEY DEL CICLO V-FOR VA NEL V-IF  -->
-            <!-- <div
-                            v-if="dish.visible"
-                            :key="index"
-                            class="card h-100"
-                        >
-                            <div class="card-header">Menù</div>
-                            <ul class="list-group list-group-flush">
-                                <li v-if="dish.img" class="list-group-item">
-                                    {{ dish.img }}
-                                </li>
-                                <li class="list-group-item">{{ dish.name }}</li>
-                                <li class="list-group-item">
-                                    {{ dish.description }}
-                                </li>
-                                <li class="list-group-item">
-                                    {{ dish.price.toFixed(2) }}€
-                                </li>
-                                <li>
-                                    quantità:
-                                    <input
-                                        v-model="dish.quantity"
-                                        type="number"
-                                        min="1"
-                                    />
-                                </li>
-                                <li>
-                                    <button
-                                        @click="addToCart(dish)"
-                                        class="btn btn-primary"
-                                    >
-                                        aggiungi al carrello
-                                    </button>
-                                </li>
-                            </ul>
-                        </div> -->
-            <!-- </template> -->
+          
 
             <div class="col-xl-5 my-5">
                 <Cart :elementfromCart="elementCart" :slug="slug" />
@@ -150,6 +121,24 @@ export default {
                 id: products.id,
             };
         },
+        changeQuantity(dish, num) {
+            if(dish.quantity + num > 0) {
+                dish.quantity = parseInt(dish.quantity) + parseInt(num);
+            }
+            // for (let index = 0; index < this.menu.length; index++) {
+            //     const element = this.menu[index];
+            //     // SE IL NOME DEL PIATTO è UGUALE AL NOME DELL'ELEMENTO SU CUI CICLO
+            //     if (
+            //         dish.name == element.name &&
+            //         element.quantity + num > 0
+            //     ) {
+            //         // VARIO LA QUANTITà DELL'ELEMENTO DI += num
+            //         element.quantity += num;
+            //         // VARIO LA QUANTITà DELL'ARRAY DI APPOGGIO DI += num
+                    
+            //     }
+            // }
+        }
     },
 
     created() {
@@ -177,7 +166,7 @@ export default {
                 console.log(err);
             });
     },
-
+    
     beforeRouteLeave(to, from, next) {
         //se il carrello del localStorage è pieno entro nella condizione
         if (localStorage.getItem("cart")) {
@@ -254,6 +243,26 @@ SECTIONS
 .section-gray {
     background: #e5e5e5;
     padding: 60px 0 30px 0;
+}
+
+.quantity-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20px;
+    height: 20px;
+    color: #00c7fa;
+    border: 2px solid #00c7fa;
+    border-radius: 50%;
+}
+
+input[type='number']::-webkit-inner-spin-button, 
+input[type='number']::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type='number'] {
+    background-color: white;
 }
 
 /*---------------------------------------------------------------------- /

@@ -1,7 +1,7 @@
 <template>
     <div>
         <Jumbotron />
-        <div class="container">
+        <div class="home-container">
             <div class="row">
                 <Sidebar
                     @sendRestaurants="getRestaurant($event)"
@@ -132,7 +132,8 @@ export default {
 
 <style lang="scss" scoped>
 .home-container {
-    height: 100vh;
+    width: 85%;
+    margin: 0 auto;
 }
 .test {
     transition: all 1s;

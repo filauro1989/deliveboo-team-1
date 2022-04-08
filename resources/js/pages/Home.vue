@@ -22,10 +22,18 @@
 
         <div class="container">
             <div class="row">
-                <Sidebar
-                    @sendRestaurants="getRestaurant($event)"
-                    class="col-12"
-                />
+                <div class="mb-5 category-container p-5">
+                    <h3 class="text-center">
+                        Seleziona una o più categorie
+                    </h3>
+                    <Sidebar
+                        @sendRestaurants="getRestaurant($event)"
+                        class="col-12"
+                    />
+                </div>
+                <h1 class="text-center">
+                    Ecco i Ristoranti nella tua zona
+                </h1>
                 <div class="col-12">
                     <transition-group
                         name="fade"
@@ -170,5 +178,10 @@ export default {
 
 .btn.my_btn {
     background-color: #0075a5 !important;
+}
+
+.category-container {
+    background-color: #f8da9e;
+    border-radius: 20px;
 }
 </style>

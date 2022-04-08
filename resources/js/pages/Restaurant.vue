@@ -45,7 +45,7 @@
                                         <h4>{{ dish.price.toFixed(2) }}€</h4>
                                     </div>
                                     <div class="w-25">
-                                        <label :for="dish.id">Quantità</label>
+                                        <label :for="dish.id">Q.tà</label>
                                         <input
                                             :id="dish.id"
                                             v-model="dish.quantity"

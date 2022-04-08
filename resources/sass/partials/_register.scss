@@ -9,16 +9,40 @@
     }
 }
 
-.btn-group .btn-check.my_btn-check {
-    background-color: #fff;
+input.form-control {
+        background-color: #fff;
+        width: 100%;
+        border-radius: 1px;
+        border: 1px solid #0075a5;
+        outline-color: #00c7fa;
+    
+        &:focus,
+        &:hover,
+        &:active {
+            background-color: #fff;
+            border: 1px solid #00c7fa;
+            outline-color: #00c7fa;
+        }
+}
+
+.btn-outline-primary {
+    border-color: #00c7fa;
+    color: #00c7fa;
     &:hover,
     &:focus,
     &:active {
-        background-color: #FF9999 !important;
-        color: white !important;
+        background-color: #ff9999;
+        color: white;
     }
-    &:checked{
-        background-color: #00c7fa !important;
-        color: white !important;
-    }
+}
+
+.btn-check:checked+.btn-outline-primary,
+.btn-check:active+.btn-outline-primary,
+.btn-outline-primary:active,
+.btn-outline-primary.active,
+.btn-outline-primary.dropdown-toggle.show {
+    color: white;
+    background-color: #FF9999;
+    border-color: #FF9999;
+    
 }

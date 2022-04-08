@@ -33,7 +33,7 @@
                             {{-- Categories --}}
                             <div>Scegli la categoria del ristorante</div>
                             @foreach ($categories as $category)
-                                <div required class="btn-group" role="group"
+                                <div required class="btn-group mb-1" role="group"
                                     aria-label="Basic checkbox toggle button group">
 
                                     <input type="checkbox" class="btn-check my_btn-check"
@@ -57,7 +57,7 @@
 
 
                             {{-- Email Address --}}
-                            <div class="form-group row">
+                            <div class="form-group row mt-3">
                                 <label for="email"
                                     class="col-md-4 col-form-label text-md-right">{{ __('Indirizzo E-Mail') }}</label>
 

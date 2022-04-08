@@ -5,6 +5,7 @@
 }
 
 .container-login {
+    background-color: #fff;
     position: absolute;
     width: 100%;
     height: 100%;
@@ -55,24 +56,24 @@
 .top-login {
     &:before {
         transform: rotate(45deg);
-        background: #e46569;
+        background: #0075a5;
     }
 
     &:after {
         transform: rotate(135deg);
-        background: #ecaf81;
+        background: #00c7fa;
     }
 }
 
 .bottom-login {
     &:before {
         transform: rotate(-45deg);
-        background: #60b8d4;
+        background: #ff9999;
     }
-
+    
     &:after {
         transform: rotate(-135deg);
-        background: #3745b5;
+        background: #7f282f;
     }
 }
 
@@ -94,12 +95,29 @@
     transition-delay: 0s;
     color: #333;
 
-    // input {
-    //     width: 100%;
-    //     padding: 15px;
-    //     margin: 5px;
-    //     border-radius: 1px;
-    //     border: 1px solid #ccc;
-    //     font-family: inherit;
-    // }
+    .btn.my_btn-login {
+        background-color: #00c7fa !important;
+        &:hover,
+        &:focus, 
+        &:active {
+            background-color: #FF9999 !important;
+            color: white;
+        }
+    }
+    .my_input {
+        background-color: #fff;
+        width:100%;
+        // padding:15px;
+        // margin:5px;
+        border-radius:1px;
+        border:1px solid #0075a5;
+
+        &:focus,
+        &:hover,
+        &:active {
+            background-color: #fff;
+            border:1px solid #00c7fa;
+            outline-color: #00c7fa;
+        }
+    }
 }

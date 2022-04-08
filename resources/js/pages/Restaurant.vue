@@ -2,8 +2,8 @@
     <div class="col">
         <svg id="visual" viewBox="0 0 2000 100" width="2000" height="100" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"><rect x="0" y="0" width="2000" height="100" fill="#fff"></rect><path d="M0 70L83.3 72C166.7 74 333.3 78 500 69.3C666.7 60.7 833.3 39.3 1000 28.7C1166.7 18 1333.3 18 1500 26.2C1666.7 34.3 1833.3 50.7 1916.7 58.8L2000 67L2000 0L1916.7 0C1833.3 0 1666.7 0 1500 0C1333.3 0 1166.7 0 1000 0C833.3 0 666.7 0 500 0C333.3 0 166.7 0 83.3 0L0 0Z" fill="#FF9999" stroke-linecap="round" stroke-linejoin="miter"></path></svg>
         <h1>{{ myRestaurant.restaurant_name }}</h1>
-        <div class="row w-100">
-            <div class="col-xl-7">
+        <div class="row m-0">
+            <div class="col-xl-7 pt-3">
                 <!-- row-cols-1 row-cols-md-2 row-cols-xl-4 -->
                 <div class="row gy-5 gx-2 mb-5">
                     <template v-for="(dish, index) in menu">
@@ -32,11 +32,13 @@
                                     </div>
 
                                     <div class="price">
-                                            <h4 class="m-0">{{ dish.price.toFixed(2) }}€</h4>
-                                        </div>
-                                    <div class="table h-50 d-flex flex-column justify-content-between">
-
-                                </div>
+                                        <h4 class="m-0">
+                                            {{ dish.price.toFixed(2) }}€
+                                        </h4>
+                                    </div>
+                                    <div
+                                        class="table h-50 d-flex flex-column justify-content-between"
+                                    ></div>
                                     <h4 class="card-caption">
                                         {{ dish.name }}
                                     </h4>
@@ -47,10 +49,17 @@
                                 <div
                                     class="ftr d-flex align-items-center justify-content-around"
                                 >
-                                    
                                     <div class="d-flex align-items-end p-2">
-                                        <button class="quantity-btn" @click="changeQuantity(dish, -1)" onclick="this.parentNode.querySelector('input[type=number]').stepDown()">-</button>
-                                        <div class="quantity-container w-50 d-flex flex-column align-items-center">
+                                        <button
+                                            class="quantity-btn"
+                                            @click="changeQuantity(dish, -1)"
+                                            onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
+                                        >
+                                            -
+                                        </button>
+                                        <div
+                                            class="quantity-container w-50 d-flex flex-column align-items-center"
+                                        >
                                             <label :for="dish.id">Q.tà</label>
                                             <input
                                                 :id="dish.id"
@@ -62,7 +71,13 @@
                                                 name="quantity"
                                             />
                                         </div>
-                                        <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="quantity-btn" @click="changeQuantity(dish, +1)">+</button>
+                                        <button
+                                            onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
+                                            class="quantity-btn"
+                                            @click="changeQuantity(dish, +1)"
+                                        >
+                                            +
+                                        </button>
                                     </div>
                                     <div class="stats">
                                         <button
@@ -84,8 +99,6 @@
                     </template>
                 </div>
             </div>
-
-          
 
             <div class="col-xl-5 my-5">
                 <Cart :elementfromCart="elementCart" :slug="slug" />
@@ -123,7 +136,7 @@ export default {
             };
         },
         changeQuantity(dish, num) {
-            if(dish.quantity + num > 0) {
+            if (dish.quantity + num > 0) {
                 dish.quantity = parseInt(dish.quantity) + parseInt(num);
             }
             // for (let index = 0; index < this.menu.length; index++) {
@@ -136,10 +149,10 @@ export default {
             //         // VARIO LA QUANTITà DELL'ELEMENTO DI += num
             //         element.quantity += num;
             //         // VARIO LA QUANTITà DELL'ARRAY DI APPOGGIO DI += num
-                    
+
             //     }
             // }
-        }
+        },
     },
 
     created() {
@@ -167,7 +180,7 @@ export default {
                 console.log(err);
             });
     },
-    
+
     beforeRouteLeave(to, from, next) {
         //se il carrello del localStorage è pieno entro nella condizione
         if (localStorage.getItem("cart")) {
@@ -196,8 +209,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&family=Pacifico&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Indie+Flower&family=Pacifico&display=swap");
 
 .section-cards {
     z-index: 3;
@@ -220,12 +232,12 @@ export default {
     border-radius: 50%;
 }
 
-input[type='number']::-webkit-inner-spin-button, 
-input[type='number']::-webkit-outer-spin-button { 
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
-input[type='number'] {
+input[type="number"] {
     background-color: white;
 }
 
@@ -258,7 +270,7 @@ CARDS
         color: white;
         padding: 0.2rem 0.7rem;
         border-radius: 20px;
-        font-family: 'Pacifico', cursive;
+        font-family: "Pacifico", cursive;
     }
 }
 

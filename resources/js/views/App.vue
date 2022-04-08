@@ -38,9 +38,10 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
+
 template {
-    font-family: "Nunito", sans-serif !important;
+    font-family: "Nunito", sans-serif;
 }
 .main-overflow::-webkit-scrollbar {
     display: none;

@@ -13,9 +13,9 @@
                     Purchase
                 </button> -->
                 <form @submit.prevent>
-                    <p>
-                        Inserisci tutti i tuoi dati per procedere al pagamento:
-                    </p>
+                    <h2 class="big-title">
+                        Inserisci i tuoi dati prima di procedere al pagamento:
+                    </h2>
                     <div class="form-group">
                         <label for="name">Nome</label>
                         <input
@@ -44,7 +44,7 @@
                     </div>
                     <div class="form-group">
                         <label for="address"
-                            >Inserisci l'indirizzo per la consegna</label
+                            >Indirizzo per la consegna</label
                         >
                         <input
                             min="3"
@@ -59,7 +59,7 @@
                     </div>
                     <div class="form-group">
                         <label for="email"
-                            >Inserisci il tuo indirizzo e-mail</label
+                            >Indirizzo e-mail</label
                         >
                         <input
                             v-model="orderInfo.mail"
@@ -98,7 +98,7 @@
                 </transition>
             </div>
             <div class="col-6">
-                <Cart />
+                <Cart :slug="slug"/>
             </div>
         </div>
     </div>
@@ -123,6 +123,7 @@ export default {
             },
             apiKey: "deliveboo26313334",
             dataChecked: false,
+            slug: this.$route.params.slug,
         };
     },
     created() {
@@ -139,6 +140,7 @@ export default {
                 this.orderInfo.totalAmount += el.quantity * el.price;
             });
         }
+
     },
     components: {
         Cart,
@@ -198,6 +200,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import './../../../node_modules/braintree-web-drop-in/dropin.css';
+
 .button {
     cursor: pointer;
     font-weight: 500;
@@ -240,5 +244,32 @@ export default {
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
     opacity: 0;
     transform: translateX(-100%);
+}
+
+.form-control {
+    margin-bottom: 1em;
+    background-color: white;
+    &:focus {
+        box-shadow: 0 0 0 0.25rem rgb(255 153 153 / 25%);
+    }
+}
+
+.btn-primary {
+    background-color: #FF9999;
+    color: white;
+    border: none;
+    font-weight: bold;
+    &:hover,
+    &:active,
+    &:focus {
+        background-color: #00c7fa;
+    }
+}
+
+.payment .btn.btn-primary {
+    background-color: #FF9999 !important;
+    color: white;
+    border: none;
+    font-weight: bold;
 }
 </style>

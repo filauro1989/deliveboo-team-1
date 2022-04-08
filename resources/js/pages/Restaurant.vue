@@ -65,7 +65,7 @@
                                                     </h4>
                                                 </div>
                                                 <div
-                                                    class="table h-25 d-flex flex-column justify-content-between"
+                                                    class="h-25 d-flex flex-column justify-content-between"
                                                 ></div>
                                                 <h4 class="card-caption">
                                                     {{ dish.name }}

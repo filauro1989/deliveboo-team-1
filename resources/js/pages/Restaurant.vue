@@ -32,10 +32,10 @@
                                         class="col-12 col-md-4 col-xl-4"
                                     >
                                         <div
-                                            class="card card-product d-flex justify-content-between"
+                                            class="card card-product d-flex justify-content-between px-2"
                                         >
                                             <div
-                                                class="image-price-container p-1 h-100"
+                                                class="image-price-container h-100"
                                             >
                                                 <div class="card-image">
                                                     <div
@@ -332,7 +332,7 @@ CARDS
         position: absolute;
         top: -20px;
         right: 0;
-        font-size: 1.2rem;
+        font-size: 1rem;
         background-color: #5cdeff;
         color: white;
         padding: 0.15rem 0.5rem;
@@ -552,6 +552,7 @@ CARDS
 .card-description {
     max-height: 175px;
     overflow-y: auto;
+    font-size: 0.9em;
     p {
         color: #888;
     }

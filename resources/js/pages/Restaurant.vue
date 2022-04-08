@@ -77,7 +77,7 @@
             </div>
 
             <!--<template v-for="(dish, index) in menu" class="col">
-                        <!-- LA KEY DEL CICLO V-FOR VA NEL V-IF  -->
+                        <!- LA KEY DEL CICLO V-FOR VA NEL V-IF  -->
             <!-- <div
                             v-if="dish.visible"
                             :key="index"

@@ -407,7 +407,7 @@ export default {
 
 @include media-breakpoint-down(md) {
     .quantity-input {
-        width: 30px;
+        width: 20px;
     }
 }
 

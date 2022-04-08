@@ -1,10 +1,26 @@
 <template>
-<div>
-    <svg id="visual" viewBox="0 0 900 100" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"><rect x="0" y="0" width="900" height="100" fill="#FFECEC"></rect><path d="M0 24L37.5 30.3C75 36.7 150 49.3 225 56C300 62.7 375 63.3 450 59.7C525 56 600 48 675 43.2C750 38.3 825 36.7 862.5 35.8L900 35L900 0L862.5 0C825 0 750 0 675 0C600 0 525 0 450 0C375 0 300 0 225 0C150 0 75 0 37.5 0L0 0Z" fill="#FF9999" stroke-linecap="round" stroke-linejoin="miter"></path></svg>
-    <div class="container">
-        <div class="row">
-            <div class="col-6">
-                <!-- <div>dati UTENTE</div>
+    <div>
+        <svg
+            id="visual"
+            viewBox="0 0 900 100"
+            width="100%"
+            height="100%"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            version="1.1"
+        >
+            <rect x="0" y="0" width="900" height="100" fill="#FFECEC"></rect>
+            <path
+                d="M0 24L37.5 30.3C75 36.7 150 49.3 225 56C300 62.7 375 63.3 450 59.7C525 56 600 48 675 43.2C750 38.3 825 36.7 862.5 35.8L900 35L900 0L862.5 0C825 0 750 0 675 0C600 0 525 0 450 0C375 0 300 0 225 0C150 0 75 0 37.5 0L0 0Z"
+                fill="#FF9999"
+                stroke-linecap="round"
+                stroke-linejoin="miter"
+            ></path>
+        </svg>
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-6">
+                    <!-- <div>dati UTENTE</div>
                 <div id="dropin-container"></div>
                 <button
                     id="submit-button"
@@ -12,96 +28,95 @@
                 >
                     Purchase
                 </button> -->
-                <form @submit.prevent>
-                    <h2 class="big-title">
-                        Inserisci i tuoi dati prima di procedere al pagamento:
-                    </h2>
-                    <div class="form-group">
-                        <label for="name">Nome</label>
-                        <input
-                            min="3"
-                            max="50"
-                            required
-                            v-model="orderInfo.name"
-                            type="text"
-                            class="form-control"
-                            id="name"
-                            placeholder="Inserisci il tuo nome"
-                        />
-                    </div>
-                    <div class="form-group">
-                        <label for="surname">Cognome</label>
-                        <input
-                            min="3"
-                            max="50"
-                            required
-                            v-model="orderInfo.surname"
-                            type="text"
-                            class="form-control"
-                            id="surname"
-                            placeholder="Inserisci il tuo cognome"
-                        />
-                    </div>
-                    <div class="form-group">
-                        <label for="address"
-                            >Indirizzo per la consegna</label
-                        >
-                        <input
-                            min="3"
-                            max="50"
-                            required
-                            v-model="orderInfo.address"
-                            type="text"
-                            class="form-control"
-                            id="address"
-                            placeholder="Inserisci l'indirizzo per la consegna"
-                        />
-                    </div>
-                    <div class="form-group">
-                        <label for="email"
-                            >Indirizzo e-mail</label
-                        >
-                        <input
-                            v-model="orderInfo.mail"
-                            type="email"
-                            required
-                            class="form-control"
-                            id="email"
-                            placeholder="Inserisci il tuo indirizzo e-mail"
-                        />
-                    </div>
+                    <form @submit.prevent>
+                        <h2 class="big-title">
+                            Inserisci i tuoi dati prima di procedere al
+                            pagamento:
+                        </h2>
+                        <div class="form-group">
+                            <label for="name">Nome</label>
+                            <input
+                                min="3"
+                                max="50"
+                                required
+                                v-model="orderInfo.name"
+                                type="text"
+                                class="form-control"
+                                id="name"
+                                placeholder="Inserisci il tuo nome"
+                            />
+                        </div>
+                        <div class="form-group">
+                            <label for="surname">Cognome</label>
+                            <input
+                                min="3"
+                                max="50"
+                                required
+                                v-model="orderInfo.surname"
+                                type="text"
+                                class="form-control"
+                                id="surname"
+                                placeholder="Inserisci il tuo cognome"
+                            />
+                        </div>
+                        <div class="form-group">
+                            <label for="address"
+                                >Indirizzo per la consegna</label
+                            >
+                            <input
+                                min="3"
+                                max="50"
+                                required
+                                v-model="orderInfo.address"
+                                type="text"
+                                class="form-control"
+                                id="address"
+                                placeholder="Inserisci l'indirizzo per la consegna"
+                            />
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Indirizzo e-mail</label>
+                            <input
+                                v-model="orderInfo.mail"
+                                type="email"
+                                required
+                                class="form-control"
+                                id="email"
+                                placeholder="Inserisci il tuo indirizzo e-mail"
+                            />
+                        </div>
 
-                    <button
-                        @click="checkIfChecked()"
-                        type="submit"
-                        class="btn btn-primary mt-2"
-                    >
-                        Conferma
-                    </button>
-                </form>
-                <transition name="fade">
-                    <div
-                        v-if="
-                            dataChecked &&
-                            orderInfo.name.trim().length > 0 &&
-                            orderInfo.surname.trim().length > 0 &&
-                            orderInfo.address.trim().length > 0 &&
-                            orderInfo.mail.trim().length > 0
-                        "
-                    >
-                        <v-braintree
-                            authorization="sandbox_8hskcmnn_tcmvbbfg3pvh5s7s"
-                            @success="onSuccess"
-                            @error="onError"
-                        ></v-braintree>
-                    </div>
-                </transition>
-            </div>
-            <div class="col-6">
-                <Cart :slug="slug"/>
+                        <button
+                            @click="checkIfChecked()"
+                            type="submit"
+                            class="btn btn-primary mt-2"
+                        >
+                            Conferma
+                        </button>
+                    </form>
+                    <transition name="fade">
+                        <div
+                            v-if="
+                                dataChecked &&
+                                orderInfo.name.trim().length > 0 &&
+                                orderInfo.surname.trim().length > 0 &&
+                                orderInfo.address.trim().length > 0 &&
+                                orderInfo.mail.trim().length > 0
+                            "
+                        >
+                            <v-braintree
+                                authorization="sandbox_8hskcmnn_tcmvbbfg3pvh5s7s"
+                                @success="onSuccess"
+                                @error="onError"
+                            ></v-braintree>
+                        </div>
+                    </transition>
+                </div>
+                <div class="col-xl-6 my-5">
+                    <Cart :slug="slug" />
+                </div>
             </div>
         </div>
-    </div>
     </div>
 </template>
 
@@ -140,7 +155,6 @@ export default {
                 this.orderInfo.totalAmount += el.quantity * el.price;
             });
         }
-
     },
     components: {
         Cart,
@@ -200,7 +214,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import './../../../node_modules/braintree-web-drop-in/dropin.css';
+@import "./../../../node_modules/braintree-web-drop-in/dropin.css";
 
 .button {
     cursor: pointer;
@@ -255,7 +269,7 @@ export default {
 }
 
 .btn-primary {
-    background-color: #FF9999;
+    background-color: #ff9999;
     color: white;
     border: none;
     font-weight: bold;
@@ -266,8 +280,8 @@ export default {
     }
 }
 
-.payment .btn .btn-primary {
-    background-color: #FF9999 !important;
+.payment .btn.btn-primary {
+    background-color: #ff9999 !important;
     color: white;
     border: none;
     font-weight: bold;

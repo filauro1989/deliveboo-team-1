@@ -133,7 +133,8 @@ export default {
 
 <style lang="scss" scoped>
 .home-container {
-    height: 100vh;
+    width: 85%;
+    margin: 0 auto;
 }
 .test {
     transition: all 1s;

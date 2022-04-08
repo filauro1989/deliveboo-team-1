@@ -121,12 +121,11 @@
                                                 </div>
                                                 <!-- CANCELLA -->
                                                 <a
-                                                    class="w-10"
+                                                    class="w-10 trash-item"
                                                     @click="
                                                         deleteItem(cartElement)
                                                     "
                                                     href="#!"
-                                                    style="color: #cecece"
                                                     ><i
                                                         class="fas fa-trash-alt"
                                                     ></i
@@ -207,7 +206,7 @@
                                         params: {
                                             totalAmount: totalAmount,
                                             cartStorage: cartStorage,
-                                            slug: slug
+                                            slug: slug,
                                         },
                                     }"
                                 >
@@ -396,11 +395,24 @@ export default {
 .w-70 {
     width: 70%;
 }
+.trash-item {
+    color: #cecece;
+}
+.trash-item:hover,
+.trash-item:active,
+.trash-item:focus {
+    transform: scale(1.2);
+    color: red;
+}
 
 @include media-breakpoint-down(md) {
     .quantity-input {
-        width: 20px;
+        width: 30px;
     }
+}
+
+input.form-control {
+    border-bottom: none !important;
 }
 
 .quantity-input {
@@ -409,7 +421,7 @@ export default {
     padding-left: 0;
     padding-right: 0;
     text-align: center;
-    width: 20px;
+    width: 50px;
 }
 .quantity-input[type="number"],
 textarea {
@@ -421,10 +433,6 @@ textarea {
         font-size: 1em;
     }
 }
-
-// .quantity-input {
-//     width: 50px;
-// }
 
 .form-check {
     padding-left: 0;

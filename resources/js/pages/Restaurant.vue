@@ -32,7 +32,7 @@
                                     class="table h-50 d-flex flex-column justify-content-between"
                                 >
                                     <h4 class="card-caption">
-                                        <a href="#">{{ dish.name }}</a>
+                                        {{ dish.name }}
                                     </h4>
                                     <div class="card-description">
                                         {{ dish.description }}

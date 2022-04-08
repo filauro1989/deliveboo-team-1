@@ -24,21 +24,23 @@
                     <div class="row m-0">
                         <div class="col-xl-7 pt-3">
                             <!-- row-cols-1 row-cols-md-2 row-cols-xl-4 -->
-                            <div class="row gy-5 gx-2 mb-5">
+                            <div class="row gy-5 gy-md-3 gx-2 mb-5">
                                 <template v-for="(dish, index) in menu">
                                     <div
                                         v-if="dish.visible"
                                         :key="index"
-                                        class="col-12 col-md-4 col-xl-4 col-xxl-3"
+                                        class="col-12 col-md-4 col-xl-4"
                                     >
                                         <div
                                             class="card card-product d-flex justify-content-between"
                                         >
                                             <div
-                                                class="image-price-container p-1"
+                                                class="image-price-container p-1 h-100"
                                             >
                                                 <div class="card-image">
-                                                    <a href="#">
+                                                    <div
+                                                        class="card-image-container w-100 h-100"
+                                                    >
                                                         <img
                                                             v-if="dish.image"
                                                             class="img"
@@ -52,7 +54,7 @@
                                                             class="img"
                                                             :src="'/storage/uploads/default_image.jpg'"
                                                         />
-                                                    </a>
+                                                    </div>
                                                 </div>
 
                                                 <div class="price">
@@ -64,10 +66,7 @@
                                                         }}€
                                                     </h4>
                                                 </div>
-                                                <div
-                                                    class="h-25 d-flex flex-column justify-content-between"
-                                                ></div>
-                                                <h4 class="card-caption">
+                                                <h4 class="card-caption mt-3">
                                                     {{ dish.name }}
                                                 </h4>
                                                 <div class="card-description">
@@ -75,7 +74,7 @@
                                                 </div>
                                             </div>
                                             <div
-                                                class="ftr d-flex align-items-center justify-content-around pb-2"
+                                                class="ftr d-flex align-items-center justify-content-around pb-4 pb-md-2"
                                             >
                                                 <div
                                                     class="d-flex align-items-end p-2"
@@ -123,7 +122,7 @@
                                                         +
                                                     </button>
                                                 </div>
-                                                <div class="stats mt-4 me-2">
+                                                <div class="stats mt-4 me-3">
                                                     <button
                                                         type="button"
                                                         rel="tooltip"
@@ -256,6 +255,7 @@ export default {
 
 <style lang="scss" scoped>
 @import url("https://fonts.googleapis.com/css2?family=Indie+Flower&family=Pacifico&display=swap");
+@import "bootstrap";
 
 .section-cards {
     z-index: 3;
@@ -277,6 +277,27 @@ export default {
     border: 2px solid #00c7fa;
     border-radius: 50%;
 }
+.quantity-btn:hover {
+    background-color: #00c7fa;
+    color: white;
+    border: 2px solid white;
+}
+
+@include media-breakpoint-down(md) {
+    .quantity-btn {
+        width: 50px;
+        height: 50px;
+        background-color: #00c7fa;
+        color: white;
+        border: 2px solid white;
+        font-size: 1.8em;
+    }
+    .quantity-btn:hover {
+        background-color: white;
+        color: #00c7fa;
+        border: 2px solid #00c7fa;
+    }
+}
 
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
@@ -295,7 +316,7 @@ CARDS
     display: inline-block;
     position: relative;
     height: 100%;
-    // width: 100%;
+    max-height: 400px;
     margin-bottom: 30px;
     border-radius: 6px;
     color: rgba(0, 0, 0, 0.87);
@@ -312,25 +333,25 @@ CARDS
         top: -20px;
         right: 0;
         font-size: 1.2rem;
-        background-color: #00c7fa;
+        background-color: #5cdeff;
         color: white;
-        padding: 0.2rem 0.7rem;
+        padding: 0.15rem 0.5rem;
         border-radius: 20px;
         font-family: "Pacifico", cursive;
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+            0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
     }
 }
 
 .card .card-image {
-    width: 40%;
-    height: auto;
+    width: 6rem;
+    height: 6rem;
     position: relative;
     overflow: hidden;
     margin-left: 15px;
     margin-right: 15px;
     margin-top: -30px;
     border-radius: 6px;
-    box-shadow: 0 16px 38px -12px rgba(0, 0, 0, 0.56),
-        0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
 }
 
 .card-image:hover {
@@ -343,6 +364,8 @@ CARDS
     height: auto;
     border-radius: 6px;
     pointer-events: none;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border: 1px solid rgba(0, 0, 0, 0.2);
 }
 
 .card .card-image .card-caption {
@@ -526,8 +549,12 @@ CARDS
     text-align: center;
 }
 
-.card-description p {
-    color: #888;
+.card-description {
+    max-height: 175px;
+    overflow-y: auto;
+    p {
+        color: #888;
+    }
 }
 
 .card-caption,
@@ -596,11 +623,23 @@ BUTTONS
     border: 1px solid transparent;
     border-radius: 4px;
 }
+
 .btn-cart:hover,
 .btn-cart:active,
 .btn-cart:focus {
     transform: scale(1.3);
     transition: transform 0.2s ease-in-out;
+}
+@include media-breakpoint-down(md) {
+    .btn-cart {
+        transform: scale(2);
+    }
+    .btn-cart:hover,
+    .btn-cart:active,
+    .btn-cart:focus {
+        transform: scale(2.2);
+        transition: transform 0.2s ease-in-out;
+    }
 }
 
 .btn,
@@ -816,7 +855,7 @@ h3,
 
 h4,
 .h4 {
-    font-size: 1.1em;
+    font-size: 1.35em;
     line-height: 1.55em;
 }
 

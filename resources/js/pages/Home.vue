@@ -1,42 +1,50 @@
 <template>
-    <div class="col home-container">
-        <div class="row">
-            <Sidebar @sendRestaurants="getRestaurant($event)" class="col-12" />
-            <div class="col-12">
-                <transition-group
-                    name="fade"
-                    class="row row-cols-1 row-cols-md-2 row-cols-xl-4"
-                >
-                    <div
-                        v-for="(restaurant, index) in restaurantLoaded"
-                        :key="index + 1"
-                        class="col d-flex justify-content-center p-0"
-                        @click="clearLocalStorage(restaurant.slug)"
+    <div>
+        <Jumbotron />
+        <div class="container">
+            <div class="row">
+                <Sidebar
+                    @sendRestaurants="getRestaurant($event)"
+                    class="col-12"
+                />
+                <div class="col-12">
+                    <transition-group
+                        name="fade"
+                        class="row row-cols-1 row-cols-md-2 row-cols-xl-4"
                     >
-                        <router-link
-                            :to="{
-                                name: 'restaurant',
-                                params: {
-                                    slug: restaurant.slug,
-                                    id: restaurant.id,
-                                },
-                            }"
+                        <div
+                            v-for="(restaurant, index) in restaurantLoaded"
+                            :key="index + 1"
+                            class="col d-flex justify-content-center p-0"
+                            @click="clearLocalStorage(restaurant.slug)"
                         >
-                            <RestaurantCard
-                                :restaurantName="restaurant.restaurant_name"
-                                :restaurantImg="restaurant.image"
-                            />
-                        </router-link>
-                    </div>
-                </transition-group>
-                <div class="d-flex justify-content-center align-items-end mb-5">
-                    <button
-                        v-if="listLength < restaurantsApp.length"
-                        class="btn btn-success rounded-pill text-white mt-3"
-                        @click="loadMore"
+                            <router-link
+                                :to="{
+                                    name: 'restaurant',
+                                    params: {
+                                        slug: restaurant.slug,
+                                        id: restaurant.id,
+                                    },
+                                }"
+                            >
+                                <RestaurantCard
+                                    :restaurantName="restaurant.restaurant_name"
+                                    :restaurantImg="restaurant.image"
+                                />
+                            </router-link>
+                        </div>
+                    </transition-group>
+                    <div
+                        class="d-flex justify-content-center align-items-end mb-5"
                     >
-                        Mostra altri
-                    </button>
+                        <button
+                            v-if="listLength < restaurantsApp.length"
+                            class="btn btn-success rounded-pill text-white mt-3"
+                            @click="loadMore"
+                        >
+                            Mostra altri
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -45,14 +53,16 @@
 
 <script>
 import Axios from "axios";
-import RestaurantCard from "../components/RestaurantCard.vue";
+import Jumbotron from "../components/Jumbotron.vue";
 import Sidebar from "../components/Sidebar.vue";
+import RestaurantCard from "../components/RestaurantCard.vue";
 
 export default {
     name: "Home",
     components: {
-        RestaurantCard,
+        Jumbotron,
         Sidebar,
+        RestaurantCard,
     },
     // PRENDO TRAMITE LE PROPS L'ARRAY CATEGORIES DALLA PAGINA APP.VUE
     props: {

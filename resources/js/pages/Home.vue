@@ -32,7 +32,7 @@
                     />
                 </div>
                 <h1 class="text-center mb-3">
-                    Ecco i Ristoranti nella tua zona
+                    Ecco i ristoranti nella tua zona
                 </h1>
                 <div class="col-12">
                     <transition-group

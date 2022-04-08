@@ -1,0 +1,24 @@
+.btn.my_btn-register {
+    background-color: #00c7fa !important;
+
+    &:hover,
+    &:focus,
+    &:active {
+        background-color: #FF9999 !important;
+        color: white;
+    }
+}
+
+.btn-group .btn-check.my_btn-check {
+    background-color: #fff;
+    &:hover,
+    &:focus,
+    &:active {
+        background-color: #FF9999 !important;
+        color: white !important;
+    }
+    &:checked{
+        background-color: #00c7fa !important;
+        color: white !important;
+    }
+}

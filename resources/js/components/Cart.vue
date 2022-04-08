@@ -54,7 +54,7 @@
                                                         }}
                                                     </h5> -->
                                                     <div
-                                                        class="d-flex mb-4"
+                                                        class="d-flex"
                                                         style="max-width: 300px"
                                                     >
                                                         <button
@@ -86,7 +86,7 @@
                                                                     )
                                                                 "
                                                                 type="number"
-                                                                class="form-control"
+                                                                class="form-control quantity-input"
                                                             />
                                                         </div>
 
@@ -139,11 +139,65 @@
                             </div>
                             <div>
                                 <button
-                                    class="btn btn-danger"
-                                    @click="refresh()"
+                                    v-if="cartStorage != 0"
+                                    class="btn btn-outline-danger"
+                                    type="button"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#deleteConfirmation"
                                 >
                                     Svuota Carrello
                                 </button>
+
+                                <!-- CART MODAL -->
+                                <div
+                                    class="modal fade"
+                                    id="deleteConfirmation"
+                                    data-bs-backdrop="static"
+                                    tabindex="-1"
+                                    aria-labelledby="deletePopup"
+                                    aria-hidden="true"
+                                >
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5
+                                                    class="modal-title"
+                                                    id="deletePopup"
+                                                >
+                                                    Attenzione
+                                                </h5>
+                                                <button
+                                                    type="button"
+                                                    class="btn-close"
+                                                    data-bs-dismiss="modal"
+                                                    aria-label="Close"
+                                                ></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                Sei sicuro di voler svuotare il
+                                                carrello?
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button
+                                                    type="button"
+                                                    class="btn btn-secondary"
+                                                    data-bs-dismiss="modal"
+                                                >
+                                                    Annulla
+                                                </button>
+                                                <form>
+                                                    <input
+                                                        class="btn btn-danger"
+                                                        type="submit"
+                                                        value="Elimina"
+                                                        @click="refresh()"
+                                                    />
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <router-link
                                     :to="{
                                         name: 'checkout',
@@ -159,7 +213,7 @@
                                             currentRoute != 'checkout' &&
                                             cartStorage.length > 0
                                         "
-                                        class="btn btn-primary"
+                                        class="btn btn-success"
                                     >
                                         Checkout
                                     </button>
@@ -187,7 +241,7 @@ export default {
 
     props: {
         elementfromCart: Object,
-        slug: String
+        slug: String,
     },
     methods: {
         refresh() {
@@ -257,7 +311,7 @@ export default {
         // this.cartStorage = [];
         setTimeout(() => {
             // mi salvo lo slug del ristorante in una variabile del localstorage
-            localStorage.setItem("restaurantSlug",JSON.stringify(this.slug));
+            localStorage.setItem("restaurantSlug", JSON.stringify(this.slug));
 
             if (JSON.parse(localStorage.getItem("cart"))) {
                 this.cartStorage = JSON.parse(localStorage.getItem("cart"));
@@ -265,7 +319,7 @@ export default {
             }
         }, 100);
     },
-    
+
     watch: {
         elementfromCart: function () {
             let found = false;
@@ -315,5 +369,48 @@ export default {
 <style lang="scss" scoped>
 * {
     font-size: 0.9rem;
+}
+@import "bootstrap";
+
+.quantity-input {
+    width: 50px;
+}
+
+.form-check {
+    padding-left: 0;
+}
+
+// .btn:active,
+// .btn:hover,
+// .btn:focus {
+//     // background-color: #ff9999 !important;
+//     box-shadow: 0 0 5px black;
+// }
+
+.btn-primary {
+    @include button-variant(
+        #ff9999,
+        white,
+        white,
+        #00c7fa,
+        white,
+        white,
+        #ff9999,
+        white,
+        white
+    );
+}
+.btn-success {
+    @include button-variant(
+        #00c7fa,
+        white,
+        white,
+        #ff9999,
+        white,
+        white,
+        #00c7fa,
+        white,
+        white
+    );
 }
 </style>

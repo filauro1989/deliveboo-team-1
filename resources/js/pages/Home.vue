@@ -1,5 +1,7 @@
 <template>
-    <div class="col home-container">
+<div>
+    <Jumbotron/>
+    <div class="container">
         <div class="row">
             <Sidebar @sendRestaurants="getRestaurant($event)" class="col-12" />
             <div class="col-12">
@@ -41,18 +43,21 @@
             </div>
         </div>
     </div>
+</div>
 </template>
 
 <script>
 import Axios from "axios";
-import RestaurantCard from "../components/RestaurantCard.vue";
+import Jumbotron from "../components/Jumbotron.vue";
 import Sidebar from "../components/Sidebar.vue";
+import RestaurantCard from "../components/RestaurantCard.vue";
 
 export default {
     name: "Home",
     components: {
-        RestaurantCard,
+        Jumbotron,
         Sidebar,
+        RestaurantCard,
     },
     // PRENDO TRAMITE LE PROPS L'ARRAY CATEGORIES DALLA PAGINA APP.VUE
     props: {

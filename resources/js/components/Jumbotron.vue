@@ -8,7 +8,7 @@
             >
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img :src="require(`../../../public/storage/default_images/jumbotron-2-deliveboo.webp`)" class="d-block w-100" alt="..." />
+                        <img :src="require(`../../../public/storage/default_images/deliveboo-jumbotron-img.jpg`)" class="d-block w-100" alt="..." />
                     </div>
                 </div>
             </div>

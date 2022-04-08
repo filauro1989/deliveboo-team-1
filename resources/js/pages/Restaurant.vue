@@ -316,7 +316,7 @@ CARDS
     display: inline-block;
     position: relative;
     height: 100%;
-    max-height: 400px;
+    max-height: 375px;
     margin-bottom: 30px;
     border-radius: 6px;
     color: rgba(0, 0, 0, 0.87);
@@ -550,7 +550,7 @@ CARDS
 }
 
 .card-description {
-    max-height: 175px;
+    max-height: 130px;
     overflow-y: auto;
     font-size: 0.9em;
     p {

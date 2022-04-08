@@ -9,7 +9,7 @@
                 <img class="login-img" src="{{ asset('/storage/default_images/MyDeliveboo10sBlue-unscreen.gif') }}"
                     alt="DeliveBoo Logo">
             </div>
-            <form method="POST" action="{{ route('login') }}">
+            <form class="position-relative" method="POST" action="{{ route('login') }}">
                 @csrf
                 <label for="email">{{ __('E-mail') }}</label>
                 <input class="my_input" id="email" type="email" @error('email') is-invalid @enderror" name="email"

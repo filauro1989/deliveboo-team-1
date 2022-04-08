@@ -107,7 +107,9 @@
                                                         </button>
                                                     </div>
                                                 </div>
-                                                <div class="me-3">
+                                                <div
+                                                    class="me-3 element-total-price"
+                                                >
                                                     <h5 class="mb-0">
                                                         {{
                                                             (
@@ -371,6 +373,12 @@ export default {
     font-size: 0.9rem;
 }
 @import "bootstrap";
+
+.element-total-price {
+    h5 {
+        font-size: 1em;
+    }
+}
 
 .quantity-input {
     width: 50px;

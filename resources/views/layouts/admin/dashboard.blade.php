@@ -38,8 +38,7 @@
         </svg>
       </a> --}}
             <div class=" logo-container d-flex justify-content-center align-items-center d-md-flex d-none">
-                <img class=""
-                    src="{{ asset('/storage/uploads/Guest-Deliveboo-Logo-10s-unscreen-crop.gif') }}"
+                <img class="" src="{{ asset('/storage/default_images/my-deliveboo.gif') }}"
                     alt="DeliveBoo Logo">
             </div>
 

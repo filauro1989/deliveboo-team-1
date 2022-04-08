@@ -1,11 +1,11 @@
 @extends('layouts.guest.app')
 
 @section('content')
-    <div class="container">
+    <div class="container mt-2">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('Register') }}</div>
+                    <div class="card-header">{{ __('Registrazione') }}</div>
 
                     <div class="card-body">
                         <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
@@ -36,8 +36,9 @@
                                 <div required class="btn-group" role="group"
                                     aria-label="Basic checkbox toggle button group">
 
-                                    <input type="checkbox" class="btn-check" id="{{ 'btncheck' . $category->id }}"
-                                        autocomplete="off" name="categories[]" value="{{ $category->id }}"
+                                    <input type="checkbox" class="btn-check my_btn-check"
+                                        id="{{ 'btncheck' . $category->id }}" autocomplete="off" name="categories[]"
+                                        value="{{ $category->id }}"
                                         {{ in_array($category->id, old('categories', [])) ? 'checked' : '' }}>
 
                                     <label class="btn btn-outline-primary"
@@ -169,8 +170,8 @@
                             {{-- Register Button --}}
                             <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4">
-                                    <button id="register-button" type="submit" class="btn btn-primary">
-                                        {{ __('Register') }}
+                                    <button id="register-button" type="submit" class="btn my_btn-register">
+                                        {{ __('Registrati') }}
                                     </button>
                                 </div>
                             </div>

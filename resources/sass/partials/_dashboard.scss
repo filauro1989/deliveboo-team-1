@@ -614,21 +614,6 @@ a {
         box-shadow: none;
     }
 }
-h1,
-h2,
-h3,
-h4,
-h5,
-.h1,
-.h2,
-.h3,
-.h4,
-.h5 {
-    line-height: 1.5;
-    font-weight: 400;
-    font-family: $font-primary;
-    color: $black;
-}
 
 .bg-primary {
     background: $primary !important;
@@ -791,15 +776,15 @@ h5,
     @include transition(0.3s);
 }
 
-/* Show the checkmark when checked */
-.checkbox-wrap {
-    input:checked ~ .checkmark:after {
-        display: block;
-        content: "\f14a";
-        font-family: "FontAwesome";
-        color: rgba(0, 0, 0, 0.2);
-    }
-}
+// /* Show the checkmark when checked */
+// .checkbox-wrap {
+//     input:checked ~ .checkmark:after {
+//         display: block;
+//         content: "\f14a";
+//         font-family: "FontAwesome";
+//         color: rgba(0, 0, 0, 0.2);
+//     }
+// }
 
 /* Style the checkmark/indicator */
 

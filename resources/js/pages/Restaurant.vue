@@ -1,6 +1,6 @@
 <template>
     <div class="col">
-        <svg id="visual" viewBox="0 0 2000 100" width="2000" height="100" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"><rect x="0" y="0" width="2000" height="100" fill="#fff"></rect><path d="M0 70L83.3 72C166.7 74 333.3 78 500 69.3C666.7 60.7 833.3 39.3 1000 28.7C1166.7 18 1333.3 18 1500 26.2C1666.7 34.3 1833.3 50.7 1916.7 58.8L2000 67L2000 0L1916.7 0C1833.3 0 1666.7 0 1500 0C1333.3 0 1166.7 0 1000 0C833.3 0 666.7 0 500 0C333.3 0 166.7 0 83.3 0L0 0Z" fill="#FF9999" stroke-linecap="round" stroke-linejoin="miter"></path></svg>
+        <svg id="visual" viewBox="0 0 900 100" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"><rect x="0" y="0" width="900" height="100" fill="#FFECEC"></rect><path d="M0 24L37.5 30.3C75 36.7 150 49.3 225 56C300 62.7 375 63.3 450 59.7C525 56 600 48 675 43.2C750 38.3 825 36.7 862.5 35.8L900 35L900 0L862.5 0C825 0 750 0 675 0C600 0 525 0 450 0C375 0 300 0 225 0C150 0 75 0 37.5 0L0 0Z" fill="#FF9999" stroke-linecap="round" stroke-linejoin="miter"></path></svg>
         <h1>{{ myRestaurant.restaurant_name }}</h1>
         <div class="row m-0">
             <div class="col-xl-7 pt-3">

@@ -53,7 +53,7 @@ foreach ($orders as $order) {
                     <span class="stat-card-info-text">Totale Guadagni</span>
                 </div>
                 <div class="stat-card-logo rounded-circle d-flex align-items-center justify-content-center">
-                    <i class="stat-card-logo-fa fa-solid fa-dollar-sign"></i>
+                    <i class="stat-card-logo-fa fa-solid fa-wallet"></i>
                 </div>
             </div>
         </div>

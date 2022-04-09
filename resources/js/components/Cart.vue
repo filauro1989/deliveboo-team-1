@@ -11,14 +11,8 @@
                                 >
                                     <div>
                                         <p class="mb-1">Carrello</p>
-                                        <p v-if="cartStorage" class="mb-0">
-                                            Hai
-                                            {{
-                                                cartStorage.length == 0
-                                                    ? "0"
-                                                    : cartStorage.length
-                                            }}
-                                            elementi nel carrello
+                                        <p v-if="cartStorage" class="mb-0 items-paragraph">
+                                            Hai <span class="numberItems" >{{ cartStorage.length == 0 ? "0" : cartStorage.length }}</span> elementi nel carrello
                                         </p>
                                     </div>
                                 </div>
@@ -373,6 +367,25 @@ export default {
 * {
     font-size: 0.9rem;
 }
+
+.items-paragraph {
+    display: flex;
+    align-items: center;
+
+    .numberItems {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 25px;
+        height: 25px;
+        background-color: #00c7fa;
+        color: white;
+        // font-weight: bold;
+        border-radius: 50%;
+        margin: 0 5px;
+    }
+}
+
 @import "bootstrap";
 .w-10 {
     width: 10%;

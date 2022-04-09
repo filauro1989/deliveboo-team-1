@@ -35,6 +35,7 @@ export default {
         //     // console.log(this.categories);
         // },
     },
+    
 };
 </script>
 

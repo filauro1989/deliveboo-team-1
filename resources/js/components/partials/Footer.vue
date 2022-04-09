@@ -1,6 +1,7 @@
 <template>
     <div
-        class="my_container d-flex justify-content-around align-items-center text-white mt-4 w-100"
+        v-if="$route.name != 'paymentaccepted'"
+        class="my_container d-flex justify-content-center align-items-center text-white mt-4"
     >
         <div class="w-75">
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4">

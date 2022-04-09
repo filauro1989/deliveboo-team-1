@@ -1,11 +1,12 @@
 <template>
     <div
-         v-if="$route.name != 'paymentaccepted'" class="my_container d-flex justify-content-center align-items-center text-white mt-4"
+        v-if="$route.name != 'paymentaccepted'"
+        class="my_container d-flex justify-content-center align-items-center text-white mt-4"
     >
-        <div>
+        <div class="w-75">
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4">
                 <div
-                    class="col d-flex justify-content-center align-items-center"
+                    class="col d-flex justify-content-center align-items-center p-0"
                 >
                     <a
                         class="d-flex align-items-center"
@@ -19,10 +20,10 @@
                         target="_blank"
                         ><i class="fs-4 fa-brands fa-github me-2"></i
                     ></a>
-                    <span>Nicolò Fantini</span>
+                    <div>Nicolò Fantini</div>
                 </div>
                 <div
-                    class="col justify-content-center d-flex align-items-center"
+                    class="col justify-content-center d-flex align-items-center p-0"
                 >
                     <a
                         class="d-flex align-items-center"
@@ -36,10 +37,10 @@
                         target="_blank"
                         ><i class="fs-4 fa-brands fa-github me-2"></i
                     ></a>
-                    <span>Francesco Filauro</span>
+                    <div>Francesco Filauro</div>
                 </div>
                 <div
-                    class="col justify-content-center d-flex align-items-center"
+                    class="col justify-content-center d-flex align-items-center p-0"
                 >
                     <a
                         class="d-flex align-items-center"
@@ -53,10 +54,10 @@
                         target="_blank"
                         ><i class="fs-4 fa-brands fa-github me-2"></i
                     ></a>
-                    <span>Matteo Giuseppe Gallitano</span>
+                    <div>Matteo Giuseppe Gallitano</div>
                 </div>
                 <div
-                    class="col d-flex justify-content-center align-items-center"
+                    class="col d-flex justify-content-center align-items-center p-0"
                 >
                     <a
                         class="d-flex align-items-center"
@@ -70,7 +71,7 @@
                         target="_blank"
                         ><i class="fs-4 fa-brands fa-github me-2"></i
                     ></a>
-                    <span>Fabio Giannitrapani</span>
+                    <div>Fabio Giannitrapani</div>
                 </div>
             </div>
         </div>
@@ -80,7 +81,6 @@
 <script>
 export default {
     name: "Footer",
-    
 };
 </script>
 

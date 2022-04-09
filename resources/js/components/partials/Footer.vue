@@ -87,7 +87,7 @@ export default {
 <style lang="scss" scoped>
 .my_container {
     background-color: #7f282f;
-    height: 100px;
+    height: 120px;
 
     a:hover,
     a:active,

@@ -22,7 +22,7 @@
 
         <div class="container">
             <div class="row">
-                <div class="mb-5 category-container">
+                <div class="mb-4 category-container">
                     <h3 class="text-center">
                         Seleziona una o più categorie
                     </h3>
@@ -31,8 +31,8 @@
                         class="col-12"
                     />
                 </div>
-                <h1 class="text-center">
-                    Ecco i Ristoranti nella tua zona
+                <h1 class="text-center mb-3">
+                    Ecco i ristoranti nella tua zona
                 </h1>
                 <div class="col-12">
                     <transition-group

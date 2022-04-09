@@ -216,6 +216,10 @@ export default {
 <style lang="scss" scoped>
 @import "./../../../node_modules/braintree-web-drop-in/dropin.css";
 
+.form-group input {
+    padding-left: 1em;
+}
+
 .button {
     cursor: pointer;
     font-weight: 500;

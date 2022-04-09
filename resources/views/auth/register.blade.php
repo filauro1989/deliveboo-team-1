@@ -169,8 +169,8 @@
 
                             {{-- Register Button --}}
                             <div class="form-group row mb-0">
-                                <div class="col-md-6 offset-md-4">
-                                    <button id="register-button" type="submit" class="btn my_btn-register">
+                                <div class="col-12 text-center">
+                                    <button id="register-button" type="submit" class="btn my_btn-register text-white fw-bold">
                                         {{ __('Registrati') }}
                                     </button>
                                 </div>

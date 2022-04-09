@@ -1,5 +1,9 @@
 <template>
-    <div>
+    <div class="position-relative">
+        <div class="loading hide d-flex flex-column">
+            <span class="fs-4">Invio Ordine...</span>
+            <i class="fa-solid fa-spinner fa-spin-pulse"></i>
+        </div>
         <svg
             id="visual"
             viewBox="0 0 900 100"
@@ -161,6 +165,8 @@ export default {
     },
     methods: {
         onSuccess(payload) {
+            let spinner = document.querySelector(".loading");
+            spinner.classList.remove("hide");
             let nonce = payload.nonce;
 
             const headers = {
@@ -215,6 +221,27 @@ export default {
 
 <style lang="scss" scoped>
 @import "./../../../node_modules/braintree-web-drop-in/dropin.css";
+
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 2rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0,0,0,0.7);
+    color: white;
+    border-radius: 20px;
+    z-index: 100;
+    transition: all 0.4s;
+    font-size: 3rem;
+    opacity: 1;
+}
+.hide {
+    opacity: 0;
+}
 
 .form-group input {
     padding-left: 1em;

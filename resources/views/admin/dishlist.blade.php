@@ -101,7 +101,7 @@
                                         
                                     </td>
                                     <td>
-                                        <a class="btn  rounded-pill " href="{{ route('admin.dishes.show', $dish->slug) }}">Visualizza
+                                        <a class="btn  rounded-pill btn-outline-info " href="{{ route('admin.dishes.show', $dish->slug) }}">Visualizza
                                         Piatto</a>
                                         <a class="btn btn-info rounded-pill text-white" href="{{ route('admin.dishes.edit', $dish) }}">Modifica</a>
                                         <button type="button" class="btn btn-danger rounded-pill text-white" data-bs-toggle="modal"

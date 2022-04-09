@@ -73,5 +73,11 @@
             </div>
         </div>
     </div>
+    <div class="row">
+            <div class="col d-flex justify-content-center mt-3">
+                <a class="btn btn-dark me-3" href="{{ route('admin.dishes.index') }}">Back</a>
+                <a class="btn btn-info text-white" href="{{ route('admin.dishes.edit', $dish) }}">Modifica</a>
+            </div>
+        </div> 
         </div>
 @endsection

@@ -819,6 +819,11 @@ input.form-control {
     outline: none !important;
     border: none !important;
     border-bottom: 1px solid #ccc !important;
+    background-color: none !important;
+    &:focus,
+    &:active {
+        background-color: none !important;
+    }
 }
 // .btn,
 .form-control,
@@ -855,11 +860,6 @@ input.form-control {
     }
     &:hover {
         color: $white;
-    }
-    &:active,
-    &:focus {
-        outline: none;
-        box-shadow: none;
     }
 }
 
@@ -1065,4 +1065,11 @@ label.error {
             background: darken($warning, 15%);
         }
     }
+}
+
+#description {
+    background-color: white !important;
+}
+#visible {
+    background-color: white !important;
 }

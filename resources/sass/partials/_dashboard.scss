@@ -538,11 +538,14 @@ body {
 /* LIGHT MODE STYLES
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 .light-mode {
-    --page-header-bgColor: #cec8f7;
-    --page-header-bgColor-hover: #b9e4e0;
-    --page-header-txtColor: #2c303a;
-    --page-header-headingColor: #979595;
-    --page-content-bgColor: #fff;
+    // --page-header-bgColor: #cec8f7;
+    --page-header-bgColor: #0075a5;
+    // --page-header-bgColor-hover: #b9e4e0;
+    --page-header-bgColor-hover: #00c7fa;
+    // --page-header-txtColor: #2c303a;
+    --page-header-txtColor: white;
+    --page-header-headingColor: #00c7fa;
+    --page-content-bgColor: #00c7fa;
     --box-shadow: 0 0 10px -2px rgba(0, 0, 0, 0.25);
 }
 
@@ -550,7 +553,8 @@ body {
 .light-mode .page-header .admin-menu a:focus,
 .light-mode .page-header .admin-menu button:hover,
 .light-mode .page-header .admin-menu button:focus {
-    color: var(--black);
+    // color: var(--black);
+    color: white;
 }
 
 .light-mode .page-header .logo svg,
@@ -1070,6 +1074,14 @@ label.error {
 #description {
     background-color: white !important;
 }
-#visible {
-    background-color: white !important;
+// #visible {
+//     background-color: white !important;
+// }
+
+.restaurantName {
+    background-color: var(--page-header-bgColor);
+    color: white;
+    border-radius: 5px;
+    padding: 0.3rem 0;
+    margin-bottom: 0.5rem;
 }

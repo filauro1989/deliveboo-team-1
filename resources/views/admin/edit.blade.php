@@ -91,7 +91,7 @@
             <h3 class="text-center">Inserisci il tuo piatto</h3>
             <form class="mb-5" action="{{ route('admin.dishes.update', $dish) }}" enctype="multipart/form-data" method="POST">
                 @csrf
-                @method("POST")
+                @method("PATCH")
               <div class="row">
                 <div class="col-md-12 form-group mb-3">
                   <label for="name" class="form-label">Nome Piatto</label>
@@ -186,16 +186,13 @@
 
               <div class="row justify-content-center">
                 <div class="col-md-5 form-group text-center">
-                  <input type="submit" value="Send Message" class="btn-form btn-block btn-primary rounded-0 py-2 mt-4 px-4">
+                  <input type="submit" value="Modifica Piatto" class="btn-form btn-block btn-primary rounded-0 py-2 mt-4 px-4">
                   <span class="submitting"></span>
                 </div>
               </div>
             </form>
 
-            <div id="form-message-warning mt-4"></div> 
-            <div id="form-message-success">
-              Your message was sent, thank you!
-            </div>
+            
 
           </div>
         </div>

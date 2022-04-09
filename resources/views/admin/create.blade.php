@@ -151,16 +151,12 @@
 
               <div class="row justify-content-center">
                 <div class="col-md-5 form-group text-center">
-                  <input type="submit" value="Send Message" class="btn-form btn-block btn-primary rounded-0 py-2 mt-4 px-4">
+                  <input type="submit" value="Aggiungi Piatto" class="btn-form btn-block btn-primary rounded-0 py-2 mt-4 px-4">
                   <span class="submitting"></span>
                 </div>
               </div>
             </form>
 
-            <div id="form-message-warning mt-4"></div> 
-            <div id="form-message-success">
-              Your message was sent, thank you!
-            </div>
 
           </div>
         </div>

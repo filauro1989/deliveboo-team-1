@@ -48,18 +48,20 @@
             <div class="row">
                 <div class="col-xs-4">
                     <div class="profile-overview">
+                        <p>CATEGORIA</p>
+                        <h4>{{$dish->course()->first()->name}}</h4>
+                    </div>
+                    
+                </div>
+                <div class="col-xs-4">
+                    <div class="profile-overview">
                         <p>PREZZO</p>
                         <h4>{{$dish->price}}&euro;</h4>
                     </div>
                 </div>
                 <div class="col-xs-4">
                     <div class="profile-overview">
-                        <p>CATEGORIA</p>
-                        <h4>{{$dish->course()->first()->name}}</h4></div>
-                </div>
-                <div class="col-xs-4">
-                    <div class="profile-overview">
-                        <p>STAUTS</p>
+                        <p>STATUS</p>
                         <div class="status">
 
                             @if ($dish->visible)

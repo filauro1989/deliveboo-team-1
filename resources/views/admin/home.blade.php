@@ -78,7 +78,7 @@ foreach ($orders as $order) {
         <div class="ms-sm-auto px-md-4">
             <div
                 class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                <h1 class="h2">Resoconto Ordini</h1>
+                <h1 class="h2">Resoconto Fatturato / Ordini</h1>
             </div>
             <div>
                 <canvas id="myChart"></canvas>
@@ -231,7 +231,7 @@ foreach ($orders as $order) {
                 // ]
                     labels: labels,
                     datasets: [{
-                        label: 'Guadagni',
+                        label: 'Fatturato',
                         yAxisID: 'A',
                         data: [...pricesForChart],
                         backgroundColor: 'rgb(0, 153, 0)',

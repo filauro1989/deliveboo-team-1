@@ -129,7 +129,7 @@
                                                             @csrf
                                                             @method("DELETE")
 
-                                                            <input class="btn btn-danger" type="submit" value="Elimina">
+                                                            <input class="btn btn-danger text-white" type="submit" value="Elimina">
                                                         </form>
                                                     </div>
                                                 </div>

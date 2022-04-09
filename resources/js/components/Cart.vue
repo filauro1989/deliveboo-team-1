@@ -24,7 +24,7 @@
                                 >
                                     <div class="card-body">
                                         <div
-                                            class="d-flex justify-content-between"
+                                            class="d-flex justify-content-around align-items-center"
                                         >
                                             <!-- NOME PRODOTTO -->
                                             <div
@@ -40,7 +40,7 @@
                                                 </div>
                                             </div>
                                             <div
-                                                class="d-flex flex-row align-items-center w-60"
+                                                class="d-flex flex-row align-items-center"
                                             >
                                                 <!-- QUANTITA -->
                                                 <div class="px-2 w-60">
@@ -100,8 +100,9 @@
                                                     </div>
                                                 </div>
                                                 <!-- PREZZO -->
+                                            </div>
                                                 <div
-                                                    class="element-total-price w-30"
+                                                    class="element-total-price w-30 text-center"
                                                 >
                                                     <h5 class="mb-0">
                                                         {{
@@ -115,7 +116,7 @@
                                                 </div>
                                                 <!-- CANCELLA -->
                                                 <a
-                                                    class="w-10 trash-item"
+                                                    class="w-10 trash-item text-center"
                                                     @click="
                                                         deleteItem(cartElement)
                                                     "
@@ -124,14 +125,13 @@
                                                         class="fas fa-trash-alt"
                                                     ></i
                                                 ></a>
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="fw-bold total-amount">
                                 Totale Carrello:
-                                {{ totalAmount.toFixed(2) }} &euro;
+                                <span class="fs-5">{{ totalAmount.toFixed(2) }} &euro;</span>
                             </div>
                             <div>
                                 <button

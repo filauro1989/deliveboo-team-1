@@ -110,10 +110,10 @@
             </ul>
         </nav>
     </header>
-    <section class="page-content">
+    <section class="page-content text-center">
 
         <section>
-            <div>{{ Auth::user()->restaurant_name }}</div>
+            <h2 class="restaurantName">{{ Auth::user()->restaurant_name }}</h2>
             <article class="row">
                 <div class="col"> @yield('content') </div>
             </article>

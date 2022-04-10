@@ -276,11 +276,13 @@ export default {
     color: #00c7fa;
     border: 2px solid #00c7fa;
     border-radius: 50%;
+    transition: all 0.3s;
 }
 .quantity-btn:hover {
     background-color: #00c7fa;
     color: white;
     border: 2px solid white;
+    transform: scale(1.8);
 }
 
 @include media-breakpoint-down(md) {

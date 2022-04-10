@@ -282,7 +282,7 @@ export default {
     background-color: #00c7fa;
     color: white;
     border: 2px solid white;
-    transform: scale(1.8);
+    transform: scale(1.1);
 }
 
 @include media-breakpoint-down(md) {

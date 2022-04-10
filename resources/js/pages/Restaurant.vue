@@ -352,11 +352,14 @@ CARDS
     margin-right: 15px;
     margin-top: -30px;
     border-radius: 6px;
+    transition: all 0.2s;
 }
 
 .card-image:hover {
-    transition: all 0.2s ease;
+    // transition: all 0.2s ease;
+    // transform: translate(-20px, 40px) scale(1.6);
     transform: scale(1.2);
+    // z-index: 100;
 }
 
 .card .card-image img {

@@ -112,6 +112,9 @@
                                 authorization="sandbox_8hskcmnn_tcmvbbfg3pvh5s7s"
                                 @success="onSuccess"
                                 @error="onError"
+                                btnText="Paga"
+                                btnClass="btn btn-success text-white"
+                                :locale="locale"
                             ></v-braintree>
                         </div>
                     </transition>
@@ -143,6 +146,7 @@ export default {
             apiKey: "deliveboo26313334",
             dataChecked: false,
             slug: this.$route.params.slug,
+            locale: "it_IT",
         };
     },
     created() {
@@ -310,6 +314,7 @@ export default {
         background-color: #00c7fa;
     }
 }
+
 
 .payment .btn.btn-primary {
     background-color: #ff9999 !important;

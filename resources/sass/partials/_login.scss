@@ -1,7 +1,7 @@
 *,
 *:before,
 *:after {
-    box-sizing: border-box
+    box-sizing: border-box;
 }
 
 .container-login {
@@ -12,11 +12,10 @@
     overflow: hidden;
 
     &:hover,
-    &:active {
-
+    &:active,
+    &:focus {
         .top-login,
         .bottom-login {
-
             &:before,
             &:after {
                 margin-left: 250px;
@@ -34,10 +33,9 @@
 
 .top-login,
 .bottom-login {
-
     &:before,
     &:after {
-        content: '';
+        content: "";
         display: block;
         position: absolute;
         width: 200vmax;
@@ -70,7 +68,7 @@
         transform: rotate(-45deg);
         background: #ff9999;
     }
-    
+
     &:after {
         transform: rotate(-135deg);
         background: #7f282f;
@@ -108,24 +106,24 @@
     .btn.my_btn-login {
         background-color: #00c7fa !important;
         &:hover,
-        &:focus, 
+        &:focus,
         &:active {
-            background-color: #FF9999 !important;
+            background-color: #ff9999 !important;
             color: white;
         }
     }
     .my_input {
         background-color: #fff;
-        width:100%;
-        border-radius:1px;
-        border:1px solid #0075a5;
+        width: 100%;
+        border-radius: 1px;
+        border: 1px solid #0075a5;
         padding-left: 5px;
 
         &:focus,
         &:hover,
         &:active {
             background-color: #fff;
-            border:1px solid #00c7fa;
+            border: 1px solid #00c7fa;
             outline-color: #00c7fa;
         }
     }

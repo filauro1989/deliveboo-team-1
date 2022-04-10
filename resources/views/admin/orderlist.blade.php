@@ -85,7 +85,7 @@
                 <div class="col-xs-4">
                     <div class="profile-overview">
                         <p>PREZZO</p>
-                        <h4>{{$dish->price}}&euro;</h4>
+                        <h4>{{number_format($dish->price, 2, '.', '')}}&euro;</h4>
                     </div>
                 </div>
                 <div class="col-xs-4">

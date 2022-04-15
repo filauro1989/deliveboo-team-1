@@ -346,20 +346,86 @@ CARDS
 .card .card-image {
     width: 6rem;
     height: 6rem;
+    top: 0;
+    left: 0;
     position: relative;
     overflow: hidden;
     margin-left: 15px;
     margin-right: 15px;
     margin-top: -30px;
     border-radius: 6px;
-    transition: all 0.2s;
+    transition: all 0.3s ease-out;
+    cursor: pointer;
 }
 
-.card-image:hover {
-    // transition: all 0.2s ease;
-    // transform: translate(-20px, 40px) scale(1.6);
-    transform: scale(1.2);
-    // z-index: 100;
+.card-image:active,
+.card-image:focus {
+    position: absolute;
+    transform: scale(2.2);
+    top: 50%;
+    left: 20%;
+    // transform: translate(44%, 100%) scale(2.2);
+    // transform: scale(1.2);
+    // z-index: 3;
+}
+// .card-image:active ~ .card-caption,
+// .card-image:focus ~ .card-caption,
+// .card-image:hover ~ .card-caption,
+// .card-image:active ~ .card-description,
+// .card-image:focus ~ .card-description,
+.card-image:active ~ .card-caption,
+.card-image:active ~ .card-description {
+    opacity: 0;
+}
+@include media-breakpoint-down(xxl) {
+    .card-image:active,
+    .card-image:focus {
+        position: absolute;
+        transform: scale(1.8);
+        top: 50%;
+        left: 15%;
+        z-index: 3;
+    }
+}
+@include media-breakpoint-down(xl) {
+    .card-image:active,
+    .card-image:focus {
+        position: absolute;
+        transform: scale(2.8);
+        top: 60%;
+        left: 27%;
+        z-index: 3;
+    }
+}
+@include media-breakpoint-down(lg) {
+    .card-image:active,
+    .card-image:focus {
+        position: absolute;
+        transform: scale(2);
+        top: 55%;
+        left: 17%;
+        z-index: 3;
+    }
+}
+@include media-breakpoint-down(md) {
+    .card-image:active,
+    .card-image:focus {
+        position: absolute;
+        transform: scale(2.2);
+        top: 60%;
+        left: 37%;
+        z-index: 3;
+    }
+}
+@include media-breakpoint-down(sm) {
+    .card-image:active,
+    .card-image:focus {
+        position: absolute;
+        transform: scale(2.2);
+        top: 60%;
+        left: 28%;
+        z-index: 3;
+    }
 }
 
 .card .card-image img {

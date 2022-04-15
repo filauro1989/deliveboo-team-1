@@ -11,8 +11,17 @@
                                 >
                                     <div>
                                         <p class="mb-1">Carrello</p>
-                                        <p v-if="cartStorage" class="mb-0 items-paragraph">
-                                            Hai <span class="numberItems" >{{ cartStorage.length == 0 ? "0" : cartStorage.length }}</span> elementi nel carrello
+                                        <p
+                                            v-if="cartStorage"
+                                            class="mb-0 items-paragraph"
+                                        >
+                                            Hai
+                                            <span class="numberItems">{{
+                                                cartStorage.length == 0
+                                                    ? "0"
+                                                    : cartStorage.length
+                                            }}</span>
+                                            elementi nel carrello
                                         </p>
                                     </div>
                                 </div>
@@ -101,37 +110,35 @@
                                                 </div>
                                                 <!-- PREZZO -->
                                             </div>
-                                                <div
-                                                    class="element-total-price w-30 text-center"
-                                                >
-                                                    <h5 class="mb-0">
-                                                        {{
-                                                            (
-                                                                cartElement.price *
-                                                                cartElement.quantity
-                                                            ).toFixed(2)
-                                                        }}
-                                                        &euro;
-                                                    </h5>
-                                                </div>
-                                                <!-- CANCELLA -->
-                                                <a
-                                                    class="w-10 trash-item text-center"
-                                                    @click="
-                                                        deleteItem(cartElement)
-                                                    "
-                                                    href="#!"
-                                                    ><i
-                                                        class="fas fa-trash-alt"
-                                                    ></i
-                                                ></a>
+                                            <div
+                                                class="element-total-price w-30 text-center"
+                                            >
+                                                <h5 class="mb-0">
+                                                    {{
+                                                        (
+                                                            cartElement.price *
+                                                            cartElement.quantity
+                                                        ).toFixed(2)
+                                                    }}
+                                                    &euro;
+                                                </h5>
+                                            </div>
+                                            <!-- CANCELLA -->
+                                            <a
+                                                class="w-10 trash-item text-center"
+                                                @click="deleteItem(cartElement)"
+                                                href="#!"
+                                                ><i class="fas fa-trash-alt"></i
+                                            ></a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="fw-bold total-amount">
                                 Totale Carrello:
-                                <span class="fs-5">{{ totalAmount.toFixed(2) }} &euro;</span>
+                                <span class="fs-5"
+                                    >{{ totalAmount.toFixed(2) }} &euro;</span
+                                >
                             </div>
                             <div>
                                 <button
@@ -181,12 +188,13 @@
                                                 >
                                                     Annulla
                                                 </button>
-                                                <form>
+                                                <form @submit.prevent>
                                                     <input
                                                         class="btn btn-danger"
                                                         type="submit"
                                                         value="Elimina"
                                                         @click="refresh()"
+                                                        data-bs-dismiss="modal"
                                                     />
                                                 </form>
                                             </div>

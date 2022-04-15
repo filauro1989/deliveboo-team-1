@@ -46,3 +46,10 @@ input.form-control {
     border-color: #FF9999;
     
 }
+
+.card-border-none {
+    border: none !important;
+}
+.card-shadow {
+    box-shadow: 3px 3px 7px 1px rgba(0, 0, 0, 0.352);
+}

@@ -1,11 +1,11 @@
 @extends('layouts.guest.app')
 
 @section('content')
-    <div class="container mt-2">
+    <div class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">{{ __('Registrazione') }}</div>
+                <div class="card card-border-none card-shadow">
+                    {{-- <div class="card-header">{{ __('Registrazione') }}</div> --}}
 
                     <div class="card-body">
                         <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
@@ -14,6 +14,7 @@
 
                             {{-- Restaurant Name --}}
                             <div class="form-group row">
+                                <span></span>
                                 <label for="restaurant_name"
                                     class="col-md-4 col-form-label text-md-right">{{ __('Nome Attività') }}</label>
 
@@ -33,7 +34,7 @@
                             {{-- Categories --}}
                             <div>Scegli la categoria del ristorante</div>
                             @foreach ($categories as $category)
-                                <div required class="btn-group mb-1" role="group"
+                                <div required class="btn-group mb-1 m-1" role="group"
                                     aria-label="Basic checkbox toggle button group">
 
                                     <input type="checkbox" class="btn-check my_btn-check"
@@ -170,7 +171,8 @@
                             {{-- Register Button --}}
                             <div class="form-group row mb-0">
                                 <div class="col-12 text-center">
-                                    <button id="register-button" type="submit" class="btn my_btn-register text-white fw-bold">
+                                    <button id="register-button" type="submit"
+                                        class="btn my_btn-register text-white fw-bold">
                                         {{ __('Registrati') }}
                                     </button>
                                 </div>

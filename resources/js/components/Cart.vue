@@ -31,7 +31,7 @@
                                     :key="index"
                                     class="card mb-3"
                                 >
-                                    <div class="card-body">
+                                    <div class="card-body card-body-text">
                                         <div
                                             class="d-flex justify-content-around align-items-center"
                                         >
@@ -39,9 +39,10 @@
                                             <div
                                                 class="d-flex flex-row align-items-center w-40"
                                             >
-                                                <div class="">
-                                                    <h5></h5>
-                                                    <p class="small mb-0">
+                                                <div>
+                                                    <p
+                                                        class="small mb-0 fw-bold"
+                                                    >
                                                         {{
                                                             cartElement.productName
                                                         }}
@@ -142,7 +143,10 @@
                             </div>
                             <div>
                                 <button
-                                    v-if="cartStorage != 0"
+                                    v-if="
+                                        cartStorage != 0 &&
+                                        currentRoute != 'checkout'
+                                    "
                                     class="btn btn-outline-danger"
                                     type="button"
                                     data-bs-toggle="modal"
